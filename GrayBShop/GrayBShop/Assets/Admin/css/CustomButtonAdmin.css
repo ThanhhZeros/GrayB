@@ -1,0 +1,17 @@
+﻿.ThemMoi {
+	background-color: gainsboro;
+	border: 1px solid midnightblue;
+	color: midnightblue;
+	padding: 5px 10px;
+	border-radius: 3px;
+}
+
+.ThemMoi:hover {
+	background-color: midnightblue;
+	color: white;
+}
+
+.Crud {
+	border: none;
+	padding: 10px;
+}
