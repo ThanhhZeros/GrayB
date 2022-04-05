@@ -218,3 +218,7 @@ D:\GrayB\GrayBShop\GrayBShop\bin\EntityFramework.dll
 D:\GrayB\GrayBShop\GrayBShop\bin\EntityFramework.SqlServer.dll
 D:\GrayB\GrayBShop\GrayBShop\bin\EntityFramework.xml
 D:\GrayB\GrayBShop\GrayBShop\bin\EntityFramework.SqlServer.xml
+D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\EntityFramework.dll
+D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\EntityFramework.SqlServer.dll
+D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\EntityFramework.xml
+D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\EntityFramework.SqlServer.xml
