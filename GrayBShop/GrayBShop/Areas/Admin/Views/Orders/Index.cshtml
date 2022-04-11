@@ -1,0 +1,92 @@
+﻿@model PagedList.IPagedList<GrayBShop.Models.Order>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{ ViewBag.Title = "Index";
+                Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; }
+
+@if (ViewBag.Error != null)
+{
+<div class="alert alert-warning" role="alert">
+    @ViewBag.Error
+</div>}
+<head>
+    <style>
+        button a {
+            color: white;
+        }
+
+            button a:hover {
+                color: yellow;
+                transition: 0.5s;
+            }
+    </style>
+    
+</head>
+<h2>Danh sách hóa đơn</h2>
+<div style="margin-left: 10px">
+    <div class="table-settings mb-4">
+        <div class="row align-items-center justify-content-between">
+            <div class="col col-md-6 col-lg-4 col-xl-4">
+                <form>
+                    <div class="input-group">
+                        <button class="input-group-text" type="submit" id="basic-addon2"><span class="fas fa-search">Tìm</span></button>
+                        <input type="date" class="form-control" name="searchString" value="@ViewBag.searchString" placeholder="Search" aria-label="Search" aria-describedby="basic-addon2">
+                        @*this is filter*@
+                        <select name="stringFilter" style="margin-left: 10px; color: #6A7A8C; FONT-SIZE: 14px; border: 1px solid #e9e9ef;">
+                            <option value="">Trạng thái đơn hàng</option>
+                            @foreach (var item in ViewBag.status)
+                            {
+                <option value="@item">@item</option>
+}
+                        </select>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card card-body border-light shadow-sm table-wrapper table-responsive pt-0">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Tên khách hàng</th>
+                    <th>Tên người nhận</th>
+                    <th>Ngày đặt</th>
+                    <th>Địa chỉ nhận</th>
+                    <th>Trạng thái</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Item -->
+                @foreach (var item in Model)
+                {
+    <tr class="group-info">
+        <td>
+            @item.User.UserName
+        </td>
+        <td>
+            <span class="font-weight-normal">@item.UserName</span>
+        </td>
+        <td><span class="font-weight-normal">@item.DateCreate</span></td>
+        <td><span class="font-weight-normal">@item.Address</span></td>
+        <td>
+            <span class="font-weight-normal text-danger"><a href="#" style="color:blue">@item.Status</a></span>
+        </td>
+
+
+        <td>
+            <button style="background-color: midnightblue;border-radius: 8px;border: none; padding: 8px 10px;">@Html.ActionLink("Xem chi tiết", "Edit", new { id = item.OrderID })</button>
+        </td>
+    </tr>}
+            </tbody>
+        </table>
+
+    </div>
+
+    @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+                new { page, pageSize = Model.PageSize, searchString = ViewBag.searchString }))
+</div>

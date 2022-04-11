@@ -1,58 +1,77 @@
-﻿@model IEnumerable<GrayBShop.Models.Blog>
+﻿@model PagedList.IPagedList<GrayBShop.Models.Blog>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css">
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
-}
+@{ ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml"; }
 
-<h2>Index</h2>
+<head>
+    <style>
+        button a {
+            color: white;
+        }
 
+            button a:hover {
+                color: yellow;
+            }
+    </style>
+</head>
+<h2>Danh sách tin tức</h2>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <button style="background-color: #428BCA; border-radius: 8px; border: none; margin: 10px 0px; padding: 7px 9px;">@Html.ActionLink("Thêm mới", "Create")</button>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.BlogCategory.BlogCategoryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.BlogName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DateCreate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Content)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Images)
-        </th>
-        <th></th>
-    </tr>
+<div class="table-settings mb-4">
+    <div class="row align-items-center justify-content-between">
+        <div class="col col-md-6 col-lg-3 col-xl-4">
+            <form>
+                <div class="input-group">
+                    <button class="input-group-text" id="basic-addon2"><span class="fas fa-search">Tìm</span></button>
+                    <input type="text" class="form-control" name="searchString" value="@ViewBag.searchString" id="exampleInputIconLeft" placeholder="Tên tin" aria-label="Search" aria-describedby="basic-addon2">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="card card-body border-light shadow-sm table-wrapper table-responsive pt-0">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Tên tin tức</th>
+                <th>Ảnh đại diện</th>
+                <th>Danh mục</th>
+                <th>Ngày tạo</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Item -->
+            @foreach (var item in Model)
+            {
+            <tr class="group-info" id="row-@item.BlogID">
+                <td>
+                    <span class="font-weight-normal">@item.BlogName</span>
+                </td>
+                <td>
+                    @{
+                        string ImagePath = "~/wwwroot/Images/" + item.Images;
+                    }
+                    <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" />
+                    <h1>@item.Images</h1>
+                </td>
+                <td>
+                    <span class="font-weight-normal">@item.BlogCategory.BlogCategoryName</span>
+                </td>
+                <td><span class="font-weight-normal">@item.DateCreate.ToString("dd/MM/yyyy")</span></td>
+                
+            <td>
+                    <button style="background-color: midnightblue; border-radius: 8px; border: none; padding: 8px 10px; margin-right: 7px;">@Html.ActionLink("Xem chi tiết", "Edit", new { id = item.BlogID })</button>
+                    <button style="background-color: #FF6347; border-radius: 8px; border: none; padding: 8px 30px;">@Html.ActionLink("Xóa", "Delete", new { id = item.BlogID })</button>
+                </td>
+            </tr>            }
+        </tbody>
+    </table>
+</div>
+@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.BlogCategory.BlogCategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.BlogName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DateCreate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Content)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Images)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.BlogID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.BlogID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.BlogID })
-        </td>
-    </tr>
-}
-
-</table>
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, pageSize = Model.PageSize, searchString = ViewBag.searchString }))

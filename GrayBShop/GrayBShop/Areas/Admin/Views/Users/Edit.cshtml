@@ -1,0 +1,83 @@
+﻿@model GrayBShop.Models.User
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết</h2>
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <div class="col-12 col-cl-10">
+                        <div class="card card-body bg-white border-light shadow-sm mb-4">
+                            <form action="/Users/Edit" method="post">
+                                <div class="row">
+                                    <input name="id" value="@Model.UserID" hidden />
+                                    <div class="col-md-6 mb-2">
+                                        <div>
+                                            <label for="category">Tên đăng nhập</label>
+                                            <input class="form-control" type="text" value="@Html.DisplayFor(model => model.UserName)" readonly disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div>
+                                            <label for="nameProduct">Họ tên</label>
+                                            <input class="form-control" type="text" value="@Html.DisplayFor(model => model.Name)" readonly disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-2">
+                                        <div>
+                                            <label for="category">Số điện thoại</label>
+                                            <input class="form-control" type="text" value="@Html.DisplayFor(model => model.Phone)" readonly disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div>
+                                            <label for="nameProduct">Địa chỉ</label>
+                                            <input class="form-control" type="text" value="@Html.DisplayFor(model => model.Address)" readonly disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-2">
+                                        <div>
+                                            <label for="dateBuy">Email</label>
+                                            <input class="form-control" type="text" value="@Html.DisplayFor(model => model.Email)" readonly disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div>
+                                            <label for="size">Trạng thái</label>
+                                            <div class="col-md-12">
+                                                <div class="checkbox">
+                                                    @Html.EditorFor(model => model.Status)
+                                                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input type="submit" value="Save" style="background-color:darkgreen" class="btn btn-default" />
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+
+
+                </div>}
+
+<div>
+    @Html.ActionLink("Quay trở lại", "Index")
+</div>
+

@@ -7,17 +7,26 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using GrayBShop.Models;
+using PagedList;
 
 namespace GrayBShop.Areas.Admin.Controllers
 {
-    public class CategoriesController : Controller
+    public class CategoriesController : BaseController
     {
         private GrayShop db = new GrayShop();
 
         // GET: Admin/Categories
-        public ActionResult Index()
+        public ActionResult Index(string searchString, int? page)
         {
-            return View(db.Categories.ToList());
+            ViewBag.searchString = searchString;
+            var dm = db.Categories.Select(tk => tk);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                dm = dm.Where(tk => tk.CategoryName.Contains(searchString));
+            }
+            int pageSize = 10;
+            int pageNumber = (page ?? 1);
+            return View(dm.OrderBy(tk => tk.CategoryID).ToPagedList(pageNumber, pageSize));
         }
 
         // GET: Admin/Categories/Details/5

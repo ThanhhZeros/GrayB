@@ -1,0 +1,27 @@
+﻿@model GrayBShop.Models.BlogCategory
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>BlogCategory</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogCategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BlogCategoryName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.BlogCategoryID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
