@@ -347,3 +347,11 @@ insert into ProductDetail(ImageID,Size) values
 (76,37),(76,38),(76,39),(76,40),(76,41),
 (77,37),(77,38),(77,39),(77,40),(77,41),
 (78,37),(78,38),(78,39),(78,40),(78,41)
+
+insert into Roles(RoleName) values
+(N'Admin'),(N'Nhân viên'),(N'Khách hàng')
+
+insert into Users(UserName,Password,RoleID,Name,Phone,Address,Email,Status) values
+(N'Admin',N'123',1,N'Phạm Thị Thanh','0987654321',N'Hà Nội','thanhpham@gmail.com','1'),
+(N'NamTran',N'123',2,N'Trần Văn Nam','0987654321',N'Hà Nội','namtran@gmail.com','1'),
+(N'NguyenA',N'123',3,N'Nguyễn Văn A','0987654321',N'Hà Nội','nguyena@gmail.com','1')
