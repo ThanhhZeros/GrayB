@@ -11,7 +11,7 @@ namespace GrayBShop.Models
     public class DetailProduct
     {
         [DisplayName("Mã sản phẩm")]
-        public int ProductID { get; set; }
+        public string ProductID { get; set; }
 
         [Required(ErrorMessage = "Tên sản phẩm không được để trống!")]
         [StringLength(200)]
@@ -20,7 +20,7 @@ namespace GrayBShop.Models
 
         [StringLength(20)]
         [DisplayName("Mã danh mục")]
-        public int CategoryID { get; set; }
+        public string CategoryID { get; set; }
 
 
         [StringLength(200)]

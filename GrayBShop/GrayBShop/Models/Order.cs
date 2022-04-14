@@ -35,7 +35,8 @@ namespace GrayBShop.Models
 
         public DateTime DateCreate { get; set; }
 
-        public bool? Status { get; set; }
+        [StringLength(50)]
+        public string Status { get; set; }
 
         [StringLength(50)]
         public string Note { get; set; }

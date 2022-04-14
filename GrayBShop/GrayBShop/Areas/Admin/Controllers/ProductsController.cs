@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -23,8 +24,7 @@ namespace GrayBShop.Areas.Admin.Controllers
             {
                 ProductID = p.ProductID,
                 ProductName = p.ProductName,
-                CategoryID = p.Category.CategoryID,
-                CategoryName = p.Category.CategoryName,
+                CategoryID = p.Category.CategoryName,
                 Images = a.Images,
                 Description = p.Descriptions,
                 Price = p.Price,
@@ -81,18 +81,52 @@ namespace GrayBShop.Areas.Admin.Controllers
         }
 
         // GET: Admin/Products/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+
+                Product sanPham = db.Products.Find(id);
+                if (sanPham == null)
+                {
+                    return HttpNotFound();
+                }
+                var images = db.ImageProducts.Where(p => p.ProductID == id).ToList();
+                var maAnh = 0;
+                string filePath = "";
+                if (images != null)
+                {
+                    foreach (var item in images)
+                    {
+                        filePath += item.Images + ";";
+                        maAnh = item.ImageID;
+                    }
+                }
+                filePath = filePath.Substring(0, filePath.Length - 1);
+                ViewBag.filePath = filePath;
+                var sizes = db.ProductDetails.Where(p => p.ImageID == maAnh).ToList();
+                string listSize = "";
+                if (sizes != null)
+                {
+                    foreach (var item in sizes)
+                    {
+                        listSize += item.Size + "; ";
+                    }
+                }
+                listSize = listSize.Substring(0, listSize.Length - 2);
+                ViewBag.listSize = listSize;
+                return View(sanPham);
             }
-            Product product = db.Products.Find(id);
-            if (product == null)
+            catch (Exception ex)
             {
-                return HttpNotFound();
+                ViewBag.Error = "Lỗi !" + ex.Message;
+                return View();
             }
-            return View(product);
+
         }
 
         // GET: Admin/Products/Create
@@ -116,9 +150,19 @@ namespace GrayBShop.Areas.Admin.Controllers
                 if (ModelState.IsValid)
                 {
                     Product sanPham = new Product();
+                    string maSP = "";
                     var list = db.Products.ToList();
                     var sanpham = list.LastOrDefault();
-                    sanPham.ProductID = productDetail.ProductID;
+                    if (sanpham == null)
+                    {
+                        maSP = "SP001";
+                    }
+                    else
+                    {
+                        int index = int.Parse(sanpham.ProductID.Substring(2, 3)) + 1;
+                        maSP = "SP" + string.Format(CultureInfo.CreateSpecificCulture("da-DK"), "{0:000}", index);
+                    }
+                    sanPham.ProductID = maSP;
                     sanPham.ProductName = productDetail.ProductName;
                     sanPham.CategoryID = productDetail.CategoryID;
                     sanPham.Descriptions = productDetail.Description;
@@ -137,6 +181,7 @@ namespace GrayBShop.Areas.Admin.Controllers
                                                        Path.GetFileName(item.FileName));
                         item.SaveAs(filePath);
                         anhMoTa.Images = FileName;
+                        anhMoTa.ProductID = maSP;
                         db.ImageProducts.Add(anhMoTa);
                         db.SaveChanges();
                         //Add san pham chi tiet
@@ -152,20 +197,20 @@ namespace GrayBShop.Areas.Admin.Controllers
 
                     return RedirectToAction("Index");
                 }
-                ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", productDetail.CategoryID);
+                ViewBag.MaDM = new SelectList(db.Categories, "CategoryID", "CategoryName", productDetail.CategoryID);
                 return View(productDetail);
             }
             catch (Exception ex)
             {
                 ViewBag.Error = "Lỗi nhập dữ liệu !" + ex.Message;
-                ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", productDetail.CategoryID);
+                ViewBag.MaDM = new SelectList(db.Categories, "CategoryID", "CategoryName", productDetail.CategoryID);
                 return View(productDetail);
 
             }
         }
 
         // GET: Admin/Products/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -209,7 +254,7 @@ namespace GrayBShop.Areas.Admin.Controllers
                 Images = filePath,
                 Size = listSize,
                 Description = product.Descriptions,
-                CategoryID = (int)product.CategoryID,
+                CategoryID = product.CategoryID,
                 DateCreate = product.DateCreate,
                 DateUpdate = product.DateUpdate,
                 Category = product.Category
@@ -224,7 +269,7 @@ namespace GrayBShop.Areas.Admin.Controllers
         [HttpPost]
         [ValidateInput(false)]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(DetailProduct productDetail, List<HttpPostedFileBase> uploadFile, int id)
+        public ActionResult Edit(DetailProduct productDetail, List<HttpPostedFileBase> uploadFile, string id)
         {
             try
             {
@@ -349,7 +394,7 @@ namespace GrayBShop.Areas.Admin.Controllers
         // POST: Admin/Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Product product = db.Products.Find(id);
             db.Products.Remove(product);

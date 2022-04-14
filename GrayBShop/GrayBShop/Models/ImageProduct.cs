@@ -21,7 +21,7 @@ namespace GrayBShop.Models
         [StringLength(300)]
         public string Images { get; set; }
 
-        public int? ProductID { get; set; }
+        public string ProductID { get; set; }
 
         public virtual Product Product { get; set; }
 

@@ -1,0 +1,28 @@
+﻿﻿.btn {
+	background-color: orangered;
+	color: white;
+	padding: 10px;
+}
+
+.btn:hover {
+	background-color: black;
+	color: white;
+}
+
+btnAddCart {
+	background-color: lightslategray !important;
+	color: black !important;
+	height: 100px !important;
+	line-height: 100px !important;
+	text-align: center !important;
+}
+
+.btnAddCart:hover {
+	background-color: black !important;
+	color: white !important;
+}
+
+.active {
+	background-color: black !important;
+	color: white !important;
+}

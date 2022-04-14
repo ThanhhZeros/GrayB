@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -30,7 +31,7 @@ namespace GrayBShop.Areas.Admin.Controllers
         }
 
         // GET: Admin/Categories/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
@@ -57,18 +58,40 @@ namespace GrayBShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CategoryID,CategoryName")] Category category)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Categories.Add(category);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    //Tạo mã danh mục
+                    string madm = "";
+                    var list = db.Categories.ToList();
+                    var danhmuc = list.LastOrDefault();
+                    if (danhmuc == null)
+                    {
+                        madm = "DM01";
+                    }
+                    else
+                    {
+                        int index = int.Parse(danhmuc.CategoryID.Substring(2, 2)) + 1;
+                        madm = "DM" + string.Format(CultureInfo.CreateSpecificCulture("da-DK"), "{0:00}", index);
+                    }
+                    category.CategoryID = madm;
+                    db.Categories.Add(category);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            return View(category);
+                return View(category);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Lỗi nhập dữ liệu !" + ex.Message;
+                return View(category);
+            }
         }
 
         // GET: Admin/Categories/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
@@ -116,7 +139,7 @@ namespace GrayBShop.Areas.Admin.Controllers
         // POST: Admin/Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
             Category category = db.Categories.Find(id);
             db.Categories.Remove(category);

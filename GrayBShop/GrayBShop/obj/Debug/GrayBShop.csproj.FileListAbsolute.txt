@@ -227,3 +227,6 @@ D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\PagedList.xml
 D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\PagedList.Mvc.xml
 D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\CKFinder.dll
 D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\CKFinder.pdb
+D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.Migrations.GrayShop.resources
+D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.GenerateResource.cache
+D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.AssemblyReference.cache

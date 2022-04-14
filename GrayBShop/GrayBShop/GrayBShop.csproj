@@ -1448,6 +1448,105 @@
     <Content Include="Assets\Admin\plugin\ckfinder\skins\v1\richcombo.css" />
     <Content Include="Assets\Admin\plugin\ckfinder\skins\v1\skin.js" />
     <Content Include="Assets\Admin\plugin\ckfinder\skins\v1\uipanel.css" />
+    <Content Include="Assets\Client\controller\BillController.js" />
+    <Content Include="Assets\Client\controller\cartController.js" />
+    <Content Include="Assets\Client\css\bootstrap.css" />
+    <Content Include="Assets\Client\css\CustomButton.css" />
+    <Content Include="Assets\Client\css\flexslider.css" />
+    <Content Include="Assets\Client\css\memenu.css" />
+    <Content Include="Assets\Client\css\style.css" />
+    <Content Include="Assets\Client\images\10.jpg" />
+    <Content Include="Assets\Client\images\11.jpg" />
+    <Content Include="Assets\Client\images\12.jpg" />
+    <Content Include="Assets\Client\images\13.jpg" />
+    <Content Include="Assets\Client\images\14.jpg" />
+    <Content Include="Assets\Client\images\15.jpg" />
+    <Content Include="Assets\Client\images\16.jpg" />
+    <Content Include="Assets\Client\images\17.jpg" />
+    <Content Include="Assets\Client\images\18.png" />
+    <Content Include="Assets\Client\images\19.jpg" />
+    <Content Include="Assets\Client\images\2.jpg" />
+    <Content Include="Assets\Client\images\20.jpeg" />
+    <Content Include="Assets\Client\images\20.jpg" />
+    <Content Include="Assets\Client\images\21.PNG" />
+    <Content Include="Assets\Client\images\24.jpg" />
+    <Content Include="Assets\Client\images\25.jpg" />
+    <Content Include="Assets\Client\images\26.jpg" />
+    <Content Include="Assets\Client\images\27.jpg" />
+    <Content Include="Assets\Client\images\28.jpg" />
+    <Content Include="Assets\Client\images\29.jpg" />
+    <Content Include="Assets\Client\images\3.jpg" />
+    <Content Include="Assets\Client\images\30.jpg" />
+    <Content Include="Assets\Client\images\4.jpg" />
+    <Content Include="Assets\Client\images\5.jpg" />
+    <Content Include="Assets\Client\images\6.jpg" />
+    <Content Include="Assets\Client\images\7.jpg" />
+    <Content Include="Assets\Client\images\8.jpg" />
+    <Content Include="Assets\Client\images\9.jpg" />
+    <Content Include="Assets\Client\images\b1.jpg" />
+    <Content Include="Assets\Client\images\b2.jpg" />
+    <Content Include="Assets\Client\images\b3.jpg" />
+    <Content Include="Assets\Client\images\b4.jpg" />
+    <Content Include="Assets\Client\images\b5.jpg" />
+    <Content Include="Assets\Client\images\banner-be.jpg" />
+    <Content Include="Assets\Client\images\banner-doi1.jpg" />
+    <Content Include="Assets\Client\images\banner-girl.png" />
+    <Content Include="Assets\Client\images\banner-nike.jpg" />
+    <Content Include="Assets\Client\images\banner-shoes.png" />
+    <Content Include="Assets\Client\images\banner.png" />
+    <Content Include="Assets\Client\images\bannerblog1.jpg" />
+    <Content Include="Assets\Client\images\bannernam.jpg" />
+    <Content Include="Assets\Client\images\bannernu.jpg" />
+    <Content Include="Assets\Client\images\blo.jpg" />
+    <Content Include="Assets\Client\images\cart.png" />
+    <Content Include="Assets\Client\images\chatluong.PNG" />
+    <Content Include="Assets\Client\images\clock.PNG" />
+    <Content Include="Assets\Client\images\close_1.png" />
+    <Content Include="Assets\Client\images\co.png" />
+    <Content Include="Assets\Client\images\danhgia.PNG" />
+    <Content Include="Assets\Client\images\face.PNG" />
+    <Content Include="Assets\Client\images\giaydoiniketoden.jpg" />
+    <Content Include="Assets\Client\images\google.PNG" />
+    <Content Include="Assets\Client\images\h1.jpg" />
+    <Content Include="Assets\Client\images\h21.jfif" />
+    <Content Include="Assets\Client\images\hqdefault.jpg" />
+    <Content Include="Assets\Client\images\iconfinder_payment_1954199-3.png" />
+    <Content Include="Assets\Client\images\iconfinder_refresh_3017918-1.png" />
+    <Content Include="Assets\Client\images\iconfinder_service_repair_phone_mobile_wrench_screw_driver_4014703-1.png" />
+    <Content Include="Assets\Client\images\iconfinder_truck_1291768-1.png" />
+    <Content Include="Assets\Client\images\img-sprite.png" />
+    <Content Include="Assets\Client\images\logoxshop.PNG" />
+    <Content Include="Assets\Client\images\mausac.PNG" />
+    <Content Include="Assets\Client\images\mouse.jpeg" />
+    <Content Include="Assets\Client\images\nikedento2.jpg" />
+    <Content Include="Assets\Client\images\nikehong1.jpg" />
+    <Content Include="Assets\Client\images\nikehong2.jpg" />
+    <Content Include="Assets\Client\images\nikehong3.jpg" />
+    <Content Include="Assets\Client\images\nikehongto.jpg" />
+    <Content Include="Assets\Client\images\niketoden.jpg" />
+    <Content Include="Assets\Client\images\niketoden3.jpg" />
+    <Content Include="Assets\Client\images\niketoden4.jpg" />
+    <Content Include="Assets\Client\images\pi.jpg" />
+    <Content Include="Assets\Client\images\pi1.jpg" />
+    <Content Include="Assets\Client\images\pi2.jpg" />
+    <Content Include="Assets\Client\images\pi3.jpg" />
+    <Content Include="Assets\Client\images\pi4.jpg" />
+    <Content Include="Assets\Client\images\pi5.jpg" />
+    <Content Include="Assets\Client\images\pic1.jpg" />
+    <Content Include="Assets\Client\images\pic2.jpg" />
+    <Content Include="Assets\Client\images\pro.jpg" />
+    <Content Include="Assets\Client\images\s1.jpg" />
+    <Content Include="Assets\Client\images\si.jpg" />
+    <Content Include="Assets\Client\images\si1.jpg" />
+    <Content Include="Assets\Client\images\si2.jpg" />
+    <Content Include="Assets\Client\images\sneakerhead.png" />
+    <Content Include="Assets\Client\images\tick1.png" />
+    <Content Include="Assets\Client\js\jquery.flexslider.js" />
+    <Content Include="Assets\Client\js\jquery.min.js" />
+    <Content Include="Assets\Client\js\main.js" />
+    <Content Include="Assets\Client\js\memenu.js" />
+    <Content Include="Assets\Client\js\responsiveslides.min.js" />
+    <Content Include="Assets\Client\js\simpleCart.min.js" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
@@ -1642,9 +1741,15 @@
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Data\LoginAccount.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202204131655562_GrayShop.cs" />
+    <Compile Include="Migrations\202204131655562_GrayShop.Designer.cs">
+      <DependentUpon>202204131655562_GrayShop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
     <Compile Include="Models\BlogCategory.cs" />
     <Compile Include="Models\Category.cs" />
@@ -2009,6 +2114,7 @@
     <Content Include="Assets\Admin\login\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Assets\Admin\login\vendor\bootstrap\css\bootstrap.min.css.map" />
     <None Include="packages.config" />
+    <Content Include="Views\Share\_LayoutClient.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -2020,6 +2126,12 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Views\Product\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202204131655562_GrayShop.resx">
+      <DependentUpon>202204131655562_GrayShop.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

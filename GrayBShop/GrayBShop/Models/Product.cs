@@ -15,13 +15,13 @@ namespace GrayBShop.Models
             ImageProducts = new HashSet<ImageProduct>();
         }
 
-        public int ProductID { get; set; }
+        public string ProductID { get; set; }
 
         [Required]
         [StringLength(200)]
         public string ProductName { get; set; }
 
-        public int? CategoryID { get; set; }
+        public string CategoryID { get; set; }
 
         [StringLength(500)]
         public string Descriptions { get; set; }
@@ -32,6 +32,7 @@ namespace GrayBShop.Models
         public DateTime DateCreate { get; set; }
 
         public DateTime DateUpdate { get; set; }
+        public int SLCo { get; set; }
 
         public virtual Category Category { get; set; }
 
