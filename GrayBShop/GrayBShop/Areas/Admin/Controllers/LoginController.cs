@@ -23,7 +23,7 @@ namespace GrayBShop.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 User tk = db.Users.Where(a => a.UserName.Equals(loginAccount.username)
-                && a.Password.Equals(loginAccount.password) && a.RoleID!=3).SingleOrDefault();
+                && a.Password.Equals(loginAccount.password) && a.RoleID!=3).FirstOrDefault();
                 if (tk != null)
                 {
                     if (tk.Status == false)

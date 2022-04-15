@@ -1602,7 +1602,6 @@
     <Content Include="wwwroot\Images\banner-be.jpg" />
     <Content Include="wwwroot\Images\banner-doi1.jpg" />
     <Content Include="wwwroot\Images\banner-nike.jpg" />
-    <Content Include="wwwroot\Images\banner.png" />
     <Content Include="wwwroot\Images\bannerblog.jpg" />
     <Content Include="wwwroot\Images\bannerblog1.jpg" />
     <Content Include="wwwroot\Images\bannernam.jpg" />
@@ -1741,6 +1740,7 @@
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Data\LoginAccount.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NewFeedController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2116,6 +2116,9 @@
     <None Include="packages.config" />
     <Content Include="Views\Share\_LayoutClient.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\DetailProduct.cshtml" />
+    <Content Include="Views\NewFeed\Single.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2126,7 +2129,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
-    <Folder Include="Views\Product\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202204131655562_GrayShop.resx">

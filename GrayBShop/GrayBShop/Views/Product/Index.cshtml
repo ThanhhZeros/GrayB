@@ -1,0 +1,171 @@
+﻿@model PagedList.IPagedList<GrayBShop.Models.DetailProduct>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css">
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Share/_LayoutClient.cshtml";
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+
+<div class="bannerdoi">
+    <div class="container">
+        <div class="title"> <h1>@ViewBag.tendm</h1></div>
+    </div>
+</div>
+<!--content-->
+<!---->
+<div class="product">
+    <div class="container">
+        <div class="col-md-3 product-price">
+
+            <div class=" rsidebar span_1_of_left">
+                <div class="of-left">
+                    <h3 class="cate">DANH MỤC SẢN PHẨM</h3>
+                </div>
+                <ul class="memenu1 skyblue">
+                    <li class="itemm1">
+                        <a href="products.html">Giày Vans </a>
+
+
+                    </li>
+                    <li>
+                        <a class="color1" href="products.html">Giày Nike</a>
+
+                    </li>
+                    <li class="item3">
+                        <a href="productsnam.html">Giày nam</a>
+                    </li>
+                    <li class="item4">
+                        <a href="productsnu.html">Giày nữ</a>
+                    </li>
+
+                    <li class="item5">
+                        <a href="products.html">Giày Adidas</a>
+
+
+                    </li>
+                    <li class="item6">
+                        <a href="products.html">Giày Nike</a>
+
+                    </li>
+                </ul>
+
+            </div>
+
+
+            <div class=" rsidebar1 span_1_of_left">
+                <div class="of-left">
+                    <h3 class="cate">CHÍNH SÁCH ĐỔI TRẢ</h3>
+                </div>
+                <ul class="menu">
+                    <li class="itemm1">
+                        <a href="#">Giao hàng miễn phí 100% </a>
+
+
+                    </li>
+                    <li class="item2">
+                        <a href="#">An toàn với nhận hàng  </a>
+
+
+                    </li>
+                    <li class="item3">
+                        <a href="#">Bảo hành trong 60 ngày</a>
+
+                    </li>
+
+                </ul>
+            </div>
+
+            <div class=" rsidebar1 span_1_of_left">
+                <div class="of-left">
+                    <h3 class="cate">Hướng dẫn bảo quản</h3>
+                </div>
+                <ul class="menu">
+                    <li class="itemm1">
+                        <a href="#">Khử mùi bên trong giày</a>
+
+
+                    </li>
+
+                    <li class="item3">
+                        <a href="#">Bảo quản giày</a>
+
+                    </li>
+
+                </ul>
+            </div>
+
+
+            <!--initiate accordion-->
+            <script type="text/javascript">
+                $(function () {
+                    var menu_ul = $('.menu > li > ul'),
+                        menu_a = $('.menu > li > a');
+                    menu_ul.hide();
+                    menu_a.click(function (e) {
+                        e.preventDefault();
+                        if (!$(this).hasClass('active')) {
+                            menu_a.removeClass('active');
+                            menu_ul.filter(':visible').slideUp('normal');
+                            $(this).addClass('active').next().stop(true, true).slideDown('normal');
+                        } else {
+                            $(this).removeClass('active');
+                            $(this).next().stop(true, true).slideUp('normal');
+                        }
+                    });
+                });
+            </script>
+
+
+
+        </div>
+        <div class="col-md-9 product1">
+            <div class=" bottom-product">
+                @if (ViewBag.Error != null)
+                {
+                    <div class="alert alert-warning" role="alert">
+                        @ViewBag.Error
+                    </div>
+
+                }
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-4 bottom-cd simpleCart_shelfItem">
+                        <div class="product-at ">
+                            <a href="@Url.Action("DetailProduct","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })">
+                                @{
+                                    string filePath = "~/wwwroot/images/" + item.Images;
+                                }
+                                <img class="img-responsive" src="@Url.Content(filePath)" alt="">
+                            </a>
+                        </div>
+
+                        <div class="name">
+                            <h3><a href="@Url.Action("ProductDetail","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })">@item.TenSP</a></h3>
+                            <div class="cost-product">
+                                <span></span><b>@string.Format(info, "{0:c0}", item.Price)</b>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="clearfix"> </div>
+            <nav class="in">
+                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+                @Html.PagedListPager(Model, page => Url.Action("Index", new
+           {
+               page,
+               madm = ViewBag.madm,
+               searchPrice = ViewBag.searchPrice,
+               searchString = ViewBag.searchString
+           }))
+            </nav>
+        </div>
+
+    </div>
+</div>
+<!---->
+<!--//content-->
+<!---->
+<!--//content-->

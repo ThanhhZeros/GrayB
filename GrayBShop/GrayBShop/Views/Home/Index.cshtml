@@ -4,67 +4,57 @@
     Layout = "~/Views/Share/_LayoutClient.cshtml";
     var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
 }
+<style>
+    .mySlides {
+        display: none;
+    }
+    .dot {
+        height: 15px;
+        width: 15px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+    .slide{
+        margin-top: 107px;
+    }
+</style>
 
-<div class="banner">
-    <div class="container">
-        <script src="~/Assets/Client/js/responsiveslides.min.js"></script>
-        <script>
-    $(function () {
-                $("#slider").responsiveSlides({
-                    auto: true,
-                    nav: true,
-                    speed: 500,
-                    namespace: "callbacks",
-                    pager: true,
-                });
-            });</script>
-        <div id="top" class="callbacks_container">
-            <ul class="rslides" id="slider">
-                <li>
+    <div class="slide">
 
-                    <div class="banner-text">
-                        <h3>XSHOP- NÂNG NIU BÀN CHÂN VIỆT </h3>
-                        <p>
-                            XSHOP là đơn vị tiên phong chuyên cung cấp các mẫu giày Thể Thao với mẫu mã đa dạng và
-                            giá cả hợp lí trên toàn quốc
-                        </p>
-                        <a href="single.html">Learn More</a>
-                    </div>
-
-                </li>
-                <li>
-
-                    <div class="banner-text">
-                        <h3>XSHOP- BÀN CHÂN KHÔNG MỎI </h3>
-                        <p>
-                            Hơn 33 năm trôi qua, như một “bước chân không mỏi”, XSHOP đã từng bước xây dưng cho mình
-                            một chiến lược sản xuất tạo ra một thương hiệu gắn liền với nhu cầu, thị hiếu người tiêu
-                            dùng..
-                        </p>
-                        <a href="single.html">Learn More</a>
-
-                    </div>
-
-                </li>
-                <li>
-                    <div class="banner-text">
-                        <h3>XSHOP-BỨT PHÁ ĐỂ THÀNH CÔNG</h3>
-                        <p>
-                            Với tâm niệm phải “Sáng tạo vì sứ mệnh tồn tại và phát triển công ty”, XSHOP tin rằng
-                            các lĩnh vực đầu tư trung
-                            tâm thương mại … với uy tín và chất lượng phục vụ sẽ là tôn chỉ hàng đầu cho mọi hoạt
-                            động sản xuất kinh doanh của doanh nghiệp
-                        </p>
-                        <a href="single.html">Learn More</a>
-
-                    </div>
-
-                </li>
-            </ul>
+        <div class="mySlides">
+            <img src="~/wwwroot/Images/BannerMix.jpg" style="width:100%">
         </div>
 
+        <div class="mySlides">
+            <img src="~/wwwroot/Images/BannerConverse.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides">
+            <img src="~/wwwroot/Images/Bannervans.jpg" style="width:100%">
+        </div>
     </div>
-</div>
+
+
+
+<script>
+    var myIndex = 0;
+    carousel();
+
+    function carousel() {
+        var i;
+        var x = document.getElementsByClassName("mySlides");
+        for (i = 0; i < x.length; i++) {
+            x[i].style.display = "none";
+        }
+        myIndex++;
+        if (myIndex > x.length) { myIndex = 1 }
+        x[myIndex - 1].style.display = "block";
+        setTimeout(carousel, 5000); // Change image every 2 seconds
+    }
+</script>
 
 <!--content-->
 <div class="content">
@@ -115,7 +105,7 @@
                 @foreach (var item in Model)
                 {
                     <div class="col-md-3 grid-top" data-aos="zoom-in">
-                        <a href="@Url.Action("ProductDetail","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })" class="b-link-stripe b-animate-go  thickbox">
+                        <a href="@Url.Action("DetailProduct","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })" class="b-link-stripe b-animate-go  thickbox">
                             @{ string filePath = "~/wwwroot/images/" + item.Images; }
                             <img class="img-responsive"
                                  src="@Url.Content(filePath)" alt="">
@@ -125,7 +115,7 @@
                         </a>
 
                         <div class="name">
-                            <h3><a href="@Url.Action("ProductDetail","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })">@item.ProductName</a></h3>
+                            <h3><a href="@Url.Action("DetailProduct","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })">@item.ProductName</a></h3>
                             <div class="cost-product">
                                 <span></span><b>@string.Format(info, "{0:c0}", item.Price)</b>
                             </div>
@@ -142,8 +132,8 @@
                 @foreach (var item in ViewBag.ListHot)
                 {
                     <div class="col-md-3 grid-top" data-aos="zoom-in">
-                        <a href="@Url.Action("ProductDetail","Product", new { id = item.MaSP, maImage = item.maAnh,madm = item.MaDM })" class="b-link-stripe b-animate-go  thickbox">
-                            @{ string filePath = "~/wwwroot/images/" + item.Anh; }
+                        <a href="@Url.Action("DetailProduct","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })" class="b-link-stripe b-animate-go  thickbox">
+                            @{ string filePath = "~/wwwroot/images/" + item.Images; }
                             <img class="img-responsive"
                                  src="@Url.Content(filePath)" alt="">
                             @*<div class="sale">
@@ -152,9 +142,9 @@
                         </a>
 
                         <div class="name">
-                            <h3><a href="@Url.Action("ProductDetail","Product", new { id = item.MaSP, maImage = item.maAnh,madm = item.MaDM })">@item.TenSP</a></h3>
+                            <h3><a href="@Url.Action("DetailProduct","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })">@item.ProductName</a></h3>
                             <div class="cost-product">
-                                <span></span><b>@string.Format(info, "{0:c0}", item.GiaBan)</b>
+                                <span></span><b>@string.Format(info, "{0:c0}", item.Price)</b>
                             </div>
                         </div>
                     </div>}
@@ -195,7 +185,7 @@
                     {
                         <div class="col-md-4 grid-top" data-aos="flip-up" data-aos-delay="100">
                             <div class="col-md-4a">
-                                <a href="@Url.Action("Single","NewFeed", new { ma = item.MaTin})" class="b-link-stripe b-animate-go thickbox">
+                                <a href="@Url.Action("Single","NewFeed", new { ma = item.BlogID})" class="b-link-stripe b-animate-go thickbox">
                                     <img class="img-responsive" src="~/Assets/Client/images/17.jpg" alt="">
                                     @*<div class="infor-fashion">
                                             <p>TIN TỨC THỜI TRANG</p>
@@ -203,7 +193,7 @@
                                 </a>
 
                                 <div class="name1">
-                                    <h3><a href="@Url.Action("Single","NewFeed", new { ma = item.MaTin})">@item.TenTin</a></h3>
+                                    <h3><a href="@Url.Action("Single","NewFeed", new { ma = item.BlogID})">@item.BlogName</a></h3>
                                     <div class="see-detail">
                                         <p>Xem chi tiết<span><i class="far fa-arrow-alt-circle-right"></i></span></p>
                                     </div>
