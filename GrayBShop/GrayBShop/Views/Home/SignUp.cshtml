@@ -1,0 +1,86 @@
+﻿@model GrayBShop.Models.User
+
+@{
+    ViewBag.Title = "SignUp";
+    Layout = "~/Views/Share/_LayoutClient.cshtml";
+}
+
+
+
+
+<div class="image-login" style="height:800px;">
+    <div class=" container">
+        <div class="account">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="login">
+                    <h1 class="account-title">Đăng ký</h1>
+
+                    @using (Html.BeginForm("SignUp", "Home", FormMethod.Post, new { onsubmit = " return check()" }))
+                    {
+        <div class="clearfix large_form">
+
+            <label class="icon-field">
+                <i class="fas fa-user"></i>
+            </label>
+            @Html.TextBoxFor(model => model.Name,
+                               new { @class = "form-control", @name = "hoten", @autoforcus = "autofocus", @required = "required", @placeholder = "Họ tên" })
+        </div>
+                        <div class="clearfix large_form">
+                            <label class="icon-field">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </label>
+                            @Html.TextBoxFor(model => model.Address,
+                                               new { @class = "form-control", @name = "diachi", @required = "required", @placeholder = "Địa chỉ" })
+                        </div>
+
+
+                                        <div class="clearfix large_form">
+                                            <label class="icon-field">
+                                                <i class="far fa-envelope"></i>
+                                            </label>
+                                            @Html.TextBoxFor(model => model.Email,
+                                                              new { @class = "form-control", @type = "email", @name = "email", @required = "required", @placeholder = "Email" })<br />
+                                        </div>
+                                                        <div class="clearfix large_form">
+                                                            <label class="icon-field">
+                                                                <i class="fas fa-mobile-alt"></i>
+                                                            </label>
+                                                            @Html.TextBoxFor(model => model.Phone,
+                                                                             new { @class = "form-control", @name = "sodienthoai", @required = "required", @placeholder = "Số điện thoại" })
+                                                        </div>
+                                                                        @Html.ValidationMessage("ErrorSignUp", new { @class = "text-danger", @id = "error-message" })
+                                                                                        <div class="clearfix large_form">
+                                                                                            <label class="icon-field">
+                                                                                                <i class="fas fa-user"></i>
+                                                                                            </label>
+                                                                                            @Html.TextBoxFor(model => model.UserName,
+                                                                                                              new { @class = "form-control", @name = "tendangnhap", @required = "required", @placeholder = "Tên đăng nhập" })
+                                                                                        </div>
+                                                                                        <div class="clearfix large_form">
+                                                                                            <label class="icon-field">
+                                                                                                <i class="fas fa-lock"></i>
+                                                                                            </label>
+                                                                                            @Html.PasswordFor(model => model.Password,
+                                                                                              new { @class = "form-control", @name = "matkhau", @required = "required", @placeholder = "Mật khẩu" })
+                                                                                        </div>
+                                                                                                                        <div class="clearfix large_form">
+                                                                                                                            <label class="icon-field">
+                                                                                                                                <i class="fas fa-lock"></i>
+                                                                                                                            </label>
+                                                                                                                            <input type="password" class="form-control" id="pwd-confirm" placeholder="Xác nhận mật khẩu" required>
+                                                                                                                        </div>
+                                                                                                                        <div class="clearfix large_form">
+                                                                                                                            <input class="btn btn-signin" type="submit" value="Đăng ký" style="width:100%;background-color: #33b5e5;">
+                                                                                                                        </div>
+                                                                                                                        }
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+

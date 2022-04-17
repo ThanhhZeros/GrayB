@@ -7,52 +7,19 @@
     var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
 }
 
-<div class="bannerdoi">
-    <div class="container">
-        <div class="title"> <h1>@ViewBag.tendm</h1></div>
+<div class="blog_banner">
+    <div class="blog_banner_item">
+        <div class="blog_banner_content">
+            <h1>@ViewBag.tendm</h1>
+        </div>
     </div>
+
 </div>
 <!--content-->
 <!---->
 <div class="product">
     <div class="container">
         <div class="col-md-3 product-price">
-
-            <div class=" rsidebar span_1_of_left">
-                <div class="of-left">
-                    <h3 class="cate">DANH MỤC SẢN PHẨM</h3>
-                </div>
-                <ul class="memenu1 skyblue">
-                    <li class="itemm1">
-                        <a href="products.html">Giày Vans </a>
-
-
-                    </li>
-                    <li>
-                        <a class="color1" href="products.html">Giày Nike</a>
-
-                    </li>
-                    <li class="item3">
-                        <a href="productsnam.html">Giày nam</a>
-                    </li>
-                    <li class="item4">
-                        <a href="productsnu.html">Giày nữ</a>
-                    </li>
-
-                    <li class="item5">
-                        <a href="products.html">Giày Adidas</a>
-
-
-                    </li>
-                    <li class="item6">
-                        <a href="products.html">Giày Nike</a>
-
-                    </li>
-                </ul>
-
-            </div>
-
-
             <div class=" rsidebar1 span_1_of_left">
                 <div class="of-left">
                     <h3 class="cate">CHÍNH SÁCH ĐỔI TRẢ</h3>
@@ -82,13 +49,18 @@
                 </div>
                 <ul class="menu">
                     <li class="itemm1">
-                        <a href="#">Khử mùi bên trong giày</a>
+                        <a href="~/Views/NewFeed/Index.cshtml">Khử mùi bên trong giày</a>
 
 
                     </li>
 
                     <li class="item3">
-                        <a href="#">Bảo quản giày</a>
+                        <a href="~/Views/NewFeed/Index.cshtml">Bảo quản giày</a>
+
+                    </li>
+
+                    <li class="item3">
+                        <a href="~/Views/NewFeed/Index.cshtml">Cách buộc giày</a>
 
                     </li>
 
@@ -123,31 +95,26 @@
             <div class=" bottom-product">
                 @if (ViewBag.Error != null)
                 {
-                    <div class="alert alert-warning" role="alert">
-                        @ViewBag.Error
-                    </div>
-
-                }
+    <div class="alert alert-warning" role="alert" style="text-align:center">
+        @ViewBag.Error
+    </div>}
                 @foreach (var item in Model)
                 {
-                    <div class="col-md-4 bottom-cd simpleCart_shelfItem">
-                        <div class="product-at ">
-                            <a href="@Url.Action("DetailProduct","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })">
-                                @{
-                                    string filePath = "~/wwwroot/images/" + item.Images;
-                                }
-                                <img class="img-responsive" src="@Url.Content(filePath)" alt="">
-                            </a>
-                        </div>
+    <div class="col-md-4 bottom-cd simpleCart_shelfItem">
+        <div class="product-at ">
+            <a href="@Url.Action("DetailProduct","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })">
+                @{ string filePath = "~/wwwroot/images/" + item.Images; }
+                <img class="img-responsive" src="@Url.Content(filePath)" alt="">
+            </a>
+        </div>
 
-                        <div class="name">
-                            <h3><a href="@Url.Action("ProductDetail","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })">@item.TenSP</a></h3>
-                            <div class="cost-product">
-                                <span></span><b>@string.Format(info, "{0:c0}", item.Price)</b>
-                            </div>
-                        </div>
-                    </div>
-                }
+        <div class="name">
+            <h3><a href="@Url.Action("ProductDetail","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })">@item.ProductName</a></h3>
+            <div class="cost-product">
+                <span></span><b>@string.Format(info, "{0:c0}", item.Price)</b>
+            </div>
+        </div>
+    </div>}
 
             </div>
             <div class="clearfix"> </div>

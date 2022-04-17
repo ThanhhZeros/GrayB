@@ -1,0 +1,13 @@
+﻿
+<div class="search-icon">
+
+    @using (Html.BeginForm("Index", "Product", FormMethod.Get))
+    {
+
+        <input type="text" placeholder="Tìm kiếm" name="searchString">
+        <button class="searchBtn">
+
+            <i class="fa fa-search" style="font-size:20px;"></i>
+        </button>
+    }
+</div>

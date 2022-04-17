@@ -1,0 +1,65 @@
+﻿@model GrayBShop.Models.User
+
+@{ ViewBag.Title = "Thông tin tài khoản";
+    Layout = "~/Views/Share/_LayoutClient.cshtml";
+ }
+
+
+<div class="image-login">
+    <div class=" container">
+        <div class="account">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="login">
+                    <h1 class="account-title">Thông tin khách hàng</h1>
+
+                    @using (Html.BeginForm())
+                    {
+        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                        @Html.HiddenFor(model => model.UserID)
+                                                        <div class="clearfix large_form">
+
+                                                            <label class="icon-field">
+                                                                <i class="fas fa-user"></i>
+                                                            </label>
+                                                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                                        </div>
+                                                                        <div class="clearfix large_form">
+                                                                            <label class="icon-field">
+                                                                                <i class="fas fa-map-marker-alt"></i>
+                                                                            </label>
+                                                                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                                                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                                                        </div>
+
+
+                                                                                        <div class="clearfix large_form">
+                                                                                            <label class="icon-field">
+                                                                                                <i class="far fa-envelope"></i>
+                                                                                            </label>
+                                                                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })<br />
+                                                                                        </div>
+                                                                                                        <div class="clearfix large_form">
+                                                                                                            <label class="icon-field">
+                                                                                                                <i class="fas fa-mobile-alt"></i>
+                                                                                                            </label>
+                                                                                                            @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                                                                                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                                                                                                        </div>
+
+                                                                                                                        <div class="clearfix large_form">
+                                                                                                                            <input class="btn btn-signin" type="submit" value="Cập nhật" style="width:100%;background:#33b5e5;">
+                                                                                                                        </div>}
+                </div>
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+

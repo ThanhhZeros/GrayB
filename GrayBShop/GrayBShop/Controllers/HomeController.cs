@@ -1,4 +1,6 @@
-﻿using GrayBShop.Models;
+﻿using GrayBShop.Areas.Admin.Data;
+using GrayBShop.Models;
+using GrayBShop.Session;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -78,6 +80,106 @@ namespace GrayBShop.Controllers
             }
             return list;
         }
+        [HttpGet]
+        public ActionResult Contact()
+        {
+            return View();
+        }
+        [ChildActionOnly]
+        public ActionResult DanhMuc()
+        {
+            IEnumerable<Category> danhmucs = db.Categories.Select(p => p);
+            return PartialView(danhmucs);
+        }
+        [ChildActionOnly]
+        public ActionResult SearchBox()
+        {
 
+            return PartialView();
+        }
+        [HttpGet]
+        public ActionResult Login()
+        {
+            /*TaiKhoanNguoiDung session = (TaiKhoanNguoiDung)Session[ShoesShopOnline.Session.ConstaintUser.USER_SESSION];
+            if (session != null)
+            {
+                return RedirectToAction("PageNotFound", "Error");
+            }*/
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(LoginAccount loginAccount)
+        {
+            if (ModelState.IsValid)
+            {
+                User tk = db.Users.Where
+                (a => a.UserName.Equals(loginAccount.username) && a.Password.Equals(loginAccount.password) && a.RoleID==3).FirstOrDefault();
+                if (tk != null)
+                {
+                    if (tk.Status == false)
+                    {
+                        ModelState.AddModelError("ErrorLogin", "Tài khoản của bạn đã bị vô hiệu hóa !");
+                    }
+                    else
+                    {
+                        Session.Add(ConstainUser.USER_SESSION, tk);
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("ErrorLogin", "Tài khoản hoặc mật khẩu không đúng!");
+                }
+            }
+            return View(loginAccount);
+        }
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            Session.Remove(ConstainUser.USER_SESSION);
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public ActionResult SignUp()
+        {
+            User session = (User)Session[GrayBShop.Session.ConstainUser.USER_SESSION];
+            if (session != null)
+            {
+                return RedirectToAction("PageNotFound", "Error");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult SignUp(User tk)
+        {
+            User check = db.Users.Where
+                (a => a.UserName.Equals(tk.UserName)).FirstOrDefault();
+            if (check != null)
+            {
+                ModelState.AddModelError("ErrorSignUp", "Tên đăng nhập đã tồn tại");
+            }
+            else
+            {
+                try
+                {
+                    tk.Status = true;
+                    tk.RoleID = 3;
+                    db.Users.Add(tk);
+                    db.SaveChanges();
+                    User session = db.Users.Where(a => a.UserName.Equals(tk.UserName)).FirstOrDefault();
+                    Session[GrayBShop.Session.ConstainUser.USER_SESSION] = session;
+                    return RedirectToAction("Index", "Home");
+                }
+                catch (Exception)
+                {
+                    ModelState.AddModelError("ErrorSignUp", "Đăng ký không thành công. Thử lại sau !");
+                }
+            }
+
+            return View(tk);
+        }
     }
 }

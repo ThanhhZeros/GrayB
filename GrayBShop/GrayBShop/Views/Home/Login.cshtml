@@ -1,0 +1,69 @@
+﻿@model GrayBShop.Areas.Admin.Data.LoginAccount
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Share/_LayoutClient.cshtml";
+}
+
+
+
+<div class="image-login">
+    <div class="container">
+
+        <div class="account">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <div class="login">
+                    <h1 class="account-title">Đăng nhập</h1>
+                    @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+                    {
+        @Html.ValidationMessage("ErrorLogin", new { @class = "text-danger" })
+
+                        <div class="clearfix large_form">
+                            <label class="icon-field">
+                                <i class="far fa-envelope"></i>
+                            </label>
+                            @Html.TextBoxFor(model => model.username,
+                                                  new { @class = "form-control", @name = "username", @autoforcus = "autofocus", @required = "required", @placeholder = "Tài khoản" })
+                        </div>
+                                        <div class="clearfix large_form">
+                                            <label class="icon-field">
+                                                <i class="fas fa-lock"></i>
+                                            </label>
+                                            @Html.PasswordFor(model => model.password,
+                                                                 new { @class = "form-control", @name = "password", @required = "required", @placeholder = "Mật khẩu" })
+                                        </div> <!-- <p class="lost-password"><a href="forgot-password.html">Forgot password?</a></p> --><br />
+                                                        <div class="clearfix large_form">
+                                                            <input class="btn btn-signin" type="submit" value="Đăng nhập" style="width:100%;background-color: #33b5e5;">
+                                                        </div>
+
+                                                                        <div class="req_pass">
+                                                                            <a href="@Url.Action("SignUp","Home")">Chưa có tài khoản? Đăng ký </a>
+                                                                        </div> @*<div class="req_pass">
+                                                                                <a href="">
+                                                                                    <i>Quên mật khẩu</i>
+                                                                                </a>
+                                                                            </div>*@
+                                                                                        <div class="login-face">
+                                                                                            <div class="face">
+                                                                                                <i class="fab fa-facebook-square"></i>
+                                                                                                <a href="http://www.facebook.com">Facebook</a>
+                                                                                            </div>
+
+
+                                                                                            <div class="google">
+                                                                                                <i class="fab fa-google"></i>
+                                                                                                <a href="http://www.google.com">Google  </a>
+                                                                                            </div>
+                                                                                        </div>}
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+

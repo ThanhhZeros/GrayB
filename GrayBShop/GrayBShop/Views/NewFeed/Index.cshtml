@@ -1,0 +1,130 @@
+﻿@model GrayBShop.Models.Blog
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Share/_LayoutClient.cshtml";
+}
+
+<div class="blog_banner">
+    <div class="blog_banner_item">
+        <div class="blog_banner_content">
+            <h1>Tin tức</h1>
+        </div>
+    </div>
+
+</div>
+
+<!--content-->
+<div class="content">
+    <div class="container">
+        <div class="col-md-8">
+            <div class="main-post">
+                <a href="#">
+                    @{ string filePath = "~/wwwroot/images/" + Model.Images; }
+                    <img src="@Url.Content(filePath)" alt="">
+                </a>
+                <div class="post-summary">
+                    <h2 class="entry-title">
+                        
+                    </h2>
+                </div>
+
+                <div class="entry-summary">
+                    <p>Để giúp cho đôi giày thể thao của bạn được sử dụng lâu bên. XSHOP đưa ra cách bảo quản giày thể thao đúng cách nhất để giữ cho đôi…</p>
+                    <a class="line-hover read-more" href="@Url.Action("Single","NewFeed", new { ma = Model.BlogID})">Xem chi tiết</a>
+                    <hr>
+                </div>
+
+            </div>
+            @foreach (var item in ViewBag.news)
+            {
+        <div class="main-post--1">
+
+            @{ 
+                string a = "~/wwwroot/images/" + item.Images; }
+            <img src="@Url.Content(a)" alt="">
+            <div class="post-summary" style="margin-top: 68px;">
+                <h2 class="entry-title" style="margin-bottom: 15px;">
+                    <a href="">
+                        @item.BlogName
+                    </a>
+                </h2>
+                <div class="entry-summary">
+                    @*<p>Bạn đã biết cách làm sạch giày sneaker trắng thế nào cho đúng cách để vừa giữ được vẻ tinh khôi sành điệu cho đôi giày lại vừa</p>*@
+                    <a class="line-hover read-more" href=" @Url.Action("Single","NewFeed", new { ma = item.BlogID}) ">Xem chi tiết</a>
+                    <hr>
+                </div>
+            </div>
+        </div>      }
+
+        </div>
+        <div class="col-md-4 ">
+            <div class="secondary">
+                <section class="widget">
+                    <form class="search1">
+                        <label>
+                            <input type="search" class="searxh-submit" placeholder="Tìm kiếm">
+                        </label>
+                    </form>
+                </section>
+
+                <section class="blog-new-next">
+                    <h2>Bài viết mới nhất</h2>
+                    <ul>
+                        @{ int count = 0; }
+                        @foreach (var item in ViewBag.news)
+                        {
+                            count++;
+                            <li>
+                                <a href="@Url.Action("Single","NewFeed", new { ma = item.BlogID})">@item.BlogName</a>
+                            </li>
+if (count == 3)
+                            {
+                                break;
+                            }
+
+                        }
+
+                    </ul>
+                </section>
+
+                <section class="blog-new-next" style="padding:40px 0 0px;margin: 0 0 40px; border-top: 1px solid #f1f2f4;">
+                    <h2>Chuyên mục</h2>
+                    <ul>
+                        <li>
+                            <a href="#">Mẹo Shopping</a>
+                        </li>
+
+                        <li>
+                            <a href="#">Tin tức thời trang</a>
+                        </li>
+
+                    </ul>
+                </section>
+
+                <section class="blog-new-next" style="padding:40px 0 0px;margin: 0 0 40px; border-top: 1px solid #f1f2f4;">
+                    <h2>Meta</h2>
+                    <ul>
+                        <li>
+                            <a href="@Url.Action("Login","Home")">Đăng nhập</a>
+                        </li>
+
+                        <li>
+                            <a href="#">RSS bài viết</a>
+                        </li>
+
+                        <li>
+                            <a href="#">Rss bình luận</a>
+                        </li>
+
+                    </ul>
+                </section>
+                <section class="blog-new-next">
+                    <img src="~/wwwroot/Images/bannerblog.jpg">
+                </section>
+            </div>
+        </div>
+
+    </div>
+    <!--//content-->
+</div>
+

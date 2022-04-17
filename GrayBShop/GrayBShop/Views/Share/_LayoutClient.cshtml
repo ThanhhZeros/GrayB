@@ -1,9 +1,12 @@
-﻿<!DOCTYPE html>
+﻿@{ GrayBShop.Models.User tk =
+                        (GrayBShop.Models.User)HttpContext.Current.Session[GrayBShop.Session.ConstainUser.USER_SESSION]; }
+
+<!DOCTYPE html>
 <html>
 
 <head>
-    <title>XShop - Hệ thống bán giày thể thao số 1 tại Hà Nội</title>
-    <link rel="icon" type="image/x-icon" href="~/wwwroot/Images/images.png">
+    <title>GREY.B - Original Sneakers and Apparels</title>
+    <link rel="icon" type="image/x-icon" href="~/wwwroot/Images/logo.png">
     <link href="~/Assets/Client/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 
@@ -36,71 +39,192 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     @*thông báo json*@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="~/Assets/Admin/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.7/css/all.css">
 </head>
 
 <body>
+    <style>
+
+        .main-header {
+            height: 120px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 0 200px;
+            position: fixed;
+            top: 0;
+            background: #ffffff;
+            left: 0;
+            right: 0;
+            z-index: 99;
+            border-bottom: 1px solid #000;
+        }
+
+        .logo {
+            width: 10%;
+        }
+
+            .logo img {
+                width: 100px;
+                height: 100%;
+            }
+
+        .menungang {
+            display: flex;
+            list-style-type: none;
+            justify-content: space-between;
+        }
+
+            .menungang li {
+                margin-right: 20px;
+                position: relative;
+            }
+
+                .menungang li:hover {
+                    border-bottom: 2px solid black;
+                }
+
+                .menungang li a {
+                    text-decoration: none;
+                    color: black;
+                    font-size: 20px;
+                    display: block;
+                    line-height: 40px;
+                }
+
+        .submenu {
+            position: absolute;
+            list-style-type: none;
+            display: none;
+        }
+
+        .menungang li:hover .submenu {
+            display: block;
+            background-color: #fff;
+            padding: 10px 10px;
+            width: 150px;
+        }
+
+            .menungang li:hover .submenu li:hover {
+                width: 100%;
+            }
+
+
+
+        .search-icon, .user, .cart {
+            margin: 0 15px;
+        }
+
+        .search-icon, .search-right {
+            display: flex;
+        }
+
+        .cart {
+            position: relative;
+        }
+
+            .cart .cart-count {
+                position: absolute;
+                top: -11px;
+                display: block;
+                background: #185137;
+                border-radius: 50%;
+                width: 22px;
+                height: 22px;
+                color: #fff;
+                font-size: 12px;
+                left: 10px;
+                padding: 3px 5px;
+                font-weight: 600;
+                text-align: center;
+            }
+
+        .search-right .search-icon input {
+            width: 100%;
+            font-weight: 500;
+            font-size: 15px;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            padding: 3px 0;
+            border-bottom: 1px solid #ababab;
+            position: relative;
+            outline: none;
+        }
+
+        .searchBtn {
+            border: none;
+            background: 0 0;
+            position: absolute;
+            right: 331px;
+        }
+        .userBtn {
+            border: none;
+            background: 0 0;
+        }
+    </style>
     <!--header-->
-    <div class="header">
+    <!--<div class="header">
         <div class="header-top">
-            <div class="container">
-               @* @{Html.RenderAction("SearchBox", "Home"); }*@
-                <div class="header-left">
-                    <ul class="navbar-nav float-end" style="display:flex; ">
-                       @* @if (tk != null)
-                        {*@
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Circle-icons-profile.svg" class="rounded-circle" alt="avt" style="width: 35px">
-                    <span><strong style="font-size: 12px;">@*@tk.HoTen*@</strong></span>
-                </a>
-                <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown" style="background-color: rgb(70, 130, 180);font-size: 13px;margin-top:-9px!important;">
-                    <li><a class="dropdown-item" href="@Url.Action("Index","Bill")"><i class="fas fa-shopping-basket" style=" margin-right: 10px; color: #FFFF66;"></i>Đơn hàng của bạn</a></li>
-                    <li><a class="dropdown-item" href="@Url.Action("UserInfor","AccountUser",new { @*id = tk.MaTK*@ })"><i class="fas fa-user" style=" margin-right: 10px; color: #FFFF66;"></i>Thông tin tài khoản</a></li>
-                    <li><a class="dropdown-item" href="@Url.Action("ChangePassWord","AccountUser")"><i class="fas fa-lock" style=" margin-right: 10px; color: #FFFF66;"></i>Đổi mật khẩu</a></li>
-                    <li><a class="dropdown-item" href="@Url.Action("Logout","Home")"><i class="fas fa-sign-out-alt" style=" margin-right: 10px; color: #FFFF66;"></i>Đăng xuất</a></li>
-                </ul>
-            </li>}
+            <div class="container">-->
+    @* @{Html.RenderAction("SearchBox", "Home"); }*@
+    <!--<div class="header-left">
+        <ul class="navbar-nav float-end" style="display:flex; ">-->
+    @* @if (tk != null)
+        {*@
+    <!--<li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Circle-icons-profile.svg" class="rounded-circle" alt="avt" style="width: 35px">
+            <span><strong style="font-size: 12px;">-->
+    @*@tk.HoTen*@
+    <!--</strong></span>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown" style="background-color: rgb(70, 130, 180);font-size: 13px;margin-top:-9px!important;">
+            <li><a class="dropdown-item" href="@Url.Action("Index","Bill")"><i class="fas fa-shopping-basket" style=" margin-right: 10px; color: #FFFF66;"></i>Đơn hàng của bạn</a></li>
+            <li><a class="dropdown-item" href="@Url.Action("UserInfor","AccountUser")"><i class="fas fa-user" style=" margin-right: 10px; color: #FFFF66;"></i>Thông tin tài khoản</a></li>
+            <li><a class="dropdown-item" href="@Url.Action("ChangePassWord","AccountUser")"><i class="fas fa-lock" style=" margin-right: 10px; color: #FFFF66;"></i>Đổi mật khẩu</a></li>
+            <li><a class="dropdown-item" href="@Url.Action("Logout","Home")"><i class="fas fa-sign-out-alt" style=" margin-right: 10px; color: #FFFF66;"></i>Đăng xuất</a></li>
+        </ul>
+    </li>}-->
+    @*@if (tk == null)
+        {*@
+    <!--<li><a href="@Url.Action("Login", "Home")">Đăng nhập</a></li>
+                    <li><a href="@Url.Action("SignUp", "Home")">Đăng ký</a></li>-->
+    @*}*@
+    <!--</ul>-->
+    @* @{ Html.RenderAction("HeaderCart", "Home");}*@
+    <!--<div class="clearfix"> </div>
+            </div>
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="head-top">
+            <div class="logo">
+                <a href="@Url.Action("Index","Home")"><img src="~/wwwroot/Images/logo.PNG" alt=""></a>
+            </div>
+            <div class=" h_menu4">
+                <ul class="memenu skyblue">
 
+                    <li><a class="color4" href="@Url.Action("Index","Home")">TRANG CHỦ</a></li>
+                    <li class="grid">
+                        <a class="color2" href="">DANH MỤC </a>
+                        <div class="mepanel">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="h_nav">
+                                        <ul>-->
+    @* @{ Html.RenderAction("Category", "Home");}*@
 
-                        @*@if (tk == null)
-                        {*@
-            <li><a href="@Url.Action("Login", "Home")">Đăng nhập</a></li>
-                            <li><a href="@Url.Action("SignUp", "Home")">Đăng ký</a></li>
-@*}*@
-                    </ul>
-
-                   @* @{ Html.RenderAction("HeaderCart", "Home");}*@
-                    <div class="clearfix"> </div>
+    <!--</ul>
+                    </div>
                 </div>
-                <div class="clearfix"> </div>
             </div>
         </div>
-        <div class="container">
-            <div class="head-top">
-                <div class="logo">
-                    <a href="@Url.Action("Index","Home")"><img src="~/wwwroot/Images/logo.PNG" alt=""></a>
-                </div>
-                <div class=" h_menu4">
-                    <ul class="memenu skyblue">
-
-                        <li><a class="color4" href="@Url.Action("Index","Home")">TRANG CHỦ</a></li>
-                        <li class="grid">
-                            <a class="color2" href="">DANH MỤC </a>
-                            <div class="mepanel">
-                                <div class="row">
-                                    <div class="col">
-                                        <div class="h_nav">
-                                            <ul>
-                                               @* @{ Html.RenderAction("Category", "Home");}*@
-
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <!---->
-                        <li><a class="color4" href="@Url.Action("Index","NewFeed")">BLOG</a></li>
+    </li>-->
+    <!---->
+    <!--<li><a class="color4" href="@Url.Action("Index","NewFeed")">BLOG</a></li>
                         <li><a class="color6" href="@Url.Action("Contact","Home")">CONTACT</a></li>
                     </ul>
                 </div>
@@ -108,41 +232,105 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             </div>
         </div>
 
+    </div>-->
+
+    <div class="main-header">
+        <div class="logo">
+            <a href="@Url.Action("Index","Home")">
+                <img src="~/wwwroot/Images/logo.png" alt="" />
+            </a>
+        </div>
+        <div class="title">
+            <ul class="menungang">
+                <li><a href="@Url.Action("Index","Home")" style="font-weight:bold;font:Gilroy;font-size:16px">HOME</a> </li>
+                <li>
+                    <a href="#" style="font-weight:bold;font:Gilroy;font-size:16px">DANH MỤC</a>
+                    <ul class="submenu">
+                        @{ Html.RenderAction("DanhMuc", "Home");}
+                    </ul>
+                </li>
+                <li><a href="@Url.Action("Index","NewFeed")" style="font-weight:bold;font:Gilroy;font-size:16px">KHUYẾN MÃI</a> </li>
+                <li><a href="@Url.Action("Index","NewFeed")" style="font-weight:bold;font:Gilroy;font-size:16px">BLOG</a> </li>
+                <li><a href="@Url.Action("Contact","Home")" style="font-weight:bold;font:Gilroy;font-size:16px">CONTACT</a> </li>
+            </ul>
+        </div>
+        <div class="search-right">
+            @{Html.RenderAction("SearchBox", "Home"); }
+            <ul class="navbar-nav float-end" style="display: flex; list-style-type: none; ">
+                
+                @if (tk != null)
+                {
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <div class="user">
+                        <i class="fa fa-user" style="font-size:20px;color:black"></i>
+                    </div>
+
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown" style="background-color: #fff;font-size: 13px;margin-top:-9px!important;border-radius:3px;">
+                    <li><a class="dropdown-item" href="@Url.Action("Index","Bill")"><i class="fas fa-shopping-basket" style=" margin-right: 10px; color: black;"></i>Đơn hàng của bạn</a></li>
+                    <li><a class="dropdown-item" href="@Url.Action("UserInfor","AccountUser",new { id = tk.UserID })"><i class="fas fa-user" style=" margin-right: 10px; color: black;"></i>Thông tin tài khoản</a></li>
+                    <li><a class="dropdown-item" href="@Url.Action("ChangePassWord","AccountUser")"><i class="fas fa-lock" style=" margin-right: 10px; color: black;"></i>Đổi mật khẩu</a></li>
+                    <li><a class="dropdown-item" href="@Url.Action("Logout","Home")"><i class="fas fa-sign-out-alt" style=" margin-right: 10px; color: black;"></i>Đăng xuất</a></li>
+                </ul>
+            </li>}
+
+
+                @if (tk == null)
+                {
+
+            <li class="nav-item dropdown">
+                <a href="@Url.Action("Login", "Home")">
+                    <div class="user">
+                        <i class="fa fa-user" style="font-size:20px;color:black"></i>
+                    </div>
+                    
+                </a>
+            </li>}
+            </ul>
+
+                <button class="userBtn">
+                    <div class="cart">
+                        <i class="fa fa-shopping-bag" style="font-size:20px;"></i>
+                        <span class="cart-count">0</span>
+                    </div>
+                </button>
+
+        </div>
+
     </div>
-
-
     <!--content-->
-    <div style="margin-top:50px">
+    <div style="margin-top: 120px">
         @RenderBody()
     </div>
 
     <div class="footer">
+        <div style="display:flex;justify-content:center">
+
+            <img src="~/wwwroot/Images/logo.png" style="text-align:center;width:150px;height:150px">
+        </div>
         <div class="container">
             <div class="footer-top-at">
+                <div class="col-md-5 amet-sed " data-aos="fade-right" data-aos-delay="200">
 
 
 
-                <div class="col-md-4 amet-sed " data-aos="fade-right" data-aos-delay="200">
-                    <div class="image_logo"><img src="~/Assets/Client/images/logoxshop.PNG"></div>
-
-
-                    <h4>DỊCH VỤ KHÁCH HÀNG</h4>
+                    <h4>LIÊN HỆ</h4>
 
                     <p>
-                        Hướng dẫn đặt hàng
+                        Address: 370 Thái Hà, P. Trung Liệt, Q. Đống Đa, Hà Nội
                     </p>
-                    <p>Chính sách đổi trả và bảo hành</p>
-                    <p>Chính sách bảo mật</p>
-                    <p>Chính sách khách hàng thân thiết</p>
+                    <p>Mail: cskh@greyb.vn</p>
+                    <p>Hotline: 097 507 1208</p>
 
                 </div>
-                <div class="col-md-4 amet-sed" data-aos="fade-right" data-aos-delay="300">
+                <div class="col-md-3 amet-sed" data-aos="fade-right" data-aos-delay="300">
 
-                    <h4>THÔNG TIN</h4>
+                    <h4>VỀ GREY.B</h4>
+                    <p>Giới thiệu</p>
                     <p>Tuyển dụng</p>
                     <p>Hệ thống cửa hàng</p>
                     <p>Liên hệ hợp tác</p>
-                    <p>Q&A</p>
 
                     <div class="email-box">
                         <i class="fas fa-envelope"></i>
@@ -152,12 +340,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
 
                 <div class="col-md-4 amet-sed" data-aos="fade-right" data-aos-delay="400">
-                    <h4>LIÊN HỆ</h4>
+                    <h4>CHÍNH SÁCH</h4>
                     <ul class="nav-bottom">
-                        <li><a href="#"><span>Hotline:</span>097 507 1208</a></li>
-                        <li><a href="#"><span>Store 1: </span>57 Quan Hoa, Cầu Giấy, Hà Nội</a></li>
-                        <li><a href="#"><span>Store 2: </span>29 Trần Đại Nghĩa, Hai Bà Trưng, Hà Nội</a></li>
-                        <li><a href="#"><span>Store 3: </span>61 Trần Phú, Hà Đông, Hà Nội</a></li>
+                        <li><a href="#">Chính sách vận chuyển</a></li>
+                        <li><a href="#">Chính sách đổi trả</a></li>
+                        <li><a href="#">Chính sách thanh toán</a></li>
+                        <li><a href="#">Quy định sử dụng</a></li>
                     </ul>
 
 
@@ -169,7 +357,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
     @RenderSection("jsFooter", required: false)
 
-    <script>$(document).ready(function () {
+    <script>
+        $(document).ready(function () {
             //click to scroll top
             $('.move-up span').click(function () {
                 $('html,body').animate({

@@ -1,8 +1,68 @@
-﻿
+﻿@model GrayBShop.Models.Blog
 @{
     ViewBag.Title = "Single";
     Layout = "~/Views/Share/_LayoutClient.cshtml";
 }
 
-<h2>Single</h2>
+<!--content-->
+<div class="blog">
+    <div class="container">
+        <div class="blog-top">
+            <div class=" grid_3 grid-1">
+                <h1>
+                    <a href="blog_single.html">@Model.BlogName</a>
+                </h1>
+                <ul class="socials-share">
+                    <li>
+                        <a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fgiayxshop.vn%2F7-cach-bao-quan-giay-the-thao-tot-nhat%2F&t=7%20c%C3%A1ch%20b%E1%BA%A3o%20qu%E1%BA%A3n%20gi%C3%A0y%20th%E1%BB%83%20thao%20t%E1%BB%91t%20nh%E1%BA%A5t" style="background-color: #306199;"><i class="fab fa-facebook-f"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://twitter.com/intent/tweet?text=7%20c%C3%A1ch%20b%E1%BA%A3o%20qu%E1%BA%A3n%20gi%C3%A0y%20th%E1%BB%83%20thao%20t%E1%BB%91t%20nh%E1%BA%A5t&url=https%3A%2F%2Fgiayxshop.vn%2F7-cach-bao-quan-giay-the-thao-tot-nhat%2F" style="background-color: #26c4f1;"><i class="fab fa-twitter"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://giayxshop.vn/7-cach-bao-quan-giay-the-thao-tot-nhat/" style="background-color: #dd4f43;"><i class="fab fa-google-plus-g"></i></a>
+                    </li>
+                    <li>
+                        <a href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fgiayxshop.vn%2Fwp-content%2Fuploads%2F2016%2F10%2F7-cach-bao-quan.png&description=7+c%C3%A1ch+b%E1%BA%A3o+qu%E1%BA%A3n+gi%C3%A0y+th%E1%BB%83+thao+t%E1%BB%91t+nh%E1%BA%A5t"
+                           style="background-color: #cb2027;"><i class="fab fa-pinterest-p"></i></a>
+                    </li>
+                </ul>
+                <a href=" blog_single.html ">
+                    @{ string filePath = "~/wwwroot/images/" + Model.Images; }
+                    <img src="@Url.Content(filePath)" alt="" class="img-responsive ">
+                </a>
+                <p class="blog_single_content">
+                    @Html.Raw(Model.Content)
+                </p>
 
+                <div class="old-comment">
+                    <img src="~/wwwroot/Images/co.png">
+                    <div>
+                        <h3>NgocTam Vu <span>2 days ago</span></h3>
+                        <p>
+                            Xshopbán phục vụ khách hàng rất oke. Chất lượng sản phẩm perfect, không còn gì để chê.
+                        </p>
+                        <div class="acomment-action">
+                            <i class="fas fa-thumbs-up"></i>
+                            <span>244</span>
+                            <i class="fas fa-thumbs-down"></i>
+                            <span>2</span>
+                            <a href="blog_single.html"><span>REPPLY</span></a>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="answer-comment">
+                    <h3>Phản hồi</h3>
+                    <p class="comment">
+                        <textarea cols="45" rows="3">Bình luận</textarea>
+
+                        <input type="submit" value="Send message">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--//content-->

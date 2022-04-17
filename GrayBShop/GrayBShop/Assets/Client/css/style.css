@@ -245,7 +245,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 /*-banner-doi-*/
                 
                 .bannerdoi {
-                    background: url(../images/banner-be.jpg) no-repeat;
+                    background: url(../images/blogbanner.png) no-repeat;
                     background-size: cover;
                     width: 100%;
                     min-height: 570px;
@@ -1260,7 +1260,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 
                 .blog_banner_item {
                     width: 100%;
-                    background: url(../images/bannerblog1.jpg) no-repeat center center;
+                    background: url(../images/blogbanner.png) no-repeat center center;
                     background-size: cover;
                     display: flex;
                     align-items: center;
@@ -1399,7 +1399,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                     padding-bottom: 40px;
                 }      
                 .product {
-                    padding: 8em 0 0 0;
+                    padding: 4em 0 0 0;
                 }
                 
                 .bottom-product {

@@ -1498,6 +1498,7 @@
     <Content Include="Assets\Client\images\bannernam.jpg" />
     <Content Include="Assets\Client\images\bannernu.jpg" />
     <Content Include="Assets\Client\images\blo.jpg" />
+    <Content Include="Assets\Client\images\blogbanner.png" />
     <Content Include="Assets\Client\images\cart.png" />
     <Content Include="Assets\Client\images\chatluong.PNG" />
     <Content Include="Assets\Client\images\clock.PNG" />
@@ -1739,6 +1740,7 @@
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Data\LoginAccount.cs" />
+    <Compile Include="Controllers\AccountUserController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewFeedController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -2119,6 +2121,13 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Product\DetailProduct.cshtml" />
     <Content Include="Views\NewFeed\Single.cshtml" />
+    <Content Include="Views\NewFeed\Index.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\DanhMuc.cshtml" />
+    <Content Include="Views\Home\SearchBox.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\SignUp.cshtml" />
+    <Content Include="Views\AccountUser\UserInfor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2129,6 +2138,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Views\Contact\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202204131655562_GrayShop.resx">

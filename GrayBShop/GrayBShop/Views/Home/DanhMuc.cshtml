@@ -1,0 +1,7 @@
+﻿@model IEnumerable<GrayBShop.Models.Category>
+
+@foreach (var item in Model)
+{
+<li><a href="@Url.Action("Index","Product", new { madm = item.CategoryID })" style="font-size:14px;font-weight:bold">@item.CategoryName</a></li>}
+
+
