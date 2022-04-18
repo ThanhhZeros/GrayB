@@ -25,11 +25,11 @@
             text-align: center;
         }
 </style>
-<a href="@Url.Action("Index", "Cart")">
+<a href="/gio-hang">
     <div class="cart">
         <i class="fa fa-shopping-bag" style="font-size:20px;color:black"></i>
 
-        <span class="cart-count">
+        <span class="cart-count" id="cartcount">
             @sumItem
 
         </span>

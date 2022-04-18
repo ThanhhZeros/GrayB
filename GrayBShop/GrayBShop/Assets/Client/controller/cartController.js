@@ -54,10 +54,10 @@
             var cartList = [];
             $.each(listProduct, function (i, item) {
                 cartList.push({
-                    SoLuong: $(item).val(),
-                    KichCo: $(item).data('kichco'),
-                    ChiTietSanPham: {
-                        MaAnh: $(item).data('id')
+                    Amount: $(item).val(),
+                    Size: $(item).data('kichco'),
+                    ProductDetail: {
+                        ImageID: $(item).data('id')
 
                     }
                 });
@@ -73,10 +73,10 @@
                     }
                     else {
                         $.each(res, function (index) {
-                            total += res[index].SoLuong * res[index].Gia;
-                            price = res[index].SoLuong * res[index].Gia;
-                            sum += res[index].SoLuong;
-                            $("#thanh-tien-" + res[index].MaAnh + res[index].KichCo).html(price.toLocaleString());
+                            total += res[index].Amount * res[index].Price;
+                            price = res[index].Amount * res[index].Price;
+                            sum += res[index].Amount;
+                            $("#thanh-tien-" + res[index].ImageID + res[index].Size).html(price.toLocaleString());
                         })
 
                         $("#order-total").html(total.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }));
@@ -117,8 +117,8 @@
                                     $("#row-order-" + id + kichco).remove();
 
                                     $.each(res, function (index) {
-                                        total += res[index].SoLuong * res[index].Gia;
-                                        sum += res[index].SoLuong;
+                                        total += res[index].Amount * res[index].Price;
+                                        sum += res[index].Amount;
                                     })
                                     $("#order-total").html(total.toLocaleString('it-IT', { style: 'currency', currency: 'VND' }));
                                     $("#cartcount").html(sum);

@@ -15,7 +15,7 @@
                 <div class="login">
                     <h1 class="account-title">Đăng ký</h1>
 
-                    @using (Html.BeginForm("SignUp", "Home", FormMethod.Post, new { onsubmit = " return check()" }))
+                    @using (Html.BeginForm("SignUp", "Home", FormMethod.Post, new { onsubmit = "return check();" }))
                     {
         <div class="clearfix large_form">
 
@@ -67,7 +67,7 @@
                                                                                                                             <label class="icon-field">
                                                                                                                                 <i class="fas fa-lock"></i>
                                                                                                                             </label>
-                                                                                                                            <input type="password" class="form-control" id="pwd-confirm" placeholder="Xác nhận mật khẩu" required>
+                                                                                                                            <input type="password" class="form-control" id="pwd-confirm"placeholder="Xác nhận mật khẩu" required>
                                                                                                                         </div>
                                                                                                                         <div class="clearfix large_form">
                                                                                                                             <input class="btn btn-signin" type="submit" value="Đăng ký" style="width:100%;background-color: #33b5e5;">
@@ -80,7 +80,14 @@
 
     </div>
 </div>
-
+<script>
+function check() {
+    if (document.getElementById("matkhau").value != document.getElementById("pwd-confirm").value) {
+            document.getElementById("error-message").innerHTML = "Mật khẩu không khớp";
+            return false;
+        }
+        return true;
+    }</script>
 
 
 

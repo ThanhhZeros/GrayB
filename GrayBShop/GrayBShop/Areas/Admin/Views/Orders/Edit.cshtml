@@ -1,96 +1,148 @@
 ﻿@model GrayBShop.Models.Order
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Hóa đơn";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+    var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
 }
 
-<h2>Edit</h2>
+
+
+<h2>Chi tiết hóa đơn</h2>
 
 @using (Html.BeginForm())
 {
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Order</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.OrderID)
+@Html.AntiForgeryToken()
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserID, "UserID", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("UserID", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.UserID, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-horizontal">
+                    <div class="col-12 col-cl-10">
+                        <div class="card card-body bg-white border-light shadow-sm mb-4">
+                            <form action="/HoaDons/Edit" method="post">
+                                <div class="row">
+                                    <input name="id" value="@Model.OrderID" hidden />
+                                    <div class="col-md-6 mb-2">
+                                        <div>
+                                            <label for="category">Tên người đặt</label>
+                                            <input class="form-control" type="text" value="@Html.DisplayFor(model => model.User.Name)" readonly disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div>
+                                            <label for="nameProduct">Tên người nhận</label>
+                                            <input class="form-control" type="text" value="@Html.DisplayFor(model => model.UserName)" readonly disabled>
+                                        </div>
+                                    </div>
+                                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DateCreate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DateCreate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DateCreate, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.Status)
-                    @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-2">
+                                        <div>
+                                            <label for="dateBuy">Ngày đặt</label>
+                                            <input class="form-control" type="text" value="@Html.DisplayFor(model => model.DateCreate)" readonly disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div>
+                                            <label for="size">Trạng thái</label>
+                                            <div class="col-md-12">
+                                                <select name="Status" class="form-control">
+                                                    @if (Model.Status.Equals("Đã hủy"))
+                                                    {
+                                    <option value="Đã hủy" @(Model.Status.Equals("Đã hủy") ? "selected" : "")>Đã hủy</option>
 }
+                                                    @if (!Model.Status.Equals("Đã hủy"))
+                                                    {
+                                    <option value="Đã hủy" @(Model.Status.Equals("Đã hủy") ? "selected" : "")>Đã hủy</option>
+                                                        <option value="Chờ xác nhận" @(Model.Status.Equals("Chờ xác nhận") ? "selected" : "")>Chờ xác nhận</option>
+                                                                            <option value="Đang chuẩn bị" @(Model.Status.Equals("Đang chuẩn bị") ? "selected" : "")>Đang chuẩn bị</option>
+                                                                                                <option value="Đang giao hàng" @(Model.Status.Equals("Đang giao hàng") ? "selected" : "")>Đang giao hàng</option>
+                                                                                                                    <option value="Đã giao hàng" @(Model.Status.Equals("Đã giao hàng") ? "selected" : "")>Đã giao hàng</option>
+}
+                                                </select>
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-2">
+                                        <div>
+                                            <label for="phone">Số điện thoại</label>
+                                            <input class="form-control" type="text" value="@Html.DisplayFor(model => model.Phone)" readonly disabled>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-2">
+                                        <div>
+                                            <label for="address">Địa chỉ nhận</label>
+                                            <input class="form-control" type="text" value="@Html.DisplayFor(model => model.Address)" readonly disabled>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row overflow-auto mt-3 mb-3">
+                                    <label for="address">Danh sách sản phẩm mua</label>
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Hình ảnh</th>
+                                                <th>Tên sản phẩm</th>
+                                                <th>Giá</th>
+                                                <th>Số lượng</th>
+                                                <th>Kích cỡ</th>
+                                                <th>Thành tiền</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <!-- Item -->
+                                            @{ decimal tongtien = 0;}
+                                            @foreach (var item in Model.OrderDetails)
+                                            {
+                            <tr class="group-info">
+                                <td>
+                                    <img src="~/wwwroot/images/@item.ProductDetail.ImageProduct.Images" style="width:80px;height:80px" />
+                                </td>
+                                <td>
+                                    <span class="font-weight-normal">@item.ProductDetail.ImageProduct.Product.ProductName</span>
+                                </td>
+                                <td><span class="font-weight-normal">@String.Format(info, "{0:c0}", item.ProductDetail.ImageProduct.Product.Price)</span></td>
+                                <td><span class="font-weight-normal">@item.Amount</span></td>
+                                <td><span class="font-weight-normal">@item.ProductDetail.Size</span></td>
+                                <td>
+                                    <span class="font-weight-normal">@String.Format(info, "{0:c0}", item.ProductDetail.ImageProduct.Product.Price * item.Amount)</span>
+                                </td>
+
+                            </tr>
+tongtien += item.ProductDetail.ImageProduct.Product.Price * item.Amount;
+                        }
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th colspan="5" style="text-align:center">Tổng tiền</th>
+                                                <th>@String.Format(info, "{0:c0}", tongtien)</th>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                                <div class="row">
+                                    <div>
+                                        <label for="note">Ghi chú</label>
+                                        <input class="form-control" type="text" value="@Html.DisplayFor(model => model.Note)" readonly disabled>
+                                    </div>
+                                </div>
+                                <br /><br />
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-10">
+                                        <input class="btn ThemMoi" style="margin-right:20px;background-color:darkgreen;color:white" type="submit" value="Lưu" />
+                                        <a class="btn ThemMoi" style="background-color: darkgreen; color: white" href="~/Admin/Categories/Index">Hủy</a>
+                                    </div>
+                                </div>
+
+                            </form>
+                        </div>
+                    </div>
+
+
+
+                </div>}

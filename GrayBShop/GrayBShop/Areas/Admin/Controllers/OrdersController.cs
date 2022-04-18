@@ -115,16 +115,25 @@ namespace GrayBShop.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "OrderID,UserID,UserName,Phone,Address,Email,DateCreate,Status,Note")] Order order)
+        public ActionResult Edit(int id, string Status)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(order).State = EntityState.Modified;
-                db.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    var hoaDon = db.Orders.Find(id);
+                    hoaDon.Status = Status;
+                    db.Entry(hoaDon).State = EntityState.Modified;
+                    db.SaveChanges();
+
+                }
                 return RedirectToAction("Index");
             }
-            ViewBag.UserID = new SelectList(db.Users, "UserID", "UserName", order.UserID);
-            return View(order);
+            catch (Exception ex)
+            {
+                ViewBag.Error = "Lỗi edit dữ liệu! " + ex.Message;
+                return View();
+            }
         }
 
         // GET: Admin/Orders/Delete/5

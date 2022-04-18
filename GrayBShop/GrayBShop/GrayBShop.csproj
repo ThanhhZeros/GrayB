@@ -2138,6 +2138,7 @@
     <Content Include="Views\Bill\Index.cshtml" />
     <Content Include="Views\Bill\Details.cshtml" />
     <Content Include="Views\Home\HeaderCart.cshtml" />
+    <Content Include="Views\AccountUser\ChangePassWord.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
