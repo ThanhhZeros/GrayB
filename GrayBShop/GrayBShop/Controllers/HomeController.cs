@@ -181,5 +181,17 @@ namespace GrayBShop.Controllers
 
             return View(tk);
         }
+        [ChildActionOnly]
+        public PartialViewResult HeaderCart()
+        {
+            var cart = Session[ConstainCart.CartSession];
+            var list = new List<CartItem>();
+
+            if (cart != null)
+            {
+                list = (List<CartItem>)cart;
+            }
+            return PartialView(list);
+        }
     }
 }

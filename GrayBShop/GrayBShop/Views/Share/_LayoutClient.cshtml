@@ -256,6 +256,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
         <div class="search-right">
             @{Html.RenderAction("SearchBox", "Home"); }
+            <div>
             <ul class="navbar-nav float-end" style="display: flex; list-style-type: none; ">
                 
                 @if (tk != null)
@@ -287,15 +288,16 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     
                 </a>
             </li>}
-            </ul>
-
-                <button class="userBtn">
-                    <div class="cart">
-                        <i class="fa fa-shopping-bag" style="font-size:20px;"></i>
-                        <span class="cart-count">0</span>
-                    </div>
-                </button>
-
+            </ul></div>
+            <div>
+                @*<button class="userBtn">
+            <div class="cart">
+                <i class="fa fa-shopping-bag" style="font-size:20px;"></i>
+                <span class="cart-count">0</span>
+            </div>
+        </button>*@
+                @{ Html.RenderAction("HeaderCart", "Home");}
+            </div>
         </div>
 
     </div>

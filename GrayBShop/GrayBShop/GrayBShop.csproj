@@ -1741,6 +1741,8 @@
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Data\LoginAccount.cs" />
     <Compile Include="Controllers\AccountUserController.cs" />
+    <Compile Include="Controllers\BillController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewFeedController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -1767,6 +1769,8 @@
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Session\CartItem.cs" />
+    <Compile Include="Session\ConstainCart.cs" />
     <Compile Include="Session\ConstainUser.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2128,6 +2132,12 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\SignUp.cshtml" />
     <Content Include="Views\AccountUser\UserInfor.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Cart\Payment.cshtml" />
+    <Content Include="Views\Cart\SubmitOrder.cshtml" />
+    <Content Include="Views\Bill\Index.cshtml" />
+    <Content Include="Views\Bill\Details.cshtml" />
+    <Content Include="Views\Home\HeaderCart.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2138,7 +2148,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
-    <Folder Include="Views\Contact\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202204131655562_GrayShop.resx">

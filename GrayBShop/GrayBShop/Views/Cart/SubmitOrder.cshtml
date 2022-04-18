@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "SubmitOrder";
+    Layout = "~/Views/Share/_LayoutClient.cshtml";
+}
+
+
+<div style="margin:110px 200px 10px 200px">
+    <h3 style="margin-bottom: 100px; background-color: #f1f2f4; padding: 19px; font-size: 18px;">
+        Đơn hàng của quý khách đã được chúng tôi xác nhận. Chúng tôi sẽ liên hệ và giao hàng
+        sớm nhất cho quý khách.
+        Cảm ơn quý khách !
+    </h3>
+    <p>
+        @Html.ActionLink("Đơn hàng", "Index", "Bill")
+    </p>
+</div>
+
+

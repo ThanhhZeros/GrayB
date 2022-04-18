@@ -29,7 +29,7 @@
                         $(".close").click();
                         swal({
                             title: "Thành công!",
-                            text: "Xem chi tiết tại giỏ hàng nhé <3",
+                            text: "Xem chi tiết tại giỏ hàng nhé",
                             type: "success",
                             icon: "success",
                             timer: 1500,

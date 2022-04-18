@@ -1,0 +1,139 @@
+﻿@model PagedList.IPagedList<GrayBShop.Models.Order>
+@using PagedList.Mvc
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Share/_LayoutClient.cshtml";
+    var mau = "";
+}
+
+
+@section jsFooter{
+    <script src="~/Assets/Client/controller/BillController.js"></script>
+
+}
+<style>
+    #menucon {
+        margin: 24px 0px 14px 0px;
+        background-color: #bff9d0;
+        text-indent: 10px;
+        padding: 4px 0px 0px 0px;
+    }
+
+        #menucon ul {
+            list-style-type: none;
+        }
+
+            #menucon ul li {
+                display: inline-block;
+            }
+
+                #menucon ul li a {
+                    color: #299c77;
+                    text-decoration: none;
+                }
+
+                    #menucon ul li a:hover {
+                        color: black;
+                        text-decoration: underline;
+                    }
+
+    .buttonHuy {
+        padding: 5px 32px;
+        background-color: #FF9999;
+        color: white;
+    }
+
+        .buttonHuy:hover {
+            background-color: #ff0000;
+            color: white;
+        }
+
+    .buttonXacNhan {
+        padding: 5px 15px;
+        background-color: #009994;
+        color: white;
+    }
+
+        .buttonXacNhan:hover {
+            background-color: #006633;
+            color: white;
+        }
+</style>
+<div class="content" style="margin:100px 9%">
+    <div class="container">
+        <div class="row" id="menucon" style="padding:10px 0px">
+            <ul class="d-flex align-items-center">
+                <li>@Html.ActionLink("Trang chủ ", "Index", "Home")<span style="color:seagreen">&nbsp ></span></li>
+                <li class="active">
+                    @Html.ActionLink("Đơn hàng của bạn ", "Index", "Bill")
+                </li>
+            </ul>
+        </div>
+        @if (Model.Count != 0)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Ngày đặt</th>
+                        <th>Người nhận</th>
+                        <th>Số điện thoại</th>
+                        <th>Trạng thái</th>
+                        <th>Chi tiết</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.DateCreate
+                            </td>
+                            <td>@item.UserName</td>
+                            <td>@item.Phone</td>
+                            <td>
+                                @if (@item.Status == "Đã hủy")
+                                {
+                                    mau = "red";
+                                }
+                                @if (@item.Status == "Đã thanh toán")
+                                {
+                                    mau = "#006633";
+                                }
+                                @if (@item.Status == "Chờ xác nhận" || @item.Status == "Đang chuẩn bị" || @item.Status == "Đang giao hàng" || @item.Status == "Đã giao hàng")
+                                {
+                                    mau = "#FF8000";
+                                }
+                                <span class="btn" style="color:white; background-color:@mau; padding: 5px; width:150px">@item.Status</span>
+                            </td>
+                            <td><a href="@Url.Action("Details", "Bill", new { id = item.OrderID })">Chi tiết</a></td>
+                            @if (item.Status == "Đang chuẩn bị" || item.Status == "Chờ xác nhận")
+                            {
+                                <td><button class="btn buttonHuy" type="button" onclick="huyDonHang(@item.OrderID)">Hủy đơn hàng</button></td>
+                            }
+                            @if (item.Status == "Đã giao hàng")
+                            {
+                                <td><button class="btn buttonXacNhan" type="button" onclick="xacNhanDonHang(@item.OrderID)">Xác nhận đơn hàng</button></td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <h3 style="text-indent:25px">Bạn chưa đặt đơn hàng nào !</h3>
+        }
+        <div style="padding:25px">
+            <br />
+            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        </div>
+
+    </div>
+</div>
+
+
+
+

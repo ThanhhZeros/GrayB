@@ -236,5 +236,5 @@ D:\GrayB\GrayBShop\GrayBShop\bin\PagedList.xml
 D:\GrayB\GrayBShop\GrayBShop\bin\PagedList.Mvc.xml
 D:\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.Migrations.GrayShop.resources
 D:\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.GenerateResource.cache
-D:\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.AssemblyReference.cache
 D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.AssemblyReference.cache
+D:\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.AssemblyReference.cache
