@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{ GrayBShop.Models.User tk =
+                        (GrayBShop.Models.User)HttpContext.Current.Session[GrayBShop.Session.ConstainUser.ADMIN_SESSION]; }
+
+<!DOCTYPE html>
 <html dir="ltr" lang="en">
 
 <head>
@@ -167,11 +170,11 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" style=" color: #6C757D !IMPORTANT;">
                                 <img src="~/Assets/Admin/assets/images/users/4.jpg" alt="user" class="rounded-circle" width="31">
-                               
+                                @tk.Name
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
                                 <li>
-                                    @Html.ActionLink("Thông tin tài khoản", "AdminInfor", "Profile", new {  }, new { @class = "dropdown-item" })
+                                    @Html.ActionLink("Thông tin tài khoản", "AdminInfor", "Profile", new { }, new { @class = "dropdown-item" })
 
 
 
@@ -238,13 +241,17 @@
                                 <span class="hide-menu">Khách hàng</span>
                             </a>
                         </li>
+                        @if (tk.RoleID == 1)
+            {
+
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="icon-material.html"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","Admin")"
                                aria-expanded="false">
                                 <i class="mdi mdi-face"></i>
                                 <span class="hide-menu">Tài khoản</span>
                             </a>
                         </li>
+            }
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","Blogs")"
                                aria-expanded="false">
@@ -295,7 +302,7 @@
     <!-- ============================================================== -->
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    
+
 </body>
 
 </html>

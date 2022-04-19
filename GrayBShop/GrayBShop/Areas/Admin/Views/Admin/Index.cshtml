@@ -1,0 +1,92 @@
+﻿
+@model PagedList.IPagedList<GrayBShop.Models.User>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css">
+
+@{
+    ViewBag.Title = "Tài khoản quản trị";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<h2>Danh sách quản trị</h2>
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-warning" role="alert">
+        @ViewBag.Error
+    </div>
+}
+@if (ViewBag.Success != null)
+{
+    <div class="alert alert-success" role="alert">
+        @ViewBag.Success
+    </div>
+}
+<p>
+    <button style="background-color: black; border-radius: 8px;width:100px">@Html.ActionLink("Thêm mới", "Create")</button>
+
+</p>
+
+<head>
+    <style>
+        button a {
+            color: white;
+        }
+
+            button a:hover {
+                color: yellow;
+            }
+    </style>
+</head>
+<div class="card card-body border-light shadow-sm table-wrapper table-responsive pt-0">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Tên đăng nhập</th>
+                <th>Họ tên</th>
+                <th>Loại tài khoản</th>
+                <th>Trạng thái</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Item -->
+            @foreach (var item in Model)
+            {
+                <tr class="group-info">
+                    <td>
+                        @item.UserName
+                    </td>
+                    <td>
+                        <span class="font-weight-normal">@item.Name</span>
+                    </td>
+                    <td><span class="font-weight-normal">@item.Role.RoleName</span></td>
+                    <td><span class="font-weight-normal">@Html.DisplayFor(modelItem => item.Status)</span></td>
+
+
+
+                    <td>
+                        <button style="background-color: midnightblue; border-radius: 8px;width:100px">@Html.ActionLink("Xem chi tiết", "Edit", new { id = item.UserID })</button>
+                        @if (item.Status == false)
+                        {
+                            <button style="background-color: red; border-radius: 8px;width:100px">@Html.ActionLink("Xóa", "Delete", new { id = item.UserID })</button>
+                        }
+                        @if (item.Status == true)
+                        {
+                            <button style="background-color: red; border-radius: 8px;width:100px">Xóa</button>
+                        }
+
+                    </td>
+                </tr>
+       }
+        </tbody>
+    </table>
+</div>
+
+@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, pageSize = Model.PageSize }))
+
+

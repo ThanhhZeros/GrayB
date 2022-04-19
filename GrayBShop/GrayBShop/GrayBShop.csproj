@@ -1729,6 +1729,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\BaseController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogsController.cs" />
@@ -2119,6 +2120,10 @@
     <Content Include="Assets\Admin\login\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="Assets\Admin\login\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Assets\Admin\login\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Areas\Admin\Views\Admin\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Admin\Delete.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Share\_LayoutClient.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
