@@ -23,6 +23,7 @@ namespace GrayBShop.Models
         public virtual DbSet<Product> Products { get; set; }
         public virtual DbSet<ProductDetail> ProductDetails { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Sale> Sales { get; set; }
         public virtual DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -87,6 +88,10 @@ namespace GrayBShop.Models
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Orders)
                 .WithOptional(e => e.User)
+                .WillCascadeOnDelete();
+            modelBuilder.Entity<Sale>()
+                .HasMany(e => e.Products)
+                .WithOptional(e => e.Sale)
                 .WillCascadeOnDelete();
         }
     }

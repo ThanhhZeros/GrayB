@@ -32,9 +32,10 @@ namespace GrayBShop.Models
         public DateTime DateCreate { get; set; }
 
         public DateTime DateUpdate { get; set; }
-        public int SLCo { get; set; }
+        public int AmountInput { get; set; }
 
         public virtual Category Category { get; set; }
+        public virtual Sale Sale { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ImageProduct> ImageProducts { get; set; }
