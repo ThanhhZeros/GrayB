@@ -23,6 +23,9 @@ namespace GrayBShop.Models
         public string CategoryID { get; set; }
 
 
+        [DisplayName("Khuyến mãi")]
+        public int SaleID { get; set; }
+
         [StringLength(200)]
         [DisplayName("Tên danh mục")]
         public string CategoryName { get; set; }
@@ -54,5 +57,6 @@ namespace GrayBShop.Models
         public int ImageID { get; set; }
 
         public virtual Category Category { get; set; }
+        public virtual Sale Sale { get; set; }
     }
 }

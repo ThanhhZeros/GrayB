@@ -1739,6 +1739,7 @@
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SalesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Data\LoginAccount.cs" />
     <Compile Include="Controllers\AccountUserController.cs" />
@@ -1757,6 +1758,10 @@
     <Compile Include="Migrations\202204200431552_Gray.cs" />
     <Compile Include="Migrations\202204200431552_Gray.Designer.cs">
       <DependentUpon>202204200431552_Gray.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202204201449403_Grayy.cs" />
+    <Compile Include="Migrations\202204201449403_Grayy.Designer.cs">
+      <DependentUpon>202204201449403_Grayy.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
@@ -2129,6 +2134,11 @@
     <Content Include="Areas\Admin\Views\Admin\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Sales\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Sales\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Sales\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Sales\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Sales\Index.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Share\_LayoutClient.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -2166,6 +2176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202204200431552_Gray.resx">
       <DependentUpon>202204200431552_Gray.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202204201449403_Grayy.resx">
+      <DependentUpon>202204201449403_Grayy.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

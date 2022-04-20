@@ -237,5 +237,6 @@ D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\roslyn\vbc.exe.config
 D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\roslyn\vbc.rsp
 D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\roslyn\VBCSCompiler.exe
 D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\roslyn\VBCSCompiler.exe.config
-D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.AssemblyReference.cache
 D:\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.Migrations.Gray.resources
+D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.Migrations.Gray.resources
+D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.Migrations.Grayy.resources

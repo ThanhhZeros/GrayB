@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Web;
-
 namespace GrayBShop.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
     [Table("Sale")]
     public partial class Sale
     {
@@ -16,10 +15,13 @@ namespace GrayBShop.Models
             Products = new HashSet<Product>();
         }
 
-        public string SaleID { get; set; }
+        public int? SaleID { get; set; }
 
-        [Required]
+        [StringLength(200)]
+        public string SaleName { get; set; }
+
         public int SalePercent { get; set; }
+
         public DateTime DateStart { get; set; }
 
         public DateTime DateFinish { get; set; }

@@ -14,7 +14,7 @@ namespace GrayBShop.Models
         [StringLength(100)]
         public string BlogName { get; set; }
 
-        public DateTime DateCreate { get; set; }
+        public DateTime? DateCreate { get; set; }
 
         [Column(TypeName = "ntext")]
         public string Content { get; set; }

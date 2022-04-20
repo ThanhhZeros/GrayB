@@ -242,16 +242,24 @@
                             </a>
                         </li>
                         @if (tk.RoleID == 1)
-            {
+                        {
+
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","Admin")"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-face"></i>
+                                    <span class="hide-menu">Tài khoản</span>
+                                </a>
+                            </li>
+                        }
 
                         <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","Admin")"
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","Sales")"
                                aria-expanded="false">
-                                <i class="mdi mdi-face"></i>
-                                <span class="hide-menu">Tài khoản</span>
+                                <i class="mdi mdi-alert-outline"></i>
+                                <span class="hide-menu">Khuyến mãi</span>
                             </a>
                         </li>
-            }
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","Blogs")"
                                aria-expanded="false">

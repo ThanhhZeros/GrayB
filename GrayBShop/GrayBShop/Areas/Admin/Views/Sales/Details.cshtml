@@ -1,0 +1,51 @@
+﻿@model GrayBShop.Models.Sale
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Sale</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SaleName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SaleName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalePercent)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalePercent)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateStart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateStart)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateFinish)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateFinish)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.SaleID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -34,9 +34,8 @@ namespace GrayBShop.Models
                 .WillCascadeOnDelete();
 
             modelBuilder.Entity<Category>()
-                .HasMany(e => e.Products)
-                .WithOptional(e => e.Category)
-                .WillCascadeOnDelete();
+                .Property(e => e.CategoryID)
+                .IsUnicode(false);
 
             modelBuilder.Entity<Contact>()
                 .Property(e => e.Email)
@@ -46,12 +45,24 @@ namespace GrayBShop.Models
                 .Property(e => e.Phone)
                 .IsUnicode(false);
 
+            modelBuilder.Entity<ImageProduct>()
+                .Property(e => e.ProductID)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Order>()
                 .Property(e => e.Phone)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Order>()
                 .Property(e => e.Email)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Product>()
+                .Property(e => e.ProductID)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Product>()
+                .Property(e => e.CategoryID)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Product>()
@@ -73,6 +84,11 @@ namespace GrayBShop.Models
                 .WithOptional(e => e.Role)
                 .WillCascadeOnDelete();
 
+            modelBuilder.Entity<Sale>()
+                .HasMany(e => e.Products)
+                .WithOptional(e => e.Sale)
+                .WillCascadeOnDelete();
+
             modelBuilder.Entity<User>()
                 .Property(e => e.Password)
                 .IsUnicode(false);
@@ -88,10 +104,6 @@ namespace GrayBShop.Models
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Orders)
                 .WithOptional(e => e.User)
-                .WillCascadeOnDelete();
-            modelBuilder.Entity<Sale>()
-                .HasMany(e => e.Products)
-                .WithOptional(e => e.Sale)
                 .WillCascadeOnDelete();
         }
     }

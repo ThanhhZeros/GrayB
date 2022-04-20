@@ -28,7 +28,7 @@ namespace GrayBShop.Areas.Admin.Controllers
                 Images = a.Images,
                 Description = p.Descriptions,
                 Price = p.Price,
-                DateUpdate = p.DateUpdate,
+                DateUpdate = p.DateUpdate
 
             }).ToList();
             var productDetails = new List<DetailProduct>();
@@ -167,6 +167,7 @@ namespace GrayBShop.Areas.Admin.Controllers
                     sanPham.CategoryID = productDetail.CategoryID;
                     sanPham.Descriptions = productDetail.Description;
                     sanPham.Price = productDetail.Price;
+                    sanPham.SaleID = productDetail.SaleID;
                     sanPham.DateCreate = DateTime.Now;
                     sanPham.DateUpdate = DateTime.Now;
                     db.Products.Add(sanPham);
@@ -257,6 +258,7 @@ namespace GrayBShop.Areas.Admin.Controllers
                 CategoryID = product.CategoryID,
                 DateCreate = product.DateCreate,
                 DateUpdate = product.DateUpdate,
+                Sale=product.Sale,
                 Category = product.Category
             };
             return View(productDetail);
@@ -286,6 +288,7 @@ namespace GrayBShop.Areas.Admin.Controllers
                     sanPham.Descriptions = productDetail.Description;
                     sanPham.Price = productDetail.Price;
                     sanPham.CategoryID = productDetail.CategoryID;
+                    sanPham.SaleID = productDetail.SaleID;
                     sanPham.DateUpdate = DateTime.Now;
                     db.SaveChanges();
                     string[] sizes = productDetail.Size.Split(';');
