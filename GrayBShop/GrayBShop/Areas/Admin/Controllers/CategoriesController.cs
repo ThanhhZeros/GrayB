@@ -122,7 +122,7 @@ namespace GrayBShop.Areas.Admin.Controllers
         }
 
         // GET: Admin/Categories/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {

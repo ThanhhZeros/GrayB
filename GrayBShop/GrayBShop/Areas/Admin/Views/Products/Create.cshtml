@@ -85,70 +85,88 @@
     {
         @Html.AntiForgeryToken()
 
-        <div class="form-horizontal">
-            <h4>Thêm sản phẩm mới</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="form-horizontal">
+    <h4>Thêm sản phẩm mới</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
-                </div>
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProductName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ProductName, "", new { @class = "text-danger" })
+        </div>
+    </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.CategoryID, "CategoryID", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
-                </div>
-            </div>
-            <div class=" form-group">
-                <label>Ảnh sản phẩm </label><br />
-                <a class="btnAddNew ThemMoi" href="#">Thêm Ảnh</a>
-                <br />
-                <div id="myinput" class="myinput">
-                    <div class="row">
-                        <img class="img-rounded output" alt="Ảnh" width="100" height="230" src="~/wwwroot/Images/h0.png" />
-                        <input type="file" name="uploadFile[0]" required onchange="loadFile(event)" /><br />
-                    </div>
-                </div>
-                <br />
-            </div>
-            <div class="form-group" style="clear:both">
-                @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
-                </div>
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryID, "CategoryID", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        
+        <div class="col-md-10">
+            <input type="checkbox" id="km" name="vehicle1" value="km">
+            <label for="km"> Khuyến mãi</label>
+        </div>
+    </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", rows = 50 } })
-                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-                </div>
-            </div>
+    <div class="form-group">
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-                </div>
+        @Html.LabelFor(model => model.SaleID, "SaleID", htmlAttributes: new { @class = "control-label col-md-2" })
+        <p id="text" style="display:none">
+            <div class="col-md-10">
+                @Html.DropDownList("SaleID", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.SaleID, "", new { @class = "text-danger" })
             </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <hr />
-                    <input class="btn ThemMoi" style="margin-right:20px;background-color:darkgreen;color:white" type="submit" value="Thêm" />
-                    <a class="btn ThemMoi" style="background-color: darkgreen; color: white" href="~/Admin/Products/Index">Hủy</a>
-                </div>
+        </p>
+    </div>
+    <div class=" form-group">
+        <label>Ảnh sản phẩm </label><br />
+        <a class="btnAddNew ThemMoi" href="#">Thêm Ảnh</a>
+        <br />
+        <div id="myinput" class="myinput">
+            <div class="row">
+                <img class="img-rounded output" alt="Ảnh" width="100" height="230" src="~/wwwroot/Images/h0.png" />
+                <input type="file" name="uploadFile[0]" required onchange="loadFile(event)" /><br />
             </div>
         </div>
+        <br />
+    </div>
+    <div class="form-group" style="clear:both">
+        @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", rows = 50 } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <hr />
+            <input class="btn ThemMoi" style="margin-right:20px;background-color:darkgreen;color:white" type="submit" value="Thêm" />
+            <a class="btn ThemMoi" style="background-color: darkgreen; color: white" href="~/Admin/Products/Index">Hủy</a>
+        </div>
+    </div>
+</div>
     }
 
     <script>
@@ -157,6 +175,15 @@
             var image = images[images.length - 1];
             image.src = URL.createObjectURL(event.target.files[0]);
 
+        }
+        function myFunction() {
+            var checkBox = document.getElementById("km");
+            var text = document.getElementById("text");
+            if (checkBox.checked == true) {
+                text.style.display = "block";
+            } else {
+                text.style.display = "none";
+            }
         }
     </script>
 

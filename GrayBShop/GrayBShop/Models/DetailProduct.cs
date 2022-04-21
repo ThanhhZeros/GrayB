@@ -24,7 +24,7 @@ namespace GrayBShop.Models
 
 
         [DisplayName("Khuyến mãi")]
-        public int SaleID { get; set; }
+        public int? SaleID { get; set; }
 
         [StringLength(200)]
         [DisplayName("Tên danh mục")]

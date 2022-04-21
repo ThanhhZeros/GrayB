@@ -28,6 +28,7 @@ namespace GrayBShop.Areas.Admin.Controllers
                 Images = a.Images,
                 Description = p.Descriptions,
                 Price = p.Price,
+                SaleID=p.Sale.SalePercent,
                 DateUpdate = p.DateUpdate
 
             }).ToList();
@@ -133,6 +134,7 @@ namespace GrayBShop.Areas.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName");
+            ViewBag.SaleID = new SelectList(db.Sales, "SaleID", "SalePercent");
             return View();
         }
 
@@ -199,12 +201,14 @@ namespace GrayBShop.Areas.Admin.Controllers
                     return RedirectToAction("Index");
                 }
                 ViewBag.MaDM = new SelectList(db.Categories, "CategoryID", "CategoryName", productDetail.CategoryID);
+                ViewBag.SaleID = new SelectList(db.Sales, "SaleID", "SalePercent", productDetail.SaleID);
                 return View(productDetail);
             }
             catch (Exception ex)
             {
                 ViewBag.Error = "Lỗi nhập dữ liệu !" + ex.Message;
                 ViewBag.MaDM = new SelectList(db.Categories, "CategoryID", "CategoryName", productDetail.CategoryID);
+                ViewBag.SaleID = new SelectList(db.Sales, "SaleID", "SalePercent", productDetail.SaleID);
                 return View(productDetail);
 
             }
@@ -247,6 +251,7 @@ namespace GrayBShop.Areas.Admin.Controllers
             listSize = listSize.Substring(0, listSize.Length - 1);
             ViewBag.listSize = listSize;
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", product.CategoryID);
+            ViewBag.SaleID = new SelectList(db.Sales, "SaleID", "SalePercent", product.SaleID);
             DetailProduct productDetail = new DetailProduct()
             {
                 ProductID = product.ProductID,
@@ -258,6 +263,7 @@ namespace GrayBShop.Areas.Admin.Controllers
                 CategoryID = product.CategoryID,
                 DateCreate = product.DateCreate,
                 DateUpdate = product.DateUpdate,
+                SaleID=product.SaleID,
                 Sale=product.Sale,
                 Category = product.Category
             };
@@ -279,6 +285,7 @@ namespace GrayBShop.Areas.Admin.Controllers
                 {
                     ViewBag.Error = "Chọn ảnh !";
                     ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", productDetail.CategoryID);
+                    ViewBag.SaleID = new SelectList(db.Sales, "SaleID", "SalePercent", productDetail.SaleID);
                     return View(productDetail);
                 }
                 if (ModelState.IsValid)
@@ -374,13 +381,14 @@ namespace GrayBShop.Areas.Admin.Controllers
             {
                 ViewBag.Error = "Lỗi nhập dữ liệu !" + ex.Message;
                 ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName", productDetail.CategoryID);
+                ViewBag.SaleID = new SelectList(db.Sales, "SaleID", "SalePercent", productDetail.SaleID);
                 return View(productDetail);
 
             }
         }
 
         // GET: Admin/Products/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {

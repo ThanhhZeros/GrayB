@@ -30,6 +30,7 @@ namespace GrayBShop.Areas.Admin.Controllers
         }
         public ActionResult Create()
         {
+            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleName");
             return View();
         }
         [HttpPost]
@@ -40,8 +41,10 @@ namespace GrayBShop.Areas.Admin.Controllers
             {
                 db.Users.Add(user);
                 db.SaveChanges();
+                
                 return RedirectToAction("Index");
             }
+            ViewBag.RoleID = new SelectList(db.Roles, "RoleID", "RoleName", user.RoleID);
             return View(user);
         }
         public ActionResult Edit(int? id)
