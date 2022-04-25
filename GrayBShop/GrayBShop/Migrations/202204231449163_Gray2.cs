@@ -3,7 +3,7 @@ namespace GrayBShop.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class GrayShop : DbMigration
+    public partial class Gray2 : DbMigration
     {
         public override void Up()
         {
@@ -28,14 +28,14 @@ namespace GrayBShop.Migrations
                         BlogCategoryID = c.Int(),
                     })
                 .PrimaryKey(t => t.BlogID)
-                .ForeignKey("dbo.BlogCategory", t => t.BlogCategoryID, cascadeDelete: true)
+                .ForeignKey("dbo.BlogCategory", t => t.BlogCategoryID)
                 .Index(t => t.BlogCategoryID);
             
             CreateTable(
                 "dbo.Category",
                 c => new
                     {
-                        CategoryID = c.String(nullable: false, maxLength: 128),
+                        CategoryID = c.String(nullable: false, maxLength: 20, unicode: false),
                         CategoryName = c.String(nullable: false, maxLength: 50),
                     })
                 .PrimaryKey(t => t.CategoryID);
@@ -44,18 +44,21 @@ namespace GrayBShop.Migrations
                 "dbo.Product",
                 c => new
                     {
-                        ProductID = c.String(nullable: false, maxLength: 128),
+                        ProductID = c.String(nullable: false, maxLength: 20, unicode: false),
                         ProductName = c.String(nullable: false, maxLength: 200),
-                        CategoryID = c.String(maxLength: 128),
+                        CategoryID = c.String(maxLength: 20, unicode: false),
+                        SaleID = c.Int(),
                         Descriptions = c.String(maxLength: 500),
                         Price = c.Decimal(nullable: false, storeType: "money"),
                         DateCreate = c.DateTime(nullable: false),
                         DateUpdate = c.DateTime(nullable: false),
-                        SLCo = c.Int(nullable: false),
+                        AmountInput = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ProductID)
-                .ForeignKey("dbo.Category", t => t.CategoryID, cascadeDelete: true)
-                .Index(t => t.CategoryID);
+                .ForeignKey("dbo.Category", t => t.CategoryID)
+                .ForeignKey("dbo.Sale", t => t.SaleID)
+                .Index(t => t.CategoryID)
+                .Index(t => t.SaleID);
             
             CreateTable(
                 "dbo.ImageProduct",
@@ -63,10 +66,10 @@ namespace GrayBShop.Migrations
                     {
                         ImageID = c.Int(nullable: false, identity: true),
                         Images = c.String(maxLength: 300),
-                        ProductID = c.String(maxLength: 128),
+                        ProductID = c.String(maxLength: 20, unicode: false),
                     })
                 .PrimaryKey(t => t.ImageID)
-                .ForeignKey("dbo.Product", t => t.ProductID, cascadeDelete: true)
+                .ForeignKey("dbo.Product", t => t.ProductID)
                 .Index(t => t.ProductID);
             
             CreateTable(
@@ -110,7 +113,7 @@ namespace GrayBShop.Migrations
                         Note = c.String(maxLength: 50),
                     })
                 .PrimaryKey(t => t.OrderID)
-                .ForeignKey("dbo.Users", t => t.UserID, cascadeDelete: true)
+                .ForeignKey("dbo.Users", t => t.UserID)
                 .Index(t => t.UserID);
             
             CreateTable(
@@ -128,7 +131,7 @@ namespace GrayBShop.Migrations
                         RoleID = c.Int(),
                     })
                 .PrimaryKey(t => t.UserID)
-                .ForeignKey("dbo.Roles", t => t.RoleID, cascadeDelete: true)
+                .ForeignKey("dbo.Roles", t => t.RoleID)
                 .Index(t => t.RoleID);
             
             CreateTable(
@@ -139,6 +142,18 @@ namespace GrayBShop.Migrations
                         RoleName = c.String(nullable: false, maxLength: 100),
                     })
                 .PrimaryKey(t => t.RoleID);
+            
+            CreateTable(
+                "dbo.Sale",
+                c => new
+                    {
+                        SaleID = c.Int(nullable: false, identity: true),
+                        SaleName = c.String(maxLength: 200),
+                        SalePercent = c.Int(nullable: false),
+                        DateStart = c.DateTime(nullable: false),
+                        DateFinish = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.SaleID);
             
             CreateTable(
                 "dbo.Contact",
@@ -168,13 +183,14 @@ namespace GrayBShop.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Product", "CategoryID", "dbo.Category");
+            DropForeignKey("dbo.Product", "SaleID", "dbo.Sale");
             DropForeignKey("dbo.ImageProduct", "ProductID", "dbo.Product");
             DropForeignKey("dbo.OrderDetail", new[] { "ImageID", "Size" }, "dbo.ProductDetail");
             DropForeignKey("dbo.Users", "RoleID", "dbo.Roles");
             DropForeignKey("dbo.Orders", "UserID", "dbo.Users");
             DropForeignKey("dbo.OrderDetail", "OrderID", "dbo.Orders");
             DropForeignKey("dbo.ProductDetail", "ImageID", "dbo.ImageProduct");
+            DropForeignKey("dbo.Product", "CategoryID", "dbo.Category");
             DropForeignKey("dbo.Blog", "BlogCategoryID", "dbo.BlogCategory");
             DropIndex("dbo.Users", new[] { "RoleID" });
             DropIndex("dbo.Orders", new[] { "UserID" });
@@ -182,10 +198,12 @@ namespace GrayBShop.Migrations
             DropIndex("dbo.OrderDetail", new[] { "OrderID" });
             DropIndex("dbo.ProductDetail", new[] { "ImageID" });
             DropIndex("dbo.ImageProduct", new[] { "ProductID" });
+            DropIndex("dbo.Product", new[] { "SaleID" });
             DropIndex("dbo.Product", new[] { "CategoryID" });
             DropIndex("dbo.Blog", new[] { "BlogCategoryID" });
             DropTable("dbo.Introduce");
             DropTable("dbo.Contact");
+            DropTable("dbo.Sale");
             DropTable("dbo.Roles");
             DropTable("dbo.Users");
             DropTable("dbo.Orders");

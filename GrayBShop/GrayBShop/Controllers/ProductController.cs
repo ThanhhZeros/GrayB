@@ -29,6 +29,8 @@ namespace GrayBShop.Controllers
                                                        Price = p.Price,
                                                        ImageID = a.ImageID,
                                                        Images = a.Images,
+                                                       SaleID=p.SaleID,
+                                                       Sale=p.Sale,
                                                        Description = p.Descriptions
                                                    }).ToList();
             ViewBag.madm = madm;
@@ -50,6 +52,8 @@ namespace GrayBShop.Controllers
                                     Price = p.Price,
                                     ImageID = a.ImageID,
                                     Images = a.Images,
+                                    SaleID = p.SaleID,
+                                    Sale=p.Sale,
                                     Description = p.Descriptions
                                 }).OrderByDescending(s => s.Price).ToList();
                 }
@@ -66,6 +70,8 @@ namespace GrayBShop.Controllers
                                     Price = p.Price,
                                     ImageID = a.ImageID,
                                     Images = a.Images,
+                                    SaleID = p.SaleID,
+                                    Sale = p.Sale,
                                     Description = p.Descriptions
                                 }).ToList();
                 }
@@ -83,6 +89,8 @@ namespace GrayBShop.Controllers
                                     Price = p.Price,
                                     ImageID = a.ImageID,
                                     Images = a.Images,
+                                    SaleID = p.SaleID,
+                                    Sale = p.Sale,
                                     Description = p.Descriptions
                                 }).OrderByDescending(s => s.Price).ToList();
                 }
@@ -98,6 +106,8 @@ namespace GrayBShop.Controllers
                                     Price = p.Price,
                                     ImageID = a.ImageID,
                                     Images = a.Images,
+                                    SaleID = p.SaleID,
+                                    Sale = p.Sale,
                                     Description = p.Descriptions
                                 }).OrderByDescending(s => s.DateCreate).ToList();
                 }
@@ -115,8 +125,34 @@ namespace GrayBShop.Controllers
             int pageNumber = (page ?? 1);
             return View(products.ToPagedList(pageNumber, pageSize));
         }
-
         
+        public ActionResult ProductSale(int? page)
+        {
+            ICollection<DetailProduct> sanphams = (from p in db.Products
+                                                   join a in db.ImageProducts on p.ProductID equals a.ProductID
+                                                   where p.SaleID !=null
+                                                   select new DetailProduct()
+                                                   {
+                                                       CategoryID = p.CategoryID,
+                                                       ProductID = p.ProductID,
+                                                       ProductName = p.ProductName,
+                                                       Price = p.Price,
+                                                       ImageID = a.ImageID,
+                                                       Images = a.Images,
+                                                       SaleID = p.SaleID,
+                                                       Sale = p.Sale,
+                                                       Description = p.Descriptions
+                                                   }).ToList();
+            ICollection<DetailProduct> products = Filter(sanphams, 100);
+            ViewBag.sanpham = products;
+            if (products.Count() == 0)
+            {
+                ViewBag.Error = "Không có sản phẩm khuyến mãi!";
+            }
+            int pageSize = 9;
+            int pageNumber = (page ?? 1);
+            return View(products.ToPagedList(pageNumber, pageSize));
+        }
 
         public ActionResult DetailProduct(string id, int maImage, string madm)
         {
@@ -133,6 +169,8 @@ namespace GrayBShop.Controllers
                                Price = p.Price,
                                ImageID = a.ImageID,
                                Images = a.Images,
+                               SaleID = p.SaleID,
+                               Sale=p.Sale,
                                Description = p.Descriptions
                            }).FirstOrDefault();
             //int maImage = sanpham.maANh;
@@ -153,6 +191,8 @@ namespace GrayBShop.Controllers
                                                        Price = p.Price,
                                                        ImageID = a.ImageID,
                                                        Images = a.Images,
+                                                       SaleID = p.SaleID,
+                                                       Sale=p.Sale,
                                                        Description = p.Descriptions
                                                    }).ToList();
             ICollection<DetailProduct> RelateProducts = Filter(Products, 4);

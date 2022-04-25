@@ -118,10 +118,18 @@ namespace GrayBShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            try
+            {
+
             Sale sale = db.Sales.Find(id);
             db.Sales.Remove(sale);
             db.SaveChanges();
             return RedirectToAction("Index");
+            }catch(Exception ex)
+            {
+                ViewBag.Error = "Lỗi !" + ex.Message;
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

@@ -9,7 +9,7 @@ namespace GrayBShop.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(GrayBShop.Models.GrayShop context)

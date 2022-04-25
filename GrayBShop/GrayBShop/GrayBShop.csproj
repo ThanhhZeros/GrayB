@@ -1751,17 +1751,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202204131655562_GrayShop.cs" />
-    <Compile Include="Migrations\202204131655562_GrayShop.Designer.cs">
-      <DependentUpon>202204131655562_GrayShop.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204200431552_Gray.cs" />
-    <Compile Include="Migrations\202204200431552_Gray.Designer.cs">
-      <DependentUpon>202204200431552_Gray.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202204201449403_Grayy.cs" />
-    <Compile Include="Migrations\202204201449403_Grayy.Designer.cs">
-      <DependentUpon>202204201449403_Grayy.cs</DependentUpon>
+    <Compile Include="Migrations\202204231449163_Gray2.cs" />
+    <Compile Include="Migrations\202204231449163_Gray2.Designer.cs">
+      <DependentUpon>202204231449163_Gray2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Blog.cs" />
@@ -2159,6 +2151,7 @@
     <Content Include="Views\Bill\Details.cshtml" />
     <Content Include="Views\Home\HeaderCart.cshtml" />
     <Content Include="Views\AccountUser\ChangePassWord.cshtml" />
+    <Content Include="Views\Product\ProductSale.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2171,14 +2164,8 @@
     <Folder Include="Areas\Admin\Views\Base\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202204131655562_GrayShop.resx">
-      <DependentUpon>202204131655562_GrayShop.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204200431552_Gray.resx">
-      <DependentUpon>202204200431552_Gray.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202204201449403_Grayy.resx">
-      <DependentUpon>202204201449403_Grayy.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202204231449163_Gray2.resx">
+      <DependentUpon>202204231449163_Gray2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -44,8 +44,16 @@ namespace GrayBShop.Controllers
                     item.ProductDetail = SanPham;
                     item.ImageID = SanPham.ImageID;
                     item.Size = kichCo;
+                    if (SanPham.ImageProduct.Product.Sale != null)
+                    {
+                        item.Price = SanPham.ImageProduct.Product.Price-(SanPham.ImageProduct.Product.Price* SanPham.ImageProduct.Product.Sale.SalePercent/100);
+                    }
+                    else
+                    {
+                        item.Price = SanPham.ImageProduct.Product.Price;
+                    }
                     item.Amount = 1;
-                    item.Price = SanPham.ImageProduct.Product.Price;
+                    
                     list.Add(item);
                 }
                 Session[ConstainCart.CartSession] = list;
@@ -57,7 +65,14 @@ namespace GrayBShop.Controllers
                 item.ImageID = SanPham.ImageID;
                 item.Size = kichCo;
                 item.Amount = 1;
-                item.Price = SanPham.ImageProduct.Product.Price;
+                if (SanPham.ImageProduct.Product.Sale != null)
+                {
+                    item.Price = SanPham.ImageProduct.Product.Price - (SanPham.ImageProduct.Product.Price * SanPham.ImageProduct.Product.Sale.SalePercent / 100);
+                }
+                else
+                {
+                    item.Price = SanPham.ImageProduct.Product.Price;
+                }
                 var list = new List<CartItem>();
                 list.Add(item);
                 Session[ConstainCart.CartSession] = list;

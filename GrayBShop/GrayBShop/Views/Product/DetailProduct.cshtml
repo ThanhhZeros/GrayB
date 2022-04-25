@@ -27,8 +27,10 @@
                         }
                         <li data-thumb="">
                             <img src="@Url.Content(filePath)">
+                            
                         </li>
                     </ul>
+                    
 
                 </div>
                 <!-- FlexSlider -->
@@ -63,6 +65,12 @@
                     @Model.Description;
                 </div>
             </div>
+                    @if (Model.SaleID != null)
+                    {
+                        <div class="sale">
+                            <p>@Model.Sale.SalePercent %</p>
+                        </div>
+                    }
             <div class="col-md-5 single-top-in simpleCart_shelfItem">
                 <div class="single-para ">
                     <h4>@Model.ProductName</h4>
@@ -78,7 +86,19 @@
                     </div>
 
                     <div class="cost-product1">
-                        <b>@string.Format(info, "{0:c0}", Model.Price)</b>
+                        @if (Model.SaleID == null)
+                        {
+
+                            <span></span><b>@string.Format(info, "{0:c0}", Model.Price)</b>
+                        }
+
+
+                        @if (Model.SaleID != null)
+                        {
+                            decimal a = Model.Sale.SalePercent / 100;
+                            <del>@string.Format(info, "{0:c0}", Model.Price)</del>
+                            <span></span><b>@string.Format(info, "{0:c0}", Model.Price - (Model.Price * Model.Sale.SalePercent / 100))</b>
+                        }
                     </div>
                     <div class="color_container ">
                         <p class="color_title">Màu sắc</p>
@@ -213,15 +233,30 @@
                         }
                         <a href="@Url.Action("ProductDetail","Product", new { id = item.ProductID, maImage = item.ProductID,madm = item.CategoryID })" class="b-link-stripe b-animate-go  thickbox">
                             <img class="img-responsive" src="@Url.Content(productRelatePath)" alt="">
-                            @*<div class="sale">
-                                    <p>GIẢM 20%</p>
-                                </div>*@
+                            @if (item.SaleID != null)
+                            {
+                                <div class="sale">
+                                    <p>@item.Sale.SalePercent %</p>
+                                </div>
+                            }
                         </a>
 
                         <div class="name">
                             <h3><a href="@Url.Action("ProductDetail","Product", new { id = item.ProductID, maImage = item.ProductID,madm = item.CategoryID })">@item.ProductName</a></h3>
                             <div class="cost-product">
-                                <span></span><b>@string.Format(info, "{0:c0}", item.Price)</b>
+                                @if (item.SaleID == null)
+                                {
+
+                                    <span></span><b>@string.Format(info, "{0:c0}", item.Price)</b>
+                                }
+
+
+                                @if (item.SaleID != null)
+                                {
+                                    decimal a = item.Sale.SalePercent / 100;
+                                    <del>@string.Format(info, "{0:c0}", item.Price)</del>
+                                    <span></span><b>@string.Format(info, "{0:c0}", item.Price - (item.Price * item.Sale.SalePercent / 100))</b>
+                                }
                             </div>
                         </div>
                     </div>

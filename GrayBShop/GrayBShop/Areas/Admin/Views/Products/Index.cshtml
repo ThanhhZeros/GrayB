@@ -7,6 +7,9 @@
     var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
 }
 
+    <script src="~/Assets/Client/controller/BillController.js"></script>
+
+
 <h2>Danh sách sản phẩm</h2>
 <head>
     <style>
@@ -29,6 +32,31 @@
                 <div class="input-group">
                     <button class="input-group-text" id="basic-addon2"><span class="fas fa-search">Tìm</span></button>
                     <input type="text" class="form-control" name="searchString" value="@ViewBag.CurrentFilter" id="exampleInputIconLeft" placeholder="Tên sản phẩm" aria-label="Search" aria-describedby="basic-addon2">
+                </div>
+            </form>
+        </div>
+        <div class="col col-md-6 col-lg-4 col-xl-4">
+            <form>
+                <div class="input-group">
+                    <button class="input-group-text" type="submit" id="basic-addon2"><span class="fas fa-search">Áp dụng</span></button>
+                    @*<select name="madm" style=" color: #6A7A8C; FONT-SIZE: 14px; border: 1px solid #e9e9ef;">
+            <option value="">-----Chọn-----</option>
+            @foreach (var item in ViewBag.dm)
+            {
+
+            <option value="@item">@item</option>
+            }
+        </select>*@
+                    @Html.DropDownList("CategoryID", null, htmlAttributes: new { @class = "form-control",@Name="madm" })
+                    @Html.DropDownList("SaleID", null, htmlAttributes: new { @class = "form-control",@Name="makm" })
+                    @*<select name="makm" style=" color: #6A7A8C; FONT-SIZE: 14px; border: 1px solid #e9e9ef;">
+                        <option value="">-----Chọn-----</option>
+                        @foreach (var item in ViewBag.km)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>*@
+
                 </div>
             </form>
         </div>
@@ -65,46 +93,46 @@
             <!-- Item -->
             @foreach (var item in Model)
             {
-            <tr class="group-info" id="row-@item.ProductID">
-                <td>
-                    <span class="font-weight-normal">
-                        @Html.DisplayFor(modelItem => item.ProductName)
-                    </span>
-                </td>
-                <td>
-                    <span class="font-weight-normal">
-                        @{
-                            string ImagePath = "~/wwwroot/Images/" + item.Images;
-                        }
-                        <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" />
-                    </span>
-                </td>
-                <td>
-                    <span class="font-weight-normal">
-                        @string.Format(info, "{0:c0}", item.Price)
-                    </span>
-                </td>
-                <td>
-                    <span class="font-weight-normal">
-                        @Html.DisplayFor(modelItem => item.SaleID)
-                    </span>
-                </td>
-                <td>
-                    <span class="font-weight-normal">
-                        @Html.DisplayFor(modelItem => item.CategoryID)
-                    </span>
-                </td>
-                <td>
-                    <span class="font-weight-normal">
-                        @Html.DisplayFor(modelItem => item.DateUpdate)
-                    </span>
+                <tr class="group-info" id="row-@item.ProductID">
+                    <td>
+                        <span class="font-weight-normal">
+                            @Html.DisplayFor(modelItem => item.ProductName)
+                        </span>
+                    </td>
+                    <td>
+                        <span class="font-weight-normal">
+                            @{
+                                string ImagePath = "~/wwwroot/Images/" + item.Images;
+                            }
+                            <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" />
+                        </span>
+                    </td>
+                    <td>
+                        <span class="font-weight-normal">
+                            @string.Format(info, "{0:c0}", item.Price)
+                        </span>
+                    </td>
+                    <td>
+                        <span class="font-weight-normal">
+                            @Html.DisplayFor(modelItem => item.SaleID)
+                        </span>
+                    </td>
+                    <td>
+                        <span class="font-weight-normal">
+                            @Html.DisplayFor(modelItem => item.CategoryID)
+                        </span>
+                    </td>
+                    <td>
+                        <span class="font-weight-normal">
+                            @Html.DisplayFor(modelItem => item.DateUpdate)
+                        </span>
 
-                <td>
-                    <button style="background-color: midnightblue; border-radius: 8px; border: none; padding: 8px 10px; margin-right: 7px;">@Html.ActionLink("Xem chi tiết", "Edit", new { id = item.ProductID })</button>
-                    <button style="background-color: #FF6347; border-radius: 8px; border: none; padding: 8px 30px;">@Html.ActionLink("Xóa", "Delete", new { id = item.ProductID })</button>
+                    <td>
+                        <button style="background-color: midnightblue; border-radius: 8px; border: none; padding: 8px 10px; margin-right: 7px;">@Html.ActionLink("Xem chi tiết", "Edit", new { id = item.ProductID })</button>
+                        <button style="background-color: #FF6347; border-radius: 8px; border: none; padding: 8px 30px;">@Html.ActionLink("Xóa", "Delete", new { id = item.ProductID })</button>
 
-                </td>
-            </tr>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>

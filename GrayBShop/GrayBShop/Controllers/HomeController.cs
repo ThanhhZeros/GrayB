@@ -27,6 +27,8 @@ namespace GrayBShop.Controllers
                               Price = p.Price,
                               ImageID = a.ImageID,
                               Images = a.Images,
+                              SaleID = p.SaleID,
+                              Sale=p.Sale,
                               Description = p.Descriptions
                           }).ToList();
             //get products hot
@@ -51,6 +53,8 @@ namespace GrayBShop.Controllers
                                                          Price = hotsp.FirstOrDefault().p.Price,
                                                          ImageID = hotsp.FirstOrDefault().chsp.ImageID,
                                                          Images = hotsp.FirstOrDefault().a.Images,
+                                                         SaleID = hotsp.FirstOrDefault().p.SaleID,
+                                                         Sale=hotsp.FirstOrDefault().p.Sale,
                                                          Description = hotsp.FirstOrDefault().p.Descriptions
                                                      }).Take(8).ToList();
             ICollection<DetailProduct> products = new List<DetailProduct>();

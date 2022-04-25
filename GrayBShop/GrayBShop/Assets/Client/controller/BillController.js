@@ -164,3 +164,51 @@ function loadDuLieuChiTiet(id) {
         }
     });
 }
+
+function saledm(id) {
+    swal({
+        title: "Cảnh báo",
+        text: "Bạn có chắc áp dụng mã khuyến mãi này!",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+    })
+        .then((willSale) => {
+            if (willSale) {
+                $.ajax({
+                    type: 'POST',
+                    data: { "madm": id, "makm": makm },
+                    url: '/Products/ChangeSale',
+                    success: function (response) {
+                        if (response.status == true) {
+                            swal({
+                                title: "Thành công!",
+                                text: "Áp dụng thành công !",
+                                type: "success",
+                                icon: "success",
+                                timer: 1500,
+                                button: false
+                            });
+                        } else {
+                            swal({
+                                title: "Thất bại!",
+                                text: "Không thể áp dụng !",
+                                type: "danger",
+                                icon: "error",
+                                timer: 1500,
+                                button: false
+                            });
+                        }
+                        setTimeout(function () {
+                            window.location = "/Products";
+                        }, 1500);
+                    },
+                    error: function (response) {
+                        //debugger;  
+                        console.log(xhr.responseText);
+                        alert("Error has occurred..");
+                    }
+                });
+            }
+        });
+}

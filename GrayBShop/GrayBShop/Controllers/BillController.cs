@@ -48,7 +48,14 @@ namespace GrayBShop.Controllers
             {
                 var sanpham = new CartItem();
                 sanpham.ProductDetail = item.ProductDetail;
-                sanpham.Price = item.ProductDetail.ImageProduct.Product.Price;
+                if (item.ProductDetail.ImageProduct.Product.Sale != null)
+                {
+                    sanpham.Price = item.ProductDetail.ImageProduct.Product.Price - (item.ProductDetail.ImageProduct.Product.Price * item.ProductDetail.ImageProduct.Product.Sale.SalePercent / 100);
+                }
+                else
+                {
+                    sanpham.Price = item.ProductDetail.ImageProduct.Product.Price;
+                }
                 sanpham.ImageID = item.ImageID;
                 sanpham.Amount = item.Amount;
                 sanpham.Size = item.Size;
@@ -79,7 +86,14 @@ namespace GrayBShop.Controllers
             {
                 var sanpham = new CartItem();
                 sanpham.ProductDetail = item.ProductDetail;
-                sanpham.Price = item.ProductDetail.ImageProduct.Product.Price;
+                if (item.ProductDetail.ImageProduct.Product.Sale != null)
+                {
+                    sanpham.Price = item.ProductDetail.ImageProduct.Product.Price - (item.ProductDetail.ImageProduct.Product.Price * item.ProductDetail.ImageProduct.Product.Sale.SalePercent / 100);
+                }
+                else
+                {
+                    sanpham.Price = item.ProductDetail.ImageProduct.Product.Price;
+                }
                 sanpham.ImageID = item.ImageID;
                 sanpham.Amount = item.Amount;
                 sanpham.Size = item.Size;

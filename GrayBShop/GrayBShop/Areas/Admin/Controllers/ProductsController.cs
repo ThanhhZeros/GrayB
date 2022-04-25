@@ -18,7 +18,7 @@ namespace GrayBShop.Areas.Admin.Controllers
         private GrayShop db = new GrayShop();
 
         // GET: Admin/Products
-        public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
+        public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page, string madm, string makm)
         {
             var result = db.Products.Join(db.ImageProducts, p => p.ProductID, a => a.ProductID, (p, a) => new DetailProduct
             {
@@ -32,6 +32,22 @@ namespace GrayBShop.Areas.Admin.Controllers
                 DateUpdate = p.DateUpdate
 
             }).ToList();
+            
+            ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName");
+            ViewBag.SaleID = new SelectList(db.Sales, "SaleID", "SaleName");
+            if (madm != null && makm!=null)
+            {
+                var sp = db.Products.Where(x => x.CategoryID == madm).ToList();
+                foreach (var item in sp)
+                {
+                    if (item.SaleID == null)
+                    {
+                        item.SaleID = int.Parse(makm);
+                    }
+                    item.SaleID =int.Parse( makm);
+                    db.SaveChanges();
+                }
+            }
             var productDetails = new List<DetailProduct>();
             foreach (var item in result)
             {
@@ -80,7 +96,23 @@ namespace GrayBShop.Areas.Admin.Controllers
             int pageNumber = (page ?? 1);
             return View(productDetails.ToPagedList(pageNumber, pageSize));
         }
+        [HttpPost]
+        public JsonResult ChangeSale(string madm, int makm)
+        {
+            try
+            {
+                User tk = (User)Session[GrayBShop.Session.ConstainUser.ADMIN_SESSION];
+                Product sp = db.Products.Where(x => x.Category.CategoryID == madm).FirstOrDefault();
 
+                sp.Sale.SalePercent = makm;
+                db.SaveChanges();
+                return Json(new { status = true }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+                return Json(new { status = false }, JsonRequestBehavior.AllowGet);
+            }
+        }
         // GET: Admin/Products/Details/5
         public ActionResult Details(string id)
         {
@@ -134,7 +166,6 @@ namespace GrayBShop.Areas.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.CategoryID = new SelectList(db.Categories, "CategoryID", "CategoryName");
-            ViewBag.SaleID = new SelectList(db.Sales, "SaleID", "SalePercent");
             return View();
         }
 
@@ -201,14 +232,12 @@ namespace GrayBShop.Areas.Admin.Controllers
                     return RedirectToAction("Index");
                 }
                 ViewBag.MaDM = new SelectList(db.Categories, "CategoryID", "CategoryName", productDetail.CategoryID);
-                ViewBag.SaleID = new SelectList(db.Sales, "SaleID", "SalePercent", productDetail.SaleID);
                 return View(productDetail);
             }
             catch (Exception ex)
             {
                 ViewBag.Error = "Lỗi nhập dữ liệu !" + ex.Message;
                 ViewBag.MaDM = new SelectList(db.Categories, "CategoryID", "CategoryName", productDetail.CategoryID);
-                ViewBag.SaleID = new SelectList(db.Sales, "SaleID", "SalePercent", productDetail.SaleID);
                 return View(productDetail);
 
             }

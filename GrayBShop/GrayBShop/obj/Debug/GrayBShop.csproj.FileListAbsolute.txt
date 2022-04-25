@@ -181,8 +181,6 @@ D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\PagedList.xml
 D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\PagedList.Mvc.xml
 D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\CKFinder.dll
 D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\CKFinder.pdb
-D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.Migrations.GrayShop.resources
-D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.GenerateResource.cache
 D:\GrayB\GrayBShop\GrayBShop\bin\CKFinder.dll
 D:\GrayB\GrayBShop\GrayBShop\bin\PagedList.dll
 D:\GrayB\GrayBShop\GrayBShop\bin\PagedList.Mvc.dll
@@ -237,7 +235,7 @@ D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\roslyn\vbc.rsp
 D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\roslyn\VBCSCompiler.exe
 D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\bin\roslyn\VBCSCompiler.exe.config
 D:\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.Migrations.Gray.resources
-D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.Migrations.Gray.resources
-D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.Migrations.Grayy.resources
 D:\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.Migrations.Grayy.resources
 D:\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.AssemblyReference.cache
+D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.Migrations.Gray2.resources
+D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.GenerateResource.cache

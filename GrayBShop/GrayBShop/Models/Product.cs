@@ -22,7 +22,6 @@ namespace GrayBShop.Models
         [StringLength(200)]
         public string ProductName { get; set; }
 
-        [Required]
         [StringLength(20)]
         public string CategoryID { get; set; }
 

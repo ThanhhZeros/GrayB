@@ -118,10 +118,18 @@ namespace GrayBShop.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            try
+            {
             BlogCategory blogCategory = db.BlogCategories.Find(id);
             db.BlogCategories.Remove(blogCategory);
             db.SaveChanges();
             return RedirectToAction("Index");
+
+            }catch(Exception ex)
+            {
+                ViewBag.Error = "Bạn không thể xóa";
+                return RedirectToAction("Index");
+            }
         }
 
         protected override void Dispose(bool disposing)

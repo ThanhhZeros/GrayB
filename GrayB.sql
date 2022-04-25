@@ -8,11 +8,9 @@ IF  EXISTS (
 		WHERE name = N'GrayB'
 )
 DROP DATABASE GrayB
-GO
-
 CREATE DATABASE GrayB
 GO
-
+select *from Product
 USE GrayB
 GO
 
@@ -20,7 +18,6 @@ create table Category(
 	CategoryID		varchar(20) not null primary key,
 	CategoryName	nvarchar(50) not null,
 )
-
 create table Sale(
 	SaleID int identity(1,1) primary key,
 	SaleName nvarchar(200),
@@ -31,15 +28,15 @@ create table Sale(
 create table Product(
 	ProductID	varchar(20) not null primary key,
 	ProductName	nvarchar(200) not null,
-	CategoryID	varchar(20) not null foreign key references Category(CategoryID) on delete cascade on update cascade,
+	CategoryID	varchar(20) foreign key references Category(CategoryID) on delete cascade on update cascade,
 	SaleID	int foreign key references Sale(SaleID) on delete cascade on update cascade,
+	
 	Descriptions	nvarchar(500),
 	Price	money not null,
 	DateCreate datetime not null,
 	DateUpdate	datetime not null,
 	AmountInput int not null
 )
-
 
 create table ImageProduct(
 	ImageID	int identity(1,1) primary key,
@@ -123,7 +120,7 @@ create table Introduce(
 	Introduce int identity(1,1) primary key,
 	Detail ntext
 )
-
+select *from Category
 ----------------------insert----------------------
 insert into Category(CategoryID, CategoryName) values
 ('DM01', N'Giày Nike'),
@@ -554,5 +551,3 @@ Address:&nbsp;135/58 Trần Hưng Đạo, Q.1, TPHCM.</span></span></span></span
 	<li><strong>Bước 6</strong>: Lặp lại c&aacute;c bước với từng b&ecirc;n d&acirc;y cho đến hết th&igrave; buộc lại.</li>
 </ul>
 ',1)
-
-select *from ProductDetail order by ImageID asc

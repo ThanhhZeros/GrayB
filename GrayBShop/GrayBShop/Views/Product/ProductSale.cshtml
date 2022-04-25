@@ -2,7 +2,7 @@
 @using PagedList.Mvc;
 <link href="~/Content/PagedList.css" rel="stylesheet" type="text/css">
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "ProductSale";
     Layout = "~/Views/Share/_LayoutClient.cshtml";
     var info = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
 }
@@ -10,11 +10,12 @@
 <div class="blog_banner">
     <div class="blog_banner_item">
         <div class="blog_banner_content">
-            <h1>@ViewBag.tendm</h1>
+            <h1>Khuyến mãi</h1>
         </div>
     </div>
 
 </div>
+
 <!--content-->
 <!---->
 <div class="product">
@@ -95,44 +96,38 @@
             <div class=" bottom-product">
                 @if (ViewBag.Error != null)
                 {
-    <div class="alert alert-warning" role="alert" style="text-align:center">
-        @ViewBag.Error
-    </div>}
-                @foreach (var item in Model)
+                    <div class="alert alert-warning" role="alert" style="text-align:center">
+                        @ViewBag.Error
+                    </div>}
+                @foreach (var item in ViewBag.sanpham)
                 {
-    <div class="col-md-4 bottom-cd simpleCart_shelfItem">
-        <div class="product-at ">
-            <a href="@Url.Action("DetailProduct","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })">
-                @{ string filePath = "~/wwwroot/images/" + item.Images; }
-                <img class="img-responsive" src="@Url.Content(filePath)" alt="">
-                @if (item.SaleID != null)
-                {
-                    <div class="sale">
-                        <p>@item.Sale.SalePercent %</p>
-                    </div>
-                }
-            </a>
-        </div>
+                    <div class="col-md-4 bottom-cd simpleCart_shelfItem">
+                        <div class="product-at ">
+                            <a href="@Url.Action("DetailProduct","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })">
+                                @{ string filePath = "~/wwwroot/images/" + item.Images; }
+                                <img class="img-responsive" src="@Url.Content(filePath)" alt="">
 
-        <div class="name">
-            <h3><a href="@Url.Action("ProductDetail","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })">@item.ProductName</a></h3>
-            <div class="cost-product">
-                @if (item.SaleID == null)
-                {
+                                <div class="sale">
+                                    <p>@item.Sale.SalePercent %</p>
+                                </div>
 
-                    <span></span><b>@string.Format(info, "{0:c0}", item.Price)</b>
-                }
+                            </a>
+                        </div>
 
+                        <div class="name">
+                            <h3><a href="@Url.Action("ProductDetail","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })">@item.ProductName</a></h3>
+                            <div class="cost-product">
+                                @{
 
-                @if (item.SaleID != null)
-                {
-                    decimal a = item.Sale.SalePercent / 100;
-                    <del>@string.Format(info, "{0:c0}", item.Price)</del>
-                    <span></span><b>@string.Format(info, "{0:c0}", item.Price - (item.Price * item.Sale.SalePercent / 100))</b>
-                }
-            </div>
-        </div>
-    </div>}
+                                    decimal a = item.Sale.SalePercent / 100;
+                                }
+
+                                <del>@string.Format(info, "{0:c0}", item.Price)</del>
+                                <span></span><b>@string.Format(info, "{0:c0}", item.Price - (item.Price * item.Sale.SalePercent / 100))</b>
+
+                            </div>
+                        </div>
+                    </div>}
 
             </div>
             <div class="clearfix"> </div>
@@ -141,7 +136,6 @@
                 @Html.PagedListPager(Model, page => Url.Action("Index", new
            {
                page,
-               madm = ViewBag.madm,
                searchPrice = ViewBag.searchPrice,
                searchString = ViewBag.searchString
            }))
@@ -150,7 +144,5 @@
 
     </div>
 </div>
-<!---->
-<!--//content-->
 <!---->
 <!--//content-->

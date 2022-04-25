@@ -7,13 +7,13 @@ namespace GrayBShop.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class GrayShop : IMigrationMetadata
+    public sealed partial class Gray2 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(GrayShop));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Gray2));
         
         string IMigrationMetadata.Id
         {
-            get { return "202204131655562_GrayShop"; }
+            get { return "202204231449163_Gray2"; }
         }
         
         string IMigrationMetadata.Source

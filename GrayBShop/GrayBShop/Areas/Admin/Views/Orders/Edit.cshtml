@@ -96,7 +96,7 @@
                                         </thead>
                                         <tbody>
                                             <!-- Item -->
-                                            @{ decimal tongtien = 0;}
+                                            @{ decimal tongtien = 0; decimal giatien = 0;}
                                             @foreach (var item in Model.OrderDetails)
                                             {
                             <tr class="group-info">
@@ -106,15 +106,23 @@
                                 <td>
                                     <span class="font-weight-normal">@item.ProductDetail.ImageProduct.Product.ProductName</span>
                                 </td>
-                                <td><span class="font-weight-normal">@String.Format(info, "{0:c0}", item.ProductDetail.ImageProduct.Product.Price)</span></td>
+                                @if (item.ProductDetail.ImageProduct.Product.Sale != null)
+                                {
+                                    giatien = item.ProductDetail.ImageProduct.Product.Price - (item.ProductDetail.ImageProduct.Product.Price * item.ProductDetail.ImageProduct.Product.Sale.SalePercent / 100);
+                                }
+                                 @if(item.ProductDetail.ImageProduct.Product.Sale == null)
+                                 {
+                                     giatien = item.ProductDetail.ImageProduct.Product.Price;
+                                 }
+                                <td><span class="font-weight-normal">@String.Format(info, "{0:c0}", giatien)</span></td>
                                 <td><span class="font-weight-normal">@item.Amount</span></td>
                                 <td><span class="font-weight-normal">@item.ProductDetail.Size</span></td>
                                 <td>
-                                    <span class="font-weight-normal">@String.Format(info, "{0:c0}", item.ProductDetail.ImageProduct.Product.Price * item.Amount)</span>
+                                    <span class="font-weight-normal">@String.Format(info, "{0:c0}", giatien * item.Amount)</span>
                                 </td>
 
                             </tr>
-tongtien += item.ProductDetail.ImageProduct.Product.Price * item.Amount;
+                                tongtien += giatien * item.Amount;
                         }
                                         </tbody>
                                         <tfoot>
