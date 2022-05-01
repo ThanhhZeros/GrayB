@@ -10,7 +10,6 @@ IF  EXISTS (
 DROP DATABASE GrayB
 CREATE DATABASE GrayB
 GO
-select *from Product
 USE GrayB
 GO
 
@@ -29,7 +28,7 @@ create table Product(
 	ProductID	varchar(20) not null primary key,
 	ProductName	nvarchar(200) not null,
 	CategoryID	varchar(20) foreign key references Category(CategoryID) on delete cascade on update cascade,
-	SaleID	int foreign key references Sale(SaleID) on delete cascade on update cascade,
+	SaleID	int foreign key references Sale(SaleID) on delete set null,
 	
 	Descriptions	nvarchar(500),
 	Price	money not null,
@@ -120,7 +119,6 @@ create table Introduce(
 	Introduce int identity(1,1) primary key,
 	Detail ntext
 )
-select *from Category
 ----------------------insert----------------------
 insert into Category(CategoryID, CategoryName) values
 ('DM01', N'Giày Nike'),
@@ -551,3 +549,17 @@ Address:&nbsp;135/58 Trần Hưng Đạo, Q.1, TPHCM.</span></span></span></span
 	<li><strong>Bước 6</strong>: Lặp lại c&aacute;c bước với từng b&ecirc;n d&acirc;y cho đến hết th&igrave; buộc lại.</li>
 </ul>
 ',1)
+
+insert into Orders (UserID,Address,Email,UserName,Note,DateCreate,Phone,Status) VALUES
+(3,N'Cầu Giấy, Hà Nội','hgfeafhkj@gmail.com',N'Nguyễn Văn Nam',N'Nhận hàng vào 1/20/2022','12/12/2021','09876543',N'Đã giao hàng'),
+(3,N'Cầu Giấy, Hà Nội','hgfeafhkj@gmail.com',N'Nguyễn Văn Nam',N'Nhận hàng vào 3/29/2022','3/12/2022','09876543',N'Đang chuẩn bị'),
+(3,N'Cầu Giấy, Hà Nội','hgfeafhkj@gmail.com',N'Nguyễn Văn Nam',N'Nhận hàng vào 4/20/2022','4/10/2022','09876543',N'Đang giao hàng')
+
+insert into  OrderDetail(OrderID, ImageID,Size , Amount) VALUES
+(1,1,37,1),
+(1,8,37,1),
+(1,10,37,1),
+(2,1,37,1),
+(3,1,37,1),
+(3,8,37,1),
+(3,5,37,1)
