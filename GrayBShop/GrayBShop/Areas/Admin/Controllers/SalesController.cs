@@ -59,9 +59,21 @@ namespace GrayBShop.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                if (sale.DateStart < DateTime.Now)
+                {
+                    ViewBag.Error = "Nhập ngày bắt đầu lớn hơn hoặc bằng ngày hiện tại";
+                }
+                else if (sale.DateStart > sale.DateFinish)
+                {
+                    ViewBag.Error = "Nhập ngày bắt đầu nhỏ hơn ngày kết thúc";
+                }
+                else
+                {
+
                 db.Sales.Add(sale);
                 db.SaveChanges();
                 return RedirectToAction("Index");
+                }
             }
 
             return View(sale);

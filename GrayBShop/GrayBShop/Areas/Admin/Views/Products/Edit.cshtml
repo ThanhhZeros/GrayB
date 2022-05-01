@@ -170,7 +170,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.SaleID, "Khuyến mãi", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownList("SaleID", null, htmlAttributes: new { @class = "form-control" })
+            @Html.DropDownList("SaleID", null,"", new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.SaleID, "", new { @class = "text-danger" })
         </div>
     </div>

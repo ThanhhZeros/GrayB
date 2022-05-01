@@ -433,6 +433,11 @@
     <Content Include="Assets\Admin\dashboard\dist\img\user8-128x128.jpg" />
     <Content Include="Assets\Admin\dashboard\dist\js\adminlte.js" />
     <Content Include="Assets\Admin\dashboard\dist\js\adminlte.min.js" />
+    <Content Include="Assets\Admin\dashboard\dist\js\chartArea.js" />
+    <Content Include="Assets\Admin\dashboard\dist\js\chart\Chart.bundle.js" />
+    <Content Include="Assets\Admin\dashboard\dist\js\chart\Chart.bundle.min.js" />
+    <Content Include="Assets\Admin\dashboard\dist\js\chart\Chart.js" />
+    <Content Include="Assets\Admin\dashboard\dist\js\chart\Chart.min.js" />
     <Content Include="Assets\Admin\dashboard\dist\js\demo.js" />
     <Content Include="Assets\Admin\dashboard\dist\js\pages\dashboard.js" />
     <Content Include="Assets\Admin\dashboard\dist\js\pages\dashboard2.js" />

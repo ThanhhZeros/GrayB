@@ -239,4 +239,3 @@ D:\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.Migrations.Grayy.resources
 D:\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.AssemblyReference.cache
 D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.Migrations.Gray2.resources
 D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.GenerateResource.cache
-D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.AssemblyReference.cache

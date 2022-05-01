@@ -16,7 +16,6 @@ namespace GrayBShop.Areas.Admin.Controllers
     public class ProductsController : BaseController
     {
         private GrayShop db = new GrayShop();
-
         // GET: Admin/Products
         public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page, string madm, string makm)
         {
@@ -319,6 +318,7 @@ namespace GrayBShop.Areas.Admin.Controllers
                 }
                 if (ModelState.IsValid)
                 {
+                    
                     var sanPham = db.Products.Where(p => p.ProductID == id).FirstOrDefault();
                     sanPham.ProductName = productDetail.ProductName;
                     sanPham.Descriptions = productDetail.Description;
@@ -383,10 +383,10 @@ namespace GrayBShop.Areas.Admin.Controllers
                                 ImageProduct anhMoTa = new ImageProduct();
                                 string FileName = item.FileName;
                                 string filePath = Path.Combine(HttpContext.Server.MapPath("/wwwroot/Images"),
-                                                               Path.GetFileName(item.FileName));
+                                                                Path.GetFileName(item.FileName));
                                 item.SaveAs(filePath);
                                 anhMoTa.Images = FileName;
-                                anhMoTa.ProductID =id;
+                                anhMoTa.ProductID = id;
                                 db.ImageProducts.Add(anhMoTa);
                                 db.SaveChanges();
 
@@ -402,6 +402,9 @@ namespace GrayBShop.Areas.Admin.Controllers
                             }
                         }
                     }
+                        
+                    
+                    
 
                 }
                 return RedirectToAction("Index");

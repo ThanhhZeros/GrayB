@@ -37,12 +37,32 @@ namespace GrayBShop.Areas.Admin.Controllers
                 thang = DateTime.Now.Month - 1;
                 nam = DateTime.Now.Year;
             }
-            var list = db.Orders.Where(p => p.DateCreate.Month == thang && p.DateCreate.Year == nam);
+            var list = db.Orders.Where(p => p.DateCreate.Month == thang && p.DateCreate.Year == nam && p.Status == "Đã thanh toán");
             foreach (var item in list)
             {
                 dt +=decimal.Parse(item.OrderDetails.Sum(p => p.Amount * p.ProductDetail.ImageProduct.Product.Price).ToString());
             }
             ViewBag.doanhthu = dt;
+            int[] dataOfYear = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+            for (int i = 0; i < 12; i++)
+            {
+                int month = i + 1;
+                decimal data = 0;
+                try
+                {
+                    var listdt = db.Orders.Where(b => b.DateCreate.Month == month &&b.DateCreate.Year==DateTime.Now.Year && b.Status=="Đã thanh toán");
+                    foreach (var item in listdt)
+                    {
+                        data += decimal.Parse(item.OrderDetails.Sum(p => p.Amount * p.ProductDetail.ImageProduct.Product.Price).ToString());
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                }
+                dataOfYear[i] = (int)data;
+            }
+            ViewBag.dataOfYear = dataOfYear;
             return View();
         }
     }
