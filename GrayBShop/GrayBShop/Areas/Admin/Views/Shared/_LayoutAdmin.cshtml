@@ -174,7 +174,7 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
                                 <li>
-                                    @Html.ActionLink("Thông tin tài khoản", "AdminInfor", "Profile", new { }, new { @class = "dropdown-item" })
+                                    @Html.ActionLink("Thông tin tài khoản", "AdminInfor", "Profile", new { id=tk.UserID }, new { @class = "dropdown-item" })
 
 
 
@@ -206,13 +206,17 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="index.html"
-                               aria-expanded="false">
-                                <i class="mdi mdi-av-timer"></i>
-                                <span class="hide-menu">Thống kê</span>
-                            </a>
-                        </li>
+                        @if (tk.RoleID == 1)
+                        {
+
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","HomeAdmin")"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-av-timer"></i>
+                                    <span class="hide-menu">Thống kê</span>
+                                </a>
+                            </li>
+                        }
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","Categories")"
                                aria-expanded="false">
@@ -245,21 +249,22 @@
                         {
 
                             <li class="sidebar-item">
-                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","Admin")"
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index", "Admin")"
                                    aria-expanded="false">
                                     <i class="mdi mdi-face"></i>
                                     <span class="hide-menu">Tài khoản</span>
                                 </a>
                             </li>
-                        }
 
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","Sales")"
-                               aria-expanded="false">
-                                <i class="mdi mdi-alert-outline"></i>
-                                <span class="hide-menu">Khuyến mãi</span>
-                            </a>
-                        </li>
+
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index", "Sales")"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-alert-outline"></i>
+                                    <span class="hide-menu">Khuyến mãi</span>
+                                </a>
+                            </li>
+                        }
                         <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","Blogs")"
                                aria-expanded="false">
@@ -274,13 +279,17 @@
                                 <span class="hide-menu">Danh mục tin tức</span>
                             </a>
                         </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="error-404.html"
-                               aria-expanded="false">
-                                <i class="mdi mdi-alert-outline"></i>
-                                <span class="hide-menu">Giới thiệu</span>
-                            </a>
-                        </li>
+                        @if (tk.RoleID == 1)
+                        {
+
+                            <li class="sidebar-item">
+                                <a class="sidebar-link waves-effect waves-dark sidebar-link" href="@Url.Action("Index","Contacts")"
+                                   aria-expanded="false">
+                                    <i class="mdi mdi-alert-outline"></i>
+                                    <span class="hide-menu">Liên hệ</span>
+                                </a>
+                            </li>
+                        }
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->

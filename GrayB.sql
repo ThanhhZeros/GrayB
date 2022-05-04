@@ -12,7 +12,7 @@ CREATE DATABASE GrayB
 GO
 USE GrayB
 GO
-
+select *from Contact
 create table Category(
 	CategoryID		varchar(20) not null primary key,
 	CategoryName	nvarchar(50) not null,
@@ -106,11 +106,10 @@ Create table Blog(
 )
 create table Contact(
 	ContactID	int identity(1,1) primary key,
-	CustomerName	nvarchar(100),
-	Subject nvarchar(200),
-	Content nvarchar(500),
-	Email	varchar(50),
-	Phone	varchar(20),
+	CustomerName	nvarchar(100) not null,
+	Content nvarchar(500) not null,
+	Email	varchar(50) not null,
+	Phone	varchar(20) not null,
 	Status	bit,
 	DateContact	datetime
 )

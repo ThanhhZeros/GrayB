@@ -1,0 +1,83 @@
+﻿@model PagedList.IPagedList<GrayBShop.Models.Contact>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css">
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách khách hàng</h2>
+<head>
+    <style>
+        button a {
+            color: white;
+        }
+
+            button a:hover {
+                color: yellow;
+            }
+    </style>
+</head>
+<div class="table-settings mb-4">
+    <div class="row align-items-center justify-content-between">
+        <div class="col col-md-6 col-lg-3 col-xl-4">
+            <form>
+                <div class="input-group">
+                    <button class="input-group-text" id="basic-addon2"><span class="fas fa-search">Tìm</span></button>
+                    <input type="text" class="form-control" name="searchString" value="@ViewBag.searchString" id="exampleInputIconLeft" placeholder="Tên người dùng" aria-label="Search" aria-describedby="basic-addon2">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="card card-body border-light shadow-sm table-wrapper table-responsive pt-0">
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Tên người dùng</th>
+                <th>Email</th>
+                <th>Số điện thoại</th>
+                <th>Ngày gửi</th>
+                <th>Trạng thái</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Item -->
+            @foreach (var item in Model)
+            {
+                <tr class="group-info">
+                    <td>
+                        @item.CustomerName
+                    </td>
+                    <td>
+                        <span class="font-weight-normal">@item.Email</span>
+                    </td>
+                    <td><span class="font-weight-normal">@item.Phone</span></td>
+                    <td><span class="font-weight-normal">@item.DateContact</span></td>
+                    <td><span class="font-weight-normal">@Html.DisplayFor(modelItem => item.Status)</span></td>
+
+
+
+                    <td>
+                        <button style="background-color: midnightblue; border-radius: 8px;border: none;padding: 8px 10px;margin-right: 7px;">@Html.ActionLink("Xem chi tiết", "Edit", new { id = item.ContactID })</button>
+                        @if (item.Status == false)
+                        {
+                            <button style="background-color: #FF6347; border-radius: 8px;border: none;padding: 8px 30px;">@Html.ActionLink("Xóa", "Delete", new { id = item.ContactID })</button>}
+                        @if (item.Status == true)
+                        {
+                            <button style="background-color: #FF6347; border-radius: 8px;border: none;padding: 8px 30px;">Xóa</button>}
+
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<br />
+@(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, pageSize = Model.PageSize, searchString = ViewBag.searchString }))

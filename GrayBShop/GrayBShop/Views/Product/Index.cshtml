@@ -91,62 +91,82 @@
 
 
         </div>
-        <div class="col-md-9 product1">
-            <div class=" bottom-product">
-                @if (ViewBag.Error != null)
-                {
-    <div class="alert alert-warning" role="alert" style="text-align:center">
-        @ViewBag.Error
-    </div>}
-                @foreach (var item in Model)
-                {
-    <div class="col-md-4 bottom-cd simpleCart_shelfItem">
-        <div class="product-at ">
-            <a href="@Url.Action("DetailProduct","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })">
-                @{ string filePath = "~/wwwroot/images/" + item.Images; }
-                <img class="img-responsive" src="@Url.Content(filePath)" alt="">
-                @if (item.SaleID != null)
-                {
-                    <div class="sale">
-                        <p>@item.Sale.SalePercent %</p>
+
+
+    <div class="col-md-9 product1">
+        <div class="table-settings mb-4">
+            <div class="row align-items-center justify-content-between">
+                <div class="col col-md-6 col-lg-3 col-xl-4" >
+                    <form>
+                        <div class="input-group" style="display:flex;margin-bottom:30px;width:330px">
+                            <input name="madm" value="@ViewBag.madm" hidden />
+                            <input type="text" class="form-control" name="searchPriceMin" value="@ViewBag.searchPriceMin" id="exampleInputIconLeft" placeholder="TỪ" aria-label="Search" aria-describedby="basic-addon2" style="margin-right:20px">
+                            <p style="margin-top: 2px; margin-right: 12px; margin-left: -9px; ">_</p>
+                            <input type="text" class="form-control" name="searchPriceMax" value="@ViewBag.searchPriceMax" id="exampleInputIconLeft" placeholder="ĐẾN" aria-label="Search" aria-describedby="basic-addon2">
+                            <button class="earchBtn1" type="submit" id="basic-addon2" style="border:none;background:none">
+                                <i class="fa fa-search" style="font-size:20px;"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class=" bottom-product">
+            @if (ViewBag.Error != null)
+            {
+                <div class="alert alert-warning" role="alert" style="text-align:center">
+                    @ViewBag.Error
+                </div>
+            }
+            @foreach (var item in Model)
+            {
+                <div class="col-md-4 bottom-cd simpleCart_shelfItem">
+                    <div class="product-at ">
+                        <a href="@Url.Action("DetailProduct","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })">
+                            @{ string filePath = "~/wwwroot/images/" + item.Images; }
+                            <img class="img-responsive" src="@Url.Content(filePath)" alt="">
+                            @if (item.SaleID != null)
+                            {
+                                <div class="sale">
+                                    <p>@item.Sale.SalePercent %</p>
+                                </div>
+                            }
+                        </a>
                     </div>
-                }
-            </a>
+
+                    <div class="name">
+                        <h3><a href="@Url.Action("ProductDetail","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })">@item.ProductName</a></h3>
+                        <div class="cost-product">
+                            @if (item.SaleID == null)
+                            {
+
+                                <span></span><b>@string.Format(info, "{0:c0}", item.Price)</b>
+                            }
+
+
+                            @if (item.SaleID != null)
+                            {
+                                decimal a = item.Sale.SalePercent / 100;
+                                <del>@string.Format(info, "{0:c0}", item.Price)</del>
+                                <span></span><b>@string.Format(info, "{0:c0}", item.Price - (item.Price * item.Sale.SalePercent / 100))</b>
+                            }
+                        </div>
+                    </div>
+                </div>}
+
         </div>
-
-        <div class="name">
-            <h3><a href="@Url.Action("ProductDetail","Product", new { id = item.ProductID, maImage = item.ImageID,madm = item.CategoryID })">@item.ProductName</a></h3>
-            <div class="cost-product">
-                @if (item.SaleID == null)
-                {
-
-                    <span></span><b>@string.Format(info, "{0:c0}", item.Price)</b>
-                }
-
-
-                @if (item.SaleID != null)
-                {
-                    decimal a = item.Sale.SalePercent / 100;
-                    <del>@string.Format(info, "{0:c0}", item.Price)</del>
-                    <span></span><b>@string.Format(info, "{0:c0}", item.Price - (item.Price * item.Sale.SalePercent / 100))</b>
-                }
-            </div>
-        </div>
-    </div>}
-
-            </div>
-            <div class="clearfix"> </div>
-            <nav class="in">
-                Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
-                @Html.PagedListPager(Model, page => Url.Action("Index", new
-           {
-               page,
-               madm = ViewBag.madm,
-               searchPrice = ViewBag.searchPrice,
-               searchString = ViewBag.searchString
-           }))
-            </nav>
-        </div>
+        <div class="clearfix"> </div>
+        <nav class="in">
+            Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+            @Html.PagedListPager(Model, page => Url.Action("Index", new
+       {
+           page,
+           madm = ViewBag.madm,
+           searchPrice = ViewBag.searchPrice,
+           searchString = ViewBag.searchString
+       }))
+        </nav>
+    </div>
 
     </div>
 </div>

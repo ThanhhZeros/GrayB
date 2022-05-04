@@ -13,11 +13,12 @@ namespace GrayBShop.Controllers
         GrayShop db = new GrayShop();
         // GET: Product
         [HttpGet]
-        public ActionResult Index(string searchString, string searchPrice, string madm, int? page)
+        public ActionResult Index(string searchString, string searchPriceMin,string searchPriceMax, string madm, int? page)
         {
 
             ViewBag.searchString = searchString;
-            ViewBag.searchPrice = searchPrice;
+            ViewBag.searchPriceMin = searchPriceMin;
+            ViewBag.searchPriceMax = searchPriceMax;
             ICollection<DetailProduct> sanphams = (from p in db.Products
                                                    join a in db.ImageProducts on p.ProductID equals a.ProductID
                                                    where p.CategoryID == madm
@@ -34,16 +35,75 @@ namespace GrayBShop.Controllers
                                                        Description = p.Descriptions
                                                    }).ToList();
             ViewBag.madm = madm;
-            var danhmuc = (from ten in db.Categories where ten.CategoryID.Equals(madm) select ten).FirstOrDefault();
             try
             {
-
-                if (!String.IsNullOrEmpty(searchString) && !String.IsNullOrEmpty(searchPrice) && searchPrice != null)
+                if(!String.IsNullOrEmpty(searchPriceMin) && searchPriceMax != null && searchString==null)
                 {
-                    decimal Gia = Convert.ToDecimal(searchPrice);
+                    decimal Gia1 = Convert.ToDecimal(searchPriceMin);
+                    decimal Gia2 = Convert.ToDecimal(searchPriceMax);
+                    sanphams = sanphams.Where(p => p.Price >= Gia1 && p.Price <= Gia2 && p.CategoryID==madm).ToList();
+                }
+                else if (searchPriceMin != null && searchString==null)
+                {
+                    decimal Gia1 = Convert.ToDecimal(searchPriceMin);
+                    sanphams = sanphams.Where(p => p.Price >= Gia1 && p.CategoryID == madm).ToList();
+                }
+                else if (searchPriceMax != null&&searchString==null)
+                {
+                    decimal Gia2 = Convert.ToDecimal(searchPriceMax);
+                    sanphams = sanphams.Where(p => p.Price <= Gia2 && p.CategoryID == madm).ToList();
+                }
+                else if (searchString != null)
+                {
                     sanphams = (from p in db.Products
                                 join a in db.ImageProducts on p.ProductID equals a.ProductID
-                                where p.ProductName.Contains(searchString) && Math.Abs(p.Price - Gia) <= 500000
+                                where p.ProductName.Contains(searchString)
+                                select new DetailProduct()
+                                {
+                                    CategoryID = p.CategoryID,
+                                    ProductID = p.ProductID,
+                                    ProductName = p.ProductName,
+                                    Price = p.Price,
+                                    ImageID = a.ImageID,
+                                    Images = a.Images,
+                                    SaleID = p.SaleID,
+                                    Sale = p.Sale,
+                                    Description = p.Descriptions
+                                }).ToList();
+                }
+                /*else if(!String.IsNullOrEmpty(searchPriceMin) && searchPriceMax != null && searchString != null)
+                {
+                    decimal Gia1 = Convert.ToDecimal(searchPriceMin);
+                    decimal Gia2 = Convert.ToDecimal(searchPriceMax);
+                    sanphams = sanphams.Where(p => p.Price >= Gia1 && p.Price <= Gia2 && p.ProductName.Contains(searchString)).ToList();
+                }
+                else if (searchPriceMin != null && searchString != null)
+                {
+                    decimal Gia1 = Convert.ToDecimal(searchPriceMin);
+                    sanphams = sanphams.Where(p => p.Price >= Gia1 && p.ProductName.Contains(searchString)).ToList();
+                }
+                else if (searchPriceMax != null && searchString != null)
+                {
+                    decimal Gia2 = Convert.ToDecimal(searchPriceMax);
+                    sanphams = sanphams.Where(p => p.Price <= Gia2 && p.ProductName.Contains(searchString)).ToList();
+                }*/
+
+            }
+            catch (Exception)
+            {
+
+            }
+            var danhmuc = (from ten in db.Categories where ten.CategoryID.Equals(madm) select ten).FirstOrDefault();
+            /*try
+            {
+
+                if (!String.IsNullOrEmpty(searchString) && !String.IsNullOrEmpty(searchPriceMin) && searchPriceMax != null)
+                {
+                    decimal Gia1 = Convert.ToDecimal(searchPriceMin);
+                    decimal Gia2 = Convert.ToDecimal(searchPriceMax);
+                    sanphams = (from p in db.Products
+                                join a in db.ImageProducts on p.ProductID equals a.ProductID
+                                where p.ProductName.Contains(searchString) && p.Price>=Gia1 && p.Price<=Gia2
                                 select new DetailProduct()
                                 {
                                     CategoryID = p.CategoryID,
@@ -75,12 +135,13 @@ namespace GrayBShop.Controllers
                                     Description = p.Descriptions
                                 }).ToList();
                 }
-                else if (!String.IsNullOrEmpty(searchPrice) && searchPrice != null)
+                else if (!String.IsNullOrEmpty(searchPriceMin) && searchPriceMax != null && madm!=null)
                 {
-                    decimal Gia = Convert.ToDecimal(searchPrice);
+                    decimal Gia1 = Convert.ToDecimal(searchPriceMin);
+                    decimal Gia2 = Convert.ToDecimal(searchPriceMax);
                     sanphams = (from p in db.Products
                                 join a in db.ImageProducts on p.ProductID equals a.ProductID
-                                where Math.Abs(p.Price - Gia) <= 500000
+                                where p.Price >= Gia1 && p.Price <= Gia2 && p.CategoryID==madm
                                 select new DetailProduct()
                                 {
                                     CategoryID = p.CategoryID,
@@ -115,7 +176,7 @@ namespace GrayBShop.Controllers
             catch (Exception)
             {
 
-            }
+            }*/
             ICollection<DetailProduct> products = Filter(sanphams, 100);
             if (products.Count() == 0)
             {

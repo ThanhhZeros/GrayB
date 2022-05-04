@@ -87,7 +87,34 @@ namespace GrayBShop.Controllers
         [HttpGet]
         public ActionResult Contact()
         {
+            ViewBag.Success = TempData["message"];
+
             return View();
+        }
+        [HttpPost]
+        public ActionResult Contact([Bind(Include = "ContactID,CustomerName,Content,Email,Phone,Status,DateContact")] Contact contact)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+
+                {
+                    contact.DateContact = DateTime.Now;
+                    contact.Status = true;
+                    TempData["message"] = "Ý kiến đóng góp của bạn đã gửi đến quản trị viên!";
+                    db.Contacts.Add(contact);
+                    db.SaveChanges();
+                    return RedirectToAction("Contact");
+                }
+                return View(contact);
+            }
+            catch (Exception ex)
+            {
+                TempData["message"] = "Lỗi edit dữ liệu! " + ex.Message;
+                return View();
+            }
+
+
         }
         [ChildActionOnly]
         public ActionResult DanhMuc()

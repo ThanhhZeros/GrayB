@@ -1,0 +1,89 @@
+﻿@model GrayBShop.Models.Contact
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết liên hệ</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <div class="col-12 col-cl-10">
+            <div class="card card-body bg-white border-light shadow-sm mb-4">
+                <form action="/TaiKhoanQuanTris/Edit" method="post">
+                    <div class="row">
+                        <input name="id" value="@Model.ContactID" hidden />
+                        <div class="col-md-6 mb-2">
+                            <div>
+                                <label for="category">Tên người dùng</label>
+                                <input class="form-control" type="text" value="@Html.DisplayFor(model => model.CustomerName)" readonly disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div>
+                                <label for="nameProduct">Email</label>
+                                <input class="form-control" type="text" value="@Html.DisplayFor(model => model.Email)" readonly disabled>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <div>
+                                <label for="dateBuy">Số điện thoại</label>
+                                <input class="form-control" type="text" value="@Html.DisplayFor(model => model.Phone)" readonly disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+                            <div>
+                                <label for="size">Trạng thái</label>
+                                <div class="col-md-12">
+
+                                    <div class="checkbox">
+                                        @Html.EditorFor(model => model.Status)
+                                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-2">
+                            <div>
+                                <label for="dateBuy">Ngày tạo</label>
+                                <input class="form-control" type="text" value="@Html.DisplayFor(model => model.DateContact)" readonly disabled>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-2">
+
+                        </div>
+                    </div>
+                    <div class="row">
+                        
+                            <div>
+                                <label for="dateBuy">Nội dung</label>
+                                <textarea class="form-control" type="text" value="" readonly disabled>
+@Html.DisplayFor(model => model.Content)
+</textarea>
+                            </div>
+                        
+                        
+                    </div>
+                    <br /><br />
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input class="btn ThemMoi" style="margin-right:20px;background-color:darkgreen;color:white" type="submit" value="Lưu" />
+                            <a class="btn ThemMoi" style="background-color: darkgreen; color: white" href="~/Admin/Contacts/Index">Hủy</a>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+
+
+    </div>}

@@ -30,11 +30,17 @@ namespace GrayBShop.Models
         {
             modelBuilder.Entity<BlogCategory>()
                 .HasMany(e => e.Blogs)
-                .WithOptional(e => e.BlogCategory);
+                .WithOptional(e => e.BlogCategory)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Category>()
                 .Property(e => e.CategoryID)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Category>()
+                .HasMany(e => e.Products)
+                .WithOptional(e => e.Category)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<Contact>()
                 .Property(e => e.Email)
@@ -70,7 +76,8 @@ namespace GrayBShop.Models
 
             modelBuilder.Entity<Product>()
                 .HasMany(e => e.ImageProducts)
-                .WithOptional(e => e.Product);
+                .WithOptional(e => e.Product)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<ProductDetail>()
                 .HasMany(e => e.OrderDetails)
@@ -79,11 +86,8 @@ namespace GrayBShop.Models
 
             modelBuilder.Entity<Role>()
                 .HasMany(e => e.Users)
-                .WithOptional(e => e.Role);
-
-            modelBuilder.Entity<Sale>()
-                .HasMany(e => e.Products)
-                .WithOptional(e => e.Sale);
+                .WithOptional(e => e.Role)
+                .WillCascadeOnDelete();
 
             modelBuilder.Entity<User>()
                 .Property(e => e.Password)
@@ -99,8 +103,8 @@ namespace GrayBShop.Models
 
             modelBuilder.Entity<User>()
                 .HasMany(e => e.Orders)
-                .WithOptional(e => e.User);
-            base.OnModelCreating(modelBuilder);
+                .WithOptional(e => e.User)
+                .WillCascadeOnDelete();
         }
     }
 }

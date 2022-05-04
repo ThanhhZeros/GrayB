@@ -15,7 +15,7 @@ namespace GrayBShop.Models
             Products = new HashSet<Product>();
         }
 
-        public int? SaleID { get; set; }
+        public int SaleID { get; set; }
 
         [StringLength(200)]
         public string SaleName { get; set; }

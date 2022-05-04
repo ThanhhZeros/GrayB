@@ -63,6 +63,9 @@ namespace GrayBShop.Areas.Admin.Controllers
                 dataOfYear[i] = (int)data;
             }
             ViewBag.dataOfYear = dataOfYear;
+            int countlh = 0;
+            countlh = db.Contacts.Count();
+            ViewBag.LienHe = countlh;
             return View();
         }
     }

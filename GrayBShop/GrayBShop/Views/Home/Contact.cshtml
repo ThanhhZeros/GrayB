@@ -1,7 +1,9 @@
-﻿
+﻿@model GrayBShop.Models.Contact
 @{
     ViewBag.Title = "Contact";
     Layout = "~/Views/Share/_LayoutClient.cshtml";
+
+
 }
 
 
@@ -9,54 +11,70 @@
 
     <div class="container">
         <h1>Liên hệ với Grey.B</h1>
+        
         <div class="contact-form">
-
+            @using (Html.BeginForm("Contact", "Home", FormMethod.Post))
+            {
             <div class="col-md-7 contact-grid">
+                @if (ViewBag.Success != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @ViewBag.Success
+                    </div>
+                }
                 <form>
-                    <input type="text" value="Name" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Name';}">
+                    @Html.TextBoxFor(model => model.CustomerName,
+                            new { @name = "hoten", @autoforcus = "autofocus", @required = "required", @placeholder = "Name" })
+                    @Html.TextBoxFor(model => model.Email,
+                            new { @name = "email", @autoforcus = "autofocus", @required = "required", @placeholder = "Email" })
+                    @Html.TextBoxFor(model => model.Phone,
+                            new { @name = "phone", @autoforcus = "autofocus", @required = "required", @placeholder = "Phone" })
+                    @Html.TextAreaFor(model => model.Content,
+                            new { @name = "content", @autoforcus = "autofocus", @required = "required", @placeholder = "Message" })
+                    @*<input type="text" value="Name" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Name';}">
+            <input type="text" value="Email" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Email';}">
+            <input type="text" value="Phone" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Phone';}">
 
-                    <input type="text" value="Email" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Email';}">
-                    <input type="text" value="Phone" onfocus="this.value='';" onblur="if (this.value == '') {this.value ='Phone';}">
-
-                    <textarea cols="77" rows="5" value=" " onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>
+            <textarea cols="77" rows="5" value=" " onfocus="this.value='';" onblur="if (this.value == '') {this.value = 'Message';}">Message</textarea>*@
                     <div class="send">
                         <input type="submit" value="Send">
                     </div>
                 </form>
             </div>
-            <div class="col-md-5 contact-in">
+            }
+                <div class="col-md-5 contact-in">
 
-                <div class="address-more">
-                    <div class="content">
+                    <div class="address-more">
+                        <div class="content">
 
-                        <div class="elementor-icon">
-                            <i class="fas fa-mobile-alt"></i>
+                            <div class="elementor-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+
+
+                            <div class="elementor-content">
+                                <h3 class="elementor-title">
+                                    097 567 1080
+                                </h3>
+                                <p class="elementor-text"> Hỗ trợ từ 9:00 - 21:00</p>
+                            </div>
+
+                            <div class="address">
+                                <p>
+                                    <span>Địa chỉ:&nbsp;</span>370 Thái Hà, P. Trung Liệt, Q. Đống Đa, Hà Nội
+                                </p>
+
+                            </div>
+                            <div class="address">
+                                <p><span>Email&nbsp;</span>cskh@greyb.v</p>
+                            </div>
                         </div>
 
-
-                        <div class="elementor-content">
-                            <h3 class="elementor-title">
-                                097 567 1080
-                            </h3>
-                            <p class="elementor-text"> Hỗ trợ từ 9:00 - 21:00</p>
-                        </div>
-
-                        <div class="address">
-                            <p>
-                                <span>Địa chỉ:&nbsp;</span>370 Thái Hà, P. Trung Liệt, Q. Đống Đa, Hà Nội
-                            </p>
-
-                        </div>
-                        <div class="address">
-                            <p><span>Email&nbsp;</span>cskh@greyb.v</p>
-                        </div>
                     </div>
-
+                    <div class=" clearfix "> </div>
                 </div>
-                <div class=" clearfix "> </div>
-            </div>
 
-        </div>
+            </div>
     </div>
 </div>
 

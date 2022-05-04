@@ -2484,7 +2484,9 @@ p.tun{
                     color: #555;
                 }
                 /*--responsive--*/
-                
+                @media(max-width:769px){
+
+                }
                 @media(max-width:1366px) {}
                 
                 @media(max-width:1280px) {}

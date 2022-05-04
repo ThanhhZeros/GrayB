@@ -11,18 +11,19 @@ namespace GrayBShop.Models
     {
         public int ContactID { get; set; }
 
+        [Required]
         [StringLength(100)]
         public string CustomerName { get; set; }
 
-        [StringLength(200)]
-        public string Subject { get; set; }
-
+        [Required]
         [StringLength(500)]
         public string Content { get; set; }
 
+        [Required]
         [StringLength(50)]
         public string Email { get; set; }
 
+        [Required]
         [StringLength(20)]
         public string Phone { get; set; }
 

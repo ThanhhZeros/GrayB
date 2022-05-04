@@ -3630,17 +3630,20 @@
     <Compile Include="Areas\Admin\Controllers\BlogCategoriesController.cs" />
     <Compile Include="Areas\Admin\Controllers\BlogsController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoriesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ContactsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeAdminController.cs" />
     <Compile Include="Areas\Admin\Controllers\ImageProductsController.cs" />
     <Compile Include="Areas\Admin\Controllers\LoginController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrdersController.cs" />
     <Compile Include="Areas\Admin\Controllers\ProductsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProfileController.cs" />
     <Compile Include="Areas\Admin\Controllers\SalesController.cs" />
     <Compile Include="Areas\Admin\Controllers\UsersController.cs" />
     <Compile Include="Areas\Admin\Data\LoginAccount.cs" />
     <Compile Include="Controllers\AccountUserController.cs" />
     <Compile Include="Controllers\BillController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\ContactClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\NewFeedController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
@@ -4107,6 +4110,12 @@
     <Content Include="Assets\Admin\dashboard\dist\js\.eslintrc.json" />
     <Content Include="Assets\Admin\dashboard\dist\js\adminlte.js.map" />
     <Content Include="Assets\Admin\dashboard\dist\js\adminlte.min.js.map" />
+    <Content Include="Areas\Admin\Views\Contacts\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Contacts\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Contacts\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Contacts\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Contacts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Profile\AdminInfor.cshtml" />
     <None Include="packages.config" />
     <Content Include="Views\Share\_LayoutClient.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -4128,6 +4137,7 @@
     <Content Include="Views\Home\HeaderCart.cshtml" />
     <Content Include="Views\AccountUser\ChangePassWord.cshtml" />
     <Content Include="Views\Product\ProductSale.cshtml" />
+    <Content Include="Views\ContactClient\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -4138,6 +4148,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Views\Base\" />
+    <Folder Include="Areas\Admin\Views\ContactManager\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202204231449163_Gray2.resx">
