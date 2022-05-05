@@ -1,7 +1,8 @@
-namespace GrayBShop.Models
+﻿namespace GrayBShop.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class Order
@@ -12,28 +13,35 @@ namespace GrayBShop.Models
             OrderDetails = new HashSet<OrderDetail>();
         }
 
+        [DisplayName("Mã hóa đơn")]
         public int OrderID { get; set; }
 
+        [DisplayName("Mã người dùng")]
         public int? UserID { get; set; }
 
         [Required]
         [StringLength(50)]
+        [DisplayName("Tên người dùng")]
         public string UserName { get; set; }
 
         [Required]
         [StringLength(20)]
+        [DisplayName("Số điện thoại")]
         public string Phone { get; set; }
 
         [Required]
         [StringLength(100)]
+        [DisplayName("Địa chỉ")]
         public string Address { get; set; }
 
         [StringLength(50)]
         public string Email { get; set; }
 
+        [DisplayName("Ngày tạo")]
         public DateTime DateCreate { get; set; }
 
         [StringLength(50)]
+        [DisplayName("Trạng thái")]
         public string Status { get; set; }
 
         [StringLength(50)]

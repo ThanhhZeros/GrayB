@@ -1,7 +1,8 @@
-namespace GrayBShop.Models
+﻿namespace GrayBShop.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
@@ -16,10 +17,12 @@ namespace GrayBShop.Models
         }
 
         [StringLength(20)]
+        [DisplayName("Mã danh mục")]
         public string CategoryID { get; set; }
 
         [Required]
         [StringLength(50)]
+        [DisplayName("Tên danh mục")]
         public string CategoryName { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
