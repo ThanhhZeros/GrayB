@@ -46,6 +46,80 @@
         img {
             padding: 10px 20px;
         }
+
+        .box {
+            margin: 0 auto;
+            background: rgba(255,255,255,0.2);
+            border: 2px solid #fff;
+            border-radius: 20px/50px;
+            background-clip: padding-box;
+        }
+
+        .button {
+            font-size: 1em;
+            padding: 10px;
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease-out;
+        }
+
+            .button:hover {
+                background: #06D85F;
+            }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            transition: opacity 500ms;
+            visibility: hidden;
+            opacity: 0;
+        }
+
+            .overlay:target {
+                visibility: visible;
+                opacity: 1;
+            }
+
+        .popup {
+            margin: 70px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 5px;
+            width: 30%;
+            position: relative;
+            transition: all 5s ease-in-out;
+        }
+
+            .popup h2 {
+                margin-top: 0;
+                color: #333;
+                font-family: Tahoma, Arial, sans-serif;
+            }
+
+            .popup .close {
+                position: absolute;
+                top: 20px;
+                right: 30px;
+                transition: all 200ms;
+                font-size: 30px;
+                font-weight: bold;
+                text-decoration: none;
+                color: #333;
+            }
+
+                .popup .close:hover {
+                    color: #06D85F;
+                }
+
+            .popup .content {
+                max-height: 30%;
+                overflow: auto;
+            }
     </style>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script type="text/javascript">
@@ -59,7 +133,7 @@
                 e.preventDefault();
                 if (x < max_fields) { //max input box allowed
                     x++; //text box increment
-                    $(wrapper).append('<div class="row"> <img class="img-rounded output" alt="Ảnh" width="100" height="230" src="~/wwwroot/Images/h0.png" />  <input type="file" name="uploadFile[' + x + ']" onchange="loadFile(event)"/><a href="#" class="btnRemove">Xóa</a></div>'); //add input box
+                    $(wrapper).append('<div class="row"> <img class="img-rounded output" alt="Ảnh" width="100" height="230" src="~/wwwroot/Images/h0.png" />  <input type="file" name="uploadFile[' + x + ']" onchange="loadFile(event)"/><a href="#" class="btnRemove">Xóa</a><div class="box"><a class= "button" href = "#popup1" style = "background-color:darkblue;color:white;width:100px" > Kích cỡ</a></div></div >'); //add input box
 
                 }
             });
@@ -106,7 +180,7 @@
         </div>
     </div>
 
-    
+
     <div class=" form-group">
         <label>Ảnh sản phẩm </label><br />
         <a class="btnAddNew ThemMoi" href="#">Thêm Ảnh</a>
@@ -115,9 +189,22 @@
             <div class="row">
                 <img class="img-rounded output" alt="Ảnh" width="100" height="230" src="~/wwwroot/Images/h0.png" />
                 <input type="file" name="uploadFile[0]" required onchange="loadFile(event)" /><br />
+                <div class="box">
+                    <a class="button" href="#popup1" style="background-color:darkblue;color:white">Kích cỡ</a>
+                </div>
             </div>
         </div>
         <br />
+    </div>
+    <div id="popup1" class="overlay">
+        <div class="popup">
+            <h2>Chọn kích cỡ</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+                Thank to pop me out of that button, but now i'm done so you can close this window.
+                <div>helooooooooo</div>
+            </div>
+        </div>
     </div>
     <div class="form-group" style="clear:both">
         @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "control-label col-md-2" })
