@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace GrayBShop.Areas.Admin.Controllers
 {
-    public class AdminController : Controller
+    public class AdminController : BaseController
     {
         GrayShop db = new GrayShop();
         // GET: Admin/Admin

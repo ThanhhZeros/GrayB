@@ -18,6 +18,11 @@ namespace GrayBShop.Areas.Admin.Controllers
         // GET: Admin/Sales
         public ActionResult Index(string searchString, int? page)
         {
+            User ses = (User)Session[GrayBShop.Session.ConstainUser.ADMIN_SESSION];
+            if (ses.RoleID == 2)
+            {
+                return RedirectToAction("Index", "HomeAdmin");
+            }
             ViewBag.searchString = searchString;
             var dm = db.Sales.Select(tk => tk);
             if (!String.IsNullOrEmpty(searchString))

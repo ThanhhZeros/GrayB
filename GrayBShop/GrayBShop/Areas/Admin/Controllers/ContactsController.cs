@@ -11,13 +11,18 @@ using PagedList;
 
 namespace GrayBShop.Areas.Admin.Controllers
 {
-    public class ContactsController : Controller
+    public class ContactsController : BaseController
     {
         private GrayShop db = new GrayShop();
 
         // GET: Admin/Contacts
         public ActionResult Index(string searchString, int? page)
         {
+            User ses = (User)Session[GrayBShop.Session.ConstainUser.ADMIN_SESSION];
+            if (ses.RoleID == 2)
+            {
+                return RedirectToAction("Index", "HomeAdmin");
+            }
             ViewBag.searchString = searchString;
             var contact = db.Contacts.Select(c=>c);
             if (!String.IsNullOrEmpty(searchString))

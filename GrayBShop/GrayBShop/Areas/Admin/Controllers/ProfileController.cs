@@ -10,7 +10,7 @@ using GrayBShop.Models;
 
 namespace GrayBShop.Areas.Admin.Controllers
 {
-    public class ProfileController : Controller
+    public class ProfileController : BaseController
     {
         private GrayShop db = new GrayShop();
 

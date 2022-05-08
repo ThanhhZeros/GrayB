@@ -12,7 +12,6 @@ CREATE DATABASE GrayB
 GO
 USE GrayB
 GO
-select *from Contact
 create table Category(
 	CategoryID		varchar(20) not null primary key,
 	CategoryName	nvarchar(50) not null,
@@ -114,10 +113,6 @@ create table Contact(
 	DateContact	datetime
 )
 
-create table Introduce(
-	Introduce int identity(1,1) primary key,
-	Detail ntext
-)
 ----------------------insert----------------------
 insert into Category(CategoryID, CategoryName) values
 ('DM01', N'Giày Nike'),

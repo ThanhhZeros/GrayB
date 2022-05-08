@@ -32,6 +32,21 @@ namespace GrayBShop.Areas.Admin.Controllers
                     }
                     else
                     {
+                        //var km = db.Sales.ToList();
+                        //Sale k=db.Sales.
+                        if (db.Sales.ToList() != null)
+                        {
+                            db.Sales.RemoveRange(db.Sales.Where(k => k.DateFinish < DateTime.Now));
+                            db.SaveChanges();
+                            /*foreach (var item in db.Sales.ToList())
+                            {
+                                if (item.DateFinish < DateTime.Now)
+                                {
+                                    km.Remove(item);
+                                }
+                                db.SaveChanges();
+                            }*/
+                        }
                         Session.Add(ConstainUser.ADMIN_SESSION, tk);
                         return RedirectToAction("Index", "HomeAdmin");
                     }
@@ -40,7 +55,9 @@ namespace GrayBShop.Areas.Admin.Controllers
                 {
                     ModelState.AddModelError("ErrorLogin", "Tài khoản hoặc mật khẩu không đúng!");
                 }
+                
             }
+            
             return View(loginAccount);
         }
 

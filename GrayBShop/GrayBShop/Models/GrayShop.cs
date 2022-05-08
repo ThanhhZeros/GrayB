@@ -17,7 +17,6 @@ namespace GrayBShop.Models
         public virtual DbSet<Category> Categories { get; set; }
         public virtual DbSet<Contact> Contacts { get; set; }
         public virtual DbSet<ImageProduct> ImageProducts { get; set; }
-        public virtual DbSet<Introduce> Introduces { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<Product> Products { get; set; }

@@ -23,8 +23,8 @@
         [Key]
         [Column(Order = 2)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        
         public int Size { get; set; }
+
         [DisplayName("Số lượng")]
         public int Amount { get; set; }
 
