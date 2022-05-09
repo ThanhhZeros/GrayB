@@ -23,7 +23,7 @@ namespace GrayBShop.Controllers
             }
             return View(list);
         }
-        public JsonResult AddCart(int maSP, int kichCo)
+        public JsonResult AddCart(int maSP, int kichCo, string ProductID)
         {
             var SanPham = db.ProductDetails.Where(p => p.ImageID == maSP).FirstOrDefault();
             var cart = Session[ConstainCart.CartSession];
@@ -43,6 +43,7 @@ namespace GrayBShop.Controllers
                     var item = new CartItem();
                     item.ProductDetail = SanPham;
                     item.ImageID = SanPham.ImageID;
+                    item.ProductID = SanPham.ImageProduct.ProductID;
                     item.Size = kichCo;
                     if (SanPham.ImageProduct.Product.Sale != null)
                     {
@@ -147,6 +148,7 @@ namespace GrayBShop.Controllers
             var cart = Session[ConstainCart.CartSession];
             var list = new List<CartItem>();
             list = (List<CartItem>)cart;
+            
             foreach (var item in list)
             {
                 OrderDetail cthd = new OrderDetail();
@@ -155,6 +157,8 @@ namespace GrayBShop.Controllers
                 cthd.Size = item.Size;
                 cthd.Amount = item.Amount;
                 db.OrderDetails.Add(cthd);
+                var sl = db.Products.Where(p => p.ProductID == item.ProductDetail.ImageProduct.ProductID).FirstOrDefault();
+                sl.AmountInput = sl.AmountInput - item.Amount;
             }
             db.SaveChanges();
             Session[ConstainCart.CartSession] = null;

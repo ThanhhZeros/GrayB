@@ -54,6 +54,8 @@ namespace GrayBShop.Models
         [StringLength(300)]
         [DisplayName("Các size sẵn có")]
         public string Size { get; set; }
+        [DisplayName("Số lượng nhập")]
+        public int AmountInput { get; set; }
         public int ImageID { get; set; }
 
         public virtual Category Category { get; set; }

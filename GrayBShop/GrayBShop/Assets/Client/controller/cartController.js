@@ -12,7 +12,7 @@
             var count = parseInt(total);
             $.ajax({
                 url: '/Cart/AddCart',
-                data: { MaSP: $(this).data('id'), KichCo: $('#kichco').val() },
+                data: { MaSP: $(this).data('id'), ProductID: $(this).data('productid'), KichCo: $('#kichco').val() },
                 dataType: 'json',
                 type: 'POST',
                 success: function (response) {

@@ -202,6 +202,7 @@ namespace GrayBShop.Areas.Admin.Controllers
                     sanPham.SaleID = productDetail.SaleID;
                     sanPham.DateCreate = DateTime.Now;
                     sanPham.DateUpdate = DateTime.Now;
+                    sanPham.AmountInput = productDetail.AmountInput;
                     db.Products.Add(sanPham);
                     db.SaveChanges();
                     //Add Anh
@@ -293,7 +294,8 @@ namespace GrayBShop.Areas.Admin.Controllers
                 DateUpdate = product.DateUpdate,
                 SaleID=product.SaleID,
                 Sale=product.Sale,
-                Category = product.Category
+                Category = product.Category,
+                AmountInput=product.AmountInput
             };
             return View(productDetail);
             
@@ -326,6 +328,7 @@ namespace GrayBShop.Areas.Admin.Controllers
                     sanPham.CategoryID = productDetail.CategoryID;
                     sanPham.SaleID = productDetail.SaleID;
                     sanPham.DateUpdate = DateTime.Now;
+                    sanPham.AmountInput = productDetail.AmountInput;
                     db.SaveChanges();
                     string[] sizes = productDetail.Size.Split(';');
                     //Xóa ảnh cũ bị loại bỏ

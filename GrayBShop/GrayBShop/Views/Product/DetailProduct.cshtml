@@ -62,7 +62,7 @@
                 <div class="description">
                     <p class="desc_title">Mô tả</p>
                     <hr>
-                    @Model.Description;
+                    @Html.Raw(Model.Description);
                 </div>
             </div>
                     @if (Model.SaleID != null)
@@ -141,7 +141,7 @@
                         </div>
                     </div>
                     <div class="star-on">
-                        <button class="btnAddCart" data-id="@maAnh" style="width:91%; margin:0% 4%;font-size:25px; padding:5px">
+                        <button class="btnAddCart" data-id="@maAnh" data-productid="@Model.ProductID" style="width:91%; margin:0% 4%;font-size:25px; padding:5px">
                             MUA NGAY
                             <div class="ship"><span style="font-size:15px">Giao tận nhà - Đổi trả dễ dàng</span></div>
                         </button>
