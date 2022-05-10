@@ -115,6 +115,19 @@ namespace GrayBShop.Controllers
                     return Json(new { status = false }, JsonRequestBehavior.AllowGet);
                 }
                 hd.Status = stt;
+                
+                if (hd.Status=="Đã hủy")
+                {
+                    hd.Status = stt;
+                    var list = hd.OrderDetails.ToList();
+                    foreach (var item in list)
+                    {
+                        var sl = db.Products.Where(p => p.ProductID == item.ProductDetail.ImageProduct.ProductID).FirstOrDefault();
+                        sl.AmountInput = sl.AmountInput + item.Amount;
+                    }
+                    db.SaveChanges();
+                    return Json(new { status = true }, JsonRequestBehavior.AllowGet);
+                }
                 db.SaveChanges();
                 return Json(new { status = true }, JsonRequestBehavior.AllowGet);
             }

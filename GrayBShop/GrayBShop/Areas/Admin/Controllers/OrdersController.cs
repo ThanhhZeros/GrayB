@@ -124,6 +124,14 @@ namespace GrayBShop.Areas.Admin.Controllers
                     var hoaDon = db.Orders.Find(id);
                     hoaDon.Status = Status;
                     db.Entry(hoaDon).State = EntityState.Modified;
+                    if(hoaDon.Status=="Đã hủy")
+                    {
+                        foreach (var item in hoaDon.OrderDetails.ToList())
+                        {
+                            var sl = db.Products.Where(p => p.ProductID == item.ProductDetail.ImageProduct.ProductID).FirstOrDefault();
+                            sl.AmountInput = sl.AmountInput + item.Amount;
+                        }
+                    }
                     db.SaveChanges();
 
                 }
