@@ -34,8 +34,13 @@ namespace GrayBShop.Controllers
                 {
                     foreach (var item in list)
                     {
+                        if (item.Amount >= SanPham.ImageProduct.Product.AmountInput)
+                        {
+                            return Json(new { status = false });
+                        }
                         if (item.ProductDetail.ImageID == maSP && item.Size == kichCo)
                             item.Amount += 1;
+                        
                     }
                 }
                 else
@@ -121,9 +126,19 @@ namespace GrayBShop.Controllers
             {
                 var cart = Session[ConstainCart.CartSession];
                 var list = new List<CartItem>();
+                //var check = db.Products.ToList();
+                
                 if (cart != null)
                 {
                     list = (List<CartItem>)cart;
+                    foreach (var item in list)
+                    {
+                        var check = db.Products.Where(p => p.ProductID == item.ProductDetail.ImageProduct.Product.ProductID).FirstOrDefault();
+                        if (item.Amount >= check.AmountInput)
+                        {
+                            return Json(new { status = false });
+                        }
+                    }
                 }
                 return View(list);
             }
