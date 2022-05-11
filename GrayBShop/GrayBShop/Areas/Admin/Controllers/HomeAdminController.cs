@@ -66,19 +66,24 @@ namespace GrayBShop.Areas.Admin.Controllers
             int countlh = 0;
             countlh = db.Contacts.Count();
             ViewBag.LienHe = countlh;
+            /*var listhd = db.Orders.GroupBy(p=>p.DateCreate).ToList();*/
             var listhd = db.Orders.ToList();
+
             var tongsp = 0;
 
             foreach (var item in listhd)
             {
-
-                foreach (var it in item.OrderDetails.ToList())
+                /*item.DateCreate = DateTime.Parse(item.DateCreate.ToString("yyyyMMdd"));*/
+                /*foreach (var it in item.OrderDetails.ToList())
                 {
                     tongsp += it.Amount;
 
-                }
+                }*/
+                
                 
             }
+            var listhdResult = listhd.GroupBy(p => p.DateCreate);
+
             ViewBag.tongsphd = tongsp;
             return View();
         }

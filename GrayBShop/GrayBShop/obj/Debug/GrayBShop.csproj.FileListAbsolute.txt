@@ -239,7 +239,6 @@ D:\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.Migrations.Grayy.resources
 D:\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.AssemblyReference.cache
 D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.Migrations.Gray2.resources
 D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.GenerateResource.cache
-D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.AssemblyReference.cache
 D:\New folder\GrayB\GrayBShop\GrayBShop\bin\GrayBShop.dll.config
 D:\New folder\GrayB\GrayBShop\GrayBShop\bin\GrayBShop.dll
 D:\New folder\GrayB\GrayBShop\GrayBShop\bin\GrayBShop.pdb
@@ -324,3 +323,4 @@ D:\New folder\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.CoreCompileIn
 D:\New folder\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.CopyComplete
 D:\New folder\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.dll
 D:\New folder\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.pdb
+D:\DoAntotNghiep\GrayB\GrayBShop\GrayBShop\obj\Debug\GrayBShop.csproj.AssemblyReference.cache

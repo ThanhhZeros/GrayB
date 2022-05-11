@@ -40,7 +40,7 @@
                         </td>
                         <td>@String.Format("{0:0,0}", @item.Price)</td>
                         <td>@item.Size</td>
-                        <td><input type="number" class="txtQuantity" data-id="@item.ImageID" data-kichco="@item.Size" min="1" value="@item.Amount" /></td>
+                        <td><input type="number" class="txtQuantity" data-id="@item.ImageID" data-kichco="@item.Size" min="1" value="@item.Amount" max="@item.ProductDetail.ImageProduct.Product.AmountInput"/></td>
                         <td id="thanh-tien-@item.ImageID@item.Size">@String.Format("{0:0,0}", (item.Price * item.Amount))</td>
                         <td>
                             <div class="clearfix"></div>

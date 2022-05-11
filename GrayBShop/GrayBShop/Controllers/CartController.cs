@@ -131,14 +131,15 @@ namespace GrayBShop.Controllers
                 if (cart != null)
                 {
                     list = (List<CartItem>)cart;
-                    foreach (var item in list)
+                    /*foreach (var item in list)
                     {
                         var check = db.Products.Where(p => p.ProductID == item.ProductDetail.ImageProduct.Product.ProductID).FirstOrDefault();
-                        if (item.Amount >= check.AmountInput)
+                        if (item.Amount > check.AmountInput)
                         {
-                            return Json(new { status = false });
+                            ViewBag.Error = "Số lượng hàng không đủ";
+                            return RedirectToAction("Login", "Home");
                         }
-                    }
+                    }*/
                 }
                 return View(list);
             }
