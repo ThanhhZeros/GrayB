@@ -28,7 +28,8 @@ namespace GrayBShop.Areas.Admin.Controllers
                 Description = p.Descriptions,
                 Price = p.Price,
                 SaleID=p.Sale.SalePercent,
-                DateUpdate = p.DateUpdate
+                DateUpdate = p.DateUpdate,
+                AmountInput=p.AmountInput
 
             }).ToList();
             

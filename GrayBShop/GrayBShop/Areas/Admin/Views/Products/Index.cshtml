@@ -84,6 +84,9 @@
                     Danh mục
                 </th>
                 <th>
+                    Số lượng nhập
+                </th>
+                <th>
                     Ngày cập nhật
                 </th>
                 <th></th>
@@ -93,46 +96,51 @@
             <!-- Item -->
             @foreach (var item in Model)
             {
-                <tr class="group-info" id="row-@item.ProductID">
-                    <td>
-                        <span class="font-weight-normal">
-                            @Html.DisplayFor(modelItem => item.ProductName)
-                        </span>
-                    </td>
-                    <td>
-                        <span class="font-weight-normal">
-                            @{
-                                string ImagePath = "~/wwwroot/Images/" + item.Images;
-                            }
-                            <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" />
-                        </span>
-                    </td>
-                    <td>
-                        <span class="font-weight-normal">
-                            @string.Format(info, "{0:c0}", item.Price)
-                        </span>
-                    </td>
-                    <td>
-                        <span class="font-weight-normal">
-                            @Html.DisplayFor(modelItem => item.SaleID)
-                        </span>
-                    </td>
-                    <td>
-                        <span class="font-weight-normal">
-                            @Html.DisplayFor(modelItem => item.CategoryID)
-                        </span>
-                    </td>
-                    <td>
-                        <span class="font-weight-normal">
-                            @Html.DisplayFor(modelItem => item.DateUpdate)
-                        </span>
+            <tr class="group-info" id="row-@item.ProductID">
+                <td>
+                    <span class="font-weight-normal">
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </span>
+                </td>
+                <td>
+                    <span class="font-weight-normal">
+                        @{
+                            string ImagePath = "~/wwwroot/Images/" + item.Images;
+                        }
+                        <img src="@Url.Content(ImagePath)" width="100" class="img-thumbnail" />
+                    </span>
+                </td>
+                <td>
+                    <span class="font-weight-normal">
+                        @string.Format(info, "{0:c0}", item.Price)
+                    </span>
+                </td>
+                <td>
+                    <span class="font-weight-normal">
+                        @Html.DisplayFor(modelItem => item.SaleID)
+                    </span>
+                </td>
+                <td>
+                    <span class="font-weight-normal">
+                        @Html.DisplayFor(modelItem => item.CategoryID)
+                    </span>
+                </td>
+                <td>
+                    <span class="font-weight-normal">
+                        @Html.DisplayFor(modelItem => item.AmountInput)
+                    </span>
+                </td>
+                <td>
+                    <span class="font-weight-normal">
+                        @Html.DisplayFor(modelItem => item.DateUpdate)
+                    </span>
 
-                    <td>
-                        <button style="background-color: midnightblue; border-radius: 8px; border: none; padding: 8px 10px; margin-right: 7px;">@Html.ActionLink("Xem chi tiết", "Edit", new { id = item.ProductID })</button>
-                        <button style="background-color: #FF6347; border-radius: 8px; border: none; padding: 8px 30px;">@Html.ActionLink("Xóa", "Delete", new { id = item.ProductID })</button>
+                <td>
+                    <button style="background-color: midnightblue; border-radius: 8px; border: none; padding: 8px 10px; margin-right: 7px;">@Html.ActionLink("Xem chi tiết", "Edit", new { id = item.ProductID })</button>
+                    <button style="background-color: #FF6347; border-radius: 8px; border: none; padding: 8px 30px;">@Html.ActionLink("Xóa", "Delete", new { id = item.ProductID })</button>
 
-                    </td>
-                </tr>
+                </td>
+            </tr>
             }
         </tbody>
     </table>
