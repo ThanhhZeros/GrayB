@@ -66,7 +66,7 @@ namespace GrayBShop.Areas.Admin.Controllers
             {
                 if (sale.DateStart < DateTime.Now)
                 {
-                    ViewBag.Error = "Nhập ngày bắt đầu lớn hơn hoặc bằng ngày hiện tại";
+                    ViewBag.Error = "Nhập ngày bắt đầu lớn hơn ngày hiện tại";
                 }
                 else if (sale.DateStart > sale.DateFinish)
                 {

@@ -48,16 +48,22 @@
                                                 <select name="Status" class="form-control">
                                                     @if (Model.Status.Equals("Đã hủy"))
                                                     {
-                                    <option value="Đã hủy" @(Model.Status.Equals("Đã hủy") ? "selected" : "")>Đã hủy</option>
-}
-                                                    @if (!Model.Status.Equals("Đã hủy"))
+                                                        <option value="Đã hủy" @(Model.Status.Equals("Đã hủy") ? "selected" : "")>Đã hủy</option>
+
+                                                    }
+                                                    @if (Model.Status.Equals("Đã thanh toán"))
                                                     {
-                                    <option value="Đã hủy" @(Model.Status.Equals("Đã hủy") ? "selected" : "")>Đã hủy</option>
+                                                        <option value="Đã thanh toán" @(Model.Status.Equals("Đã thanh toán") ? "selected" : "")>Đã thanh toán</option>
+
+                                                    }
+                                                    @if (!Model.Status.Equals("Đã hủy") && !Model.Status.Equals("Đã thanh toán"))
+                                                    {
+                                                        <option value="Đã hủy" @(Model.Status.Equals("Đã hủy") ? "selected" : "")>Đã hủy</option>
                                                         <option value="Chờ xác nhận" @(Model.Status.Equals("Chờ xác nhận") ? "selected" : "")>Chờ xác nhận</option>
-                                                                            <option value="Đang chuẩn bị" @(Model.Status.Equals("Đang chuẩn bị") ? "selected" : "")>Đang chuẩn bị</option>
-                                                                                                <option value="Đang giao hàng" @(Model.Status.Equals("Đang giao hàng") ? "selected" : "")>Đang giao hàng</option>
-                                                                                                                    <option value="Đã giao hàng" @(Model.Status.Equals("Đã giao hàng") ? "selected" : "")>Đã giao hàng</option>
-}
+                                                        <option value="Đang chuẩn bị" @(Model.Status.Equals("Đang chuẩn bị") ? "selected" : "")>Đang chuẩn bị</option>
+                                                        <option value="Đang giao hàng" @(Model.Status.Equals("Đang giao hàng") ? "selected" : "")>Đang giao hàng</option>
+                                                        <option value="Đã giao hàng" @(Model.Status.Equals("Đã giao hàng") ? "selected" : "")>Đã giao hàng</option>
+                                                    }
                                                 </select>
 
 
